@@ -1,9 +1,33 @@
 <html>
 <body>
     <h1 id="hide">Testing</h1>
-    <a href="javascript:void(function(){var el=document&&document.getElementById('webkit-xml-viewer-source-xml');if(el){el.parentNode.removeChild(el);}var xhr=new XMLHttpRequest();xhr.open('GET','http://localhost:4000/wateraid-org.xml',false);xhr.send();var data=xhr.responseXML;var xmlhttp=new XMLHttpRequest();xmlhttp.open('GET','http://localhost:4000/static/html/html.html',false);xmlhttp.send();var htmlString=xmlhttp.response;var parser=new DOMParser();var result=parser.parseFromString(htmlString,'text/html');document.replaceChild(document.adoptNode(result.documentElement),document.documentElement);var sc=document.createElement('script');sc.setAttribute('src','http://localhost:4000/static/js/js.js');document.documentElement.appendChild(sc);})();">bookmark</a>
+    <a href="javascript:void(function(){var%20el=document&&document.getElementById('webkit-xml-viewer-source-xml');if(el){el.parentNode.removeChild(el);}var%20xhr=new%20XMLHttpRequest();xhr.open('GET','http://localhost:4000/wateraid-org.xml',false);xhr.send();var%20data=xhr.responseXML;var%20xmlhttp=new%20XMLHttpRequest();xmlhttp.open('GET','http://localhost:4000/static/xsl/xsl.xsl',false);if(xmlhttp.overrideMimeType){xmlhttp.overrideMimeType('text/xml');}xmlhttp.send();var%20xslDoc=xmlhttp.responseXML;var%20xslProc=new%20XSLTProcessor();xslProc.importStylesheet(xslDoc);var%20result=xslProc.transformToDocument(data);document.replaceChild(document.adoptNode(result.documentElement),document.documentElement);var%20sc=document.createElement('script');sc.setAttribute('src','http://localhost:4000/static/js/js.js');document.documentElement.appendChild(sc);})();">bookmark</a>
     <script>
-// javascript:void(function(){var el=document&&document.getElementById('webkit-xml-viewer-source-xml');if(el){el.parentNode.removeChild(el);}var xhr=new XMLHttpRequest();xhr.open('GET','http://localhost:4000/wateraid-org.xml',false);xhr.send();var data=xhr.responseXML;var xmlhttp=new XMLHttpRequest();xmlhttp.open('GET','http://localhost:4000/static/html/html.html',false);xmlhttp.send();var htmlString=xmlhttp.response;var parser=new DOMParser();var result=parser.parseFromString(htmlString,'text/html');document.replaceChild(document.adoptNode(result.documentElement),document.documentElement);var sc=document.createElement('script');sc.setAttribute('src','http://localhost:4000/static/js/js.js');document.documentElement.appendChild(sc);})();
+// javascript:void(
+//     function(){
+//         var el=document&&document.getElementById('webkit-xml-viewer-source-xml');
+//         if(el){el.parentNode.removeChild(el);
+//         }
+//         var xhr=new XMLHttpRequest();
+//         xhr.open('GET','http://localhost:4000/wateraid-org.xml',false);
+//         xhr.send();
+//         var data=xhr.responseXML;
+//         var xmlhttp=new XMLHttpRequest();
+//         xmlhttp.open('GET','http://localhost:4000/static/xsl/xsl.xsl',false);
+//         if(xmlhttp.overrideMimeType){
+//             xmlhttp.overrideMimeType('text/xml');
+//         }
+//         xmlhttp.send();
+//         var xslDoc=xmlhttp.responseXML;
+//         var xslProc=new XSLTProcessor();
+//         xslProc.importStylesheet(xslDoc);
+//         var result=xslProc.transformToDocument(data);
+//         document.replaceChild(document.adoptNode(result.documentElement),document.documentElement);
+//         var sc=document.createElement('script');
+//         sc.setAttribute('src','http://localhost:4000/static/js/js.js');
+//         document.documentElement.appendChild(sc);
+//     }
+// )();
 </script>
 </body>
 </html>
