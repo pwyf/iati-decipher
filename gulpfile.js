@@ -7,13 +7,18 @@ const sourcemaps = require('gulp-sourcemaps')
 
 const outPath = './dist'
 
+const jsFiles = [
+  './src/js/action.js',
+  './node_modules/underscore/underscore.js'
+]
+
 gulp.task('clean', () => {
   return del(outPath)
 })
 
 gulp.task('build:_core_js', () => {
-  return gulp.src(['action.js'], { cwd: './src/js' })
-    .pipe(concat('action.js'))
+  return gulp.src(jsFiles)
+    .pipe(concat('js.js'))
     .pipe(uglify())
     .pipe(gulp.dest(outPath + '/js'))
 })
