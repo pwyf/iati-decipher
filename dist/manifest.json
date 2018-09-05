@@ -24,7 +24,7 @@
     "matches": ["http://*/*", "https://*/*", "file://*/*"],
     "run_at": "document_start"
   }],
-  "web_accessible_resources": ["css/css.css"],
+  "web_accessible_resources": ["css/css.css", "fonts/*"],
 
   "page_action": {
     "default_icon": {

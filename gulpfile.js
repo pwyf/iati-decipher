@@ -31,7 +31,7 @@ gulp.task('build:css', () => {
 })
 
 gulp.task('build:assets', () => {
-  return gulp.src(['./src/static/**'])
+  return gulp.src(['./src/static/**', './node_modules/bootstrap/dist/fonts*/*'])
     .pipe(gulp.dest(outPath))
 })
 
