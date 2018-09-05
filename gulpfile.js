@@ -1,5 +1,5 @@
 const gulp = require('gulp')
-var del = require('del')
+const del = require('del')
 const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const cleanCSS = require('gulp-clean-css')
