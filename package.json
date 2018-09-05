@@ -1,0 +1,34 @@
+{
+  "name": "iati-org-file-visualiser",
+  "version": "0.0.1",
+  "description": "Visualise IATI org files from the comfort of your own browser.",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "chart.js": "^2.7.2",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-uglify": "^3.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp",
+    "watch": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andylolz/iati-org-viz.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andylolz/iati-org-viz/issues"
+  },
+  "homepage": "https://github.com/andylolz/iati-org-viz#readme"
+}
