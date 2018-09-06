@@ -1,3 +1,13 @@
+/*!
+ * IATI Org File Visualiser
+ * https://github.com/andylolz/iati-org-viz
+ * Version: 0.0.1
+ *
+ * Copyright 2018 Andy Lulham
+ * Released under the MIT license
+ * https://github.com/andylolz/iati-org-viz/blob/master/LICENSE.md
+ */
+
 // fallback to old Chrome API
 var sendMessage = chrome.runtime.sendMessage
 
