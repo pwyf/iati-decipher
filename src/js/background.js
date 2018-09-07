@@ -1,36 +1,15 @@
-var html = null
-
-function loadHTML (url) {
-  var xhr = new XMLHttpRequest()
-  xhr.open('GET', url, true)
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      html = xhr.responseText
-    }
-  }
-  xhr.send()
-}
-
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, sender, reply) {
   switch (request.action) {
-    case 'msg.get-html':
-      if (html === null) {
-        loadHTML(request.filePath)
+    case 'msg.httprequest':
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', request.url, true)
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          reply({txt: xhr.responseText})
+        }
       }
-      sendResponse({fileText: html})
-      break
-    case 'msg.show-page-action':
-      chrome.pageAction.show(sender.tab.id)
-      break
-    case 'msg.hide-page-action':
-      chrome.pageAction.hide(sender.tab.id)
-      break
-    case 'msg.do-cool-stuff':
-      chrome.tabs.executeScript({
-        file: 'js/chart.js'
-      })
+      xhr.send()
       break
   }
+  return true
 })
-
-loadHTML('../html/html.html')

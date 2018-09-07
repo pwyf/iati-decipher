@@ -18,10 +18,10 @@
   },
   "content_scripts": [{
     "js": ["js/js.js"],
-    "matches": ["http://*/*", "https://*/*", "file://*/*"],
-    "run_at": "document_start"
+    "matches": ["https://iatiregistry.org/dataset/*"],
+    "run_at": "document_idle"
   }],
-  "web_accessible_resources": ["css/css.css", "fonts/*"],
+  "web_accessible_resources": ["css/css.css", "fonts/*", "html/html.html"],
 
   "page_action": {
     "default_icon": {

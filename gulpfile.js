@@ -8,8 +8,10 @@ const sourcemaps = require('gulp-sourcemaps')
 const outPath = './dist'
 
 const jsFiles = [
-  './src/js/action.js',
-  './node_modules/underscore/underscore.js'
+  './node_modules/jquery/dist/jquery.js',
+  './node_modules/chart.js/dist/Chart.bundle.js',
+  './src/js/chart.js',
+  './src/js/action.js'
 ]
 
 gulp.task('clean', () => {
@@ -19,13 +21,13 @@ gulp.task('clean', () => {
 gulp.task('build:_core_js', () => {
   return gulp.src(jsFiles)
     .pipe(concat('js.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
 gulp.task('build:_bg_js', () => {
   return gulp.src('background.js', { cwd: './src/js' })
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
