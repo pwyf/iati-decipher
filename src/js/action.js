@@ -64,8 +64,12 @@ function canTransform (doc) {
   return 'documentElement' in doc && isXML(doc) && !(doc.documentElement instanceof HTMLElement)
 }
 
-function doSomeMagic (data) {
-  console.log(data)
+var doSomeMagic = function (xmlDoc) {
+  console.log(xmlDoc)
+  sendMessage({action: 'msg.do-cool-stuff'},
+    function (response) {
+      console.log('omg')
+    })
 }
 
 function doTransform (data) {

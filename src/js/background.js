@@ -25,6 +25,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case 'msg.hide-page-action':
       chrome.pageAction.hide(sender.tab.id)
       break
+    case 'msg.do-cool-stuff':
+      chrome.tabs.executeScript({
+        file: 'js/chart.js'
+      })
+      break
   }
 })
 
