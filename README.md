@@ -10,3 +10,5 @@ You’ll need recent versions of `npm`, `node` and `gulp-cli`.
 $ npm install
 $ npm run watch
 ```
+
+Then in Chrome, visit chrome://extensions and enable developer mode. Then click “Load unpacked” and load the generated `dist` folder.
