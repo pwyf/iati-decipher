@@ -18,7 +18,7 @@ function isXML (doc) {
 }
 
 function toXml (text) {
-  var result = (new DOMParser()).parseFromString(text, 'text/xml');
+  var result = (new DOMParser()).parseFromString(text, 'application/xml');
 
   if (!result || !result.documentElement ||
           result.documentElement.nodeName === 'parsererror' ||
@@ -48,7 +48,7 @@ function renderPage (url) {
     }
   }
 
-  xhr.open('GET', url || document.URL, true)
+  xhr.open('GET', url, true)
   xhr.send()
 }
 
@@ -69,7 +69,7 @@ function doSomeMagic (data) {
 }
 
 function doTransform (data) {
-  sendMessage({action: 'msg.get-html', filePath: 'html/html.html'},
+  sendMessage({action: 'msg.get-html', filePath: '../html/html.html'},
     function (response) {
       var result = (new DOMParser()).parseFromString(response.fileText, 'text/html')
       document.replaceChild(document.adoptNode(result.documentElement), document.documentElement)
@@ -138,7 +138,7 @@ document.addEventListener('readystatechange', function () {
       doTransform(el)
       togglePageAction(false)
     } else if (__canRender) {
-      renderPage()
+      renderPage(document.URL)
       togglePageAction(false)
     } else {
       togglePageAction(true)
