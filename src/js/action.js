@@ -18,16 +18,16 @@ var oldDom = document.documentElement
 
 chrome.runtime.sendMessage({action: 'msg.httprequest', url: xmlUrl}, function (response) {
   var xml = new DOMParser().parseFromString(response.txt, 'application/xml')
-  chrome.runtime.sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')}, function (response2) {
+  chrome.runtime.sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')}, function (response) {
 
-    var html = new DOMParser().parseFromString(response2.txt, 'text/html')
+    var html = new DOMParser().parseFromString(response.txt, 'text/html')
+    var newDom = html.documentElement
     $('link', html).attr('href', chrome.extension.getURL('css/css.css'))
 
     $('#pwyf-org-viz-btn', 'body').on('click', function () {
-      document.replaceChild(document.adoptNode(html.documentElement), document.documentElement)
+      document.replaceChild(document.adoptNode(newDom), document.documentElement)
       doGraphs(xml)
-
-      return false;
+      return false
     }).removeClass('disabled')
   })
 })
