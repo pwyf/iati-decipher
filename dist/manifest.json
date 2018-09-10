@@ -1,0 +1,32 @@
+{
+  "name": "IATI Org File Visualiser",
+  "version": "0.0.1",
+  "description": "Visualise IATI org files from the comfort of your own browser.",
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "icons": {
+    "16": "img/icon-16.png",
+    "32": "img/icon-32.png"
+  },
+  "content_scripts": [{
+    "js": ["js/js.js"],
+    "matches": ["https://iatiregistry.org/dataset/*"],
+    "run_at": "document_idle"
+  }],
+  "web_accessible_resources": ["css/css.css", "fonts/*", "html/html.html"],
+
+  "page_action": {
+    "default_icon": {
+      "16": "img/icon-16.png",
+      "32": "img/icon-32.png"
+    },
+    "default_title": "Toggle IATI Org File Visualiser"
+  }
+}
