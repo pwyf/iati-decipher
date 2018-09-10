@@ -9,8 +9,9 @@ const outPath = './dist'
 
 const jsFiles = [
   './node_modules/jquery/dist/jquery.js',
-  './node_modules/chart.js/dist/Chart.bundle.js',
-  './src/js/chart.js',
+  './node_modules/chart.js/dist/Chart.js',
+  './node_modules/moment/moment.js',
+  './src/js/visualise.js',
   './src/js/action.js'
 ]
 

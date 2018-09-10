@@ -35,7 +35,7 @@ chrome.runtime.sendMessage({action: 'msg.httprequest', url: xmlUrl}, function (r
     $('#pwyf-org-viz-btn', 'body').on('click', function () {
       document.replaceChild(document.adoptNode(newDom), document.documentElement)
       // Run the visualize app
-      doGraphs(xml)
+      runApp(xml)
       return false
     }).removeClass('disabled')
   })
