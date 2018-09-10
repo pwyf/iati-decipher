@@ -3,7 +3,7 @@
  * https://github.com/andylolz/iati-org-viz
  * Version: 0.0.1
  *
- * Copyright 2018 Andy Lulham
+ * Copyright 2018 Publish What You Fund
  * Released under the MIT license
  * https://github.com/andylolz/iati-org-viz/blob/master/LICENSE.md
  */
