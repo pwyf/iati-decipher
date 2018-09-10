@@ -1,6 +1,8 @@
 var runApp = function (xml) {
   var orgs = $('iati-organisations iati-organisation', xml)
-  var $currentOrg = orgs[0]
+  // TODO: add an org switcher if the file declares
+  // multiple `iati-organisation`s
+  var $currentOrg = $(orgs[0])
 
   var xLabels = []
   var data = []
