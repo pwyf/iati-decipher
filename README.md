@@ -7,7 +7,7 @@ Visualise IATI org files from the comfort of your own browser.
  1. Either [`git clone` this repo](https://github.com/pwyf/iati-org-viz.git), or download [it as a zip file](https://github.com/pwyf/iati-org-viz/archive/master.zip) and unzip it.
  2. In Chrome, visit chrome://extensions and enable developer mode.
  3. Click “Load unpacked” select the `dist` folder.
- 4. Visit any organisation dataset on the IATI registry. [E.g. this one.](https://iatiregistry.org/dataset/unitedstates-dosandusaid)
+ 4. Visit any organisation dataset on the IATI registry. [E.g. this one.](https://www.iatiregistry.org/dataset/unitedstates-dosandusaid)
 
 ## Development
 
