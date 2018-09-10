@@ -11,6 +11,7 @@ const jsFiles = [
   './node_modules/jquery/dist/jquery.js',
   './node_modules/chart.js/dist/Chart.js',
   './node_modules/moment/moment.js',
+  './src/js/helpers.js',
   './src/js/visualise.js',
   './src/js/action.js'
 ]

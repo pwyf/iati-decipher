@@ -4,6 +4,7 @@ var runApp = function (xml) {
   // multiple `iati-organisation`s
   var $currentOrg = $(orgs[0])
 
+  var defaultCurrency = $currentOrg.attr('default-currency')
   var xLabels = []
   var data = []
 
@@ -31,8 +32,25 @@ var runApp = function (xml) {
       }]
     },
     options: {
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var label = data.datasets[0].label
+            return label + ': ' + commify(tooltipItem.xLabel) + ' ' + defaultCurrency
+          }
+        }
+      },
       legend: {
         display: false
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            callback: function (value) {
+              return commify(value) + ' ' + defaultCurrency
+            }
+          }
+        }]
       }
     }
   })
