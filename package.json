@@ -27,12 +27,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andylolz/iati-org-viz.git"
+    "url": "git+https://github.com/pwyf/iati-org-viz.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andylolz/iati-org-viz/issues"
+    "url": "https://github.com/pwyf/iati-org-viz/issues"
   },
-  "homepage": "https://github.com/andylolz/iati-org-viz#readme"
+  "homepage": "https://github.com/pwyf/iati-org-viz#readme"
 }

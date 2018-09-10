@@ -30356,12 +30356,12 @@ var runApp = function (xml) {
 
 /*!
  * IATI Org File Visualiser
- * https://github.com/andylolz/iati-org-viz
+ * https://github.com/pwyf/iati-org-viz
  * Version: 0.0.1
  *
  * Copyright 2018 Publish What You Fund
  * Released under the MIT license
- * https://github.com/andylolz/iati-org-viz/blob/master/LICENSE.md
+ * https://github.com/pwyf/iati-org-viz/blob/master/LICENSE.md
  */
 
 $(function () {
