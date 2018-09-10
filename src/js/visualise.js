@@ -7,22 +7,17 @@ var runApp = function (xml) {
   var xLabels = []
   var data = []
 
-  console.log(moment)
-
   $('total-budget', $currentOrg).each(function () {
-    $this = $(this)
-    console.log($this)
+    var $this = $(this)
     var start = moment($('period-start', $this).attr('iso-date'))
     var end = moment($('period-end', $this).attr('iso-date'))
     if (!(start.isValid() || end.isValid())) {
       return
     }
-    console.log(end > start)
     var label = start.format('MMM YYYY') + ' – ' + end.format('MMM YYYY')
     xLabels.push(label)
     var d = $('> value', $this).text()
     data.push(d)
-    console.log(d)
   })
 
   var ctx = $('#chart')[0].getContext('2d')
