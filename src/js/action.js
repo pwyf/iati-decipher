@@ -33,6 +33,12 @@ $(function () {
       // Inject the CSS, because it needs a special crx href
       $('link', html).attr('href', chrome.extension.getURL('css/css.css'))
 
+      // Reset button
+      $('#revert', $('body', html)).on('click', function () {
+        document.replaceChild(document.adoptNode(oldDom), document.documentElement)
+        return false
+      })
+
       $('#pwyf-org-viz-btn', 'body').on('click', function () {
         document.replaceChild(document.adoptNode(newDom), document.documentElement)
         // Run the visualize app
