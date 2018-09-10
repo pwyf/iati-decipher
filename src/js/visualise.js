@@ -36,7 +36,8 @@ var runApp = function (xml) {
         callbacks: {
           label: function (tooltipItem, data) {
             var label = data.datasets[0].label
-            return label + ': ' + commify(tooltipItem.xLabel) + ' ' + defaultCurrency
+            var val = numeral(tooltipItem.xLabel).format('0.00 a')
+            return label + ': ' + val + ' ' + defaultCurrency
           }
         }
       },
@@ -47,7 +48,8 @@ var runApp = function (xml) {
         xAxes: [{
           ticks: {
             callback: function (value) {
-              return commify(value) + ' ' + defaultCurrency
+              var val = numeral(value).format('0 a')
+              return val + ' ' + defaultCurrency
             }
           }
         }]
