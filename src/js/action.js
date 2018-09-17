@@ -27,11 +27,14 @@ $(function () {
     var xml = new DOMParser().parseFromString(response.txt, 'application/xml')
     // Fetch our template
     chrome.runtime.sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')}, function (response) {
+      var txt = response.txt
+      // Add special crx hrefs
+      txt = txt.replace(/{path:([^}]+)}/g, function (_, assetPath) {
+        return chrome.extension.getURL(assetPath)
+      })
       // Parse our template
-      var html = new DOMParser().parseFromString(response.txt, 'text/html')
+      var html = new DOMParser().parseFromString(txt, 'text/html')
       var newDom = html.documentElement
-      // Inject the CSS, because it needs a special crx href
-      $('link', html).attr('href', chrome.extension.getURL('css/css.css'))
 
       // Reset button
       $('#revert', $('body', html)).on('click', function () {

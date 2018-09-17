@@ -11,3 +11,19 @@ body {
   height: 40vh;
   width: 80vw;
 }
+
+li.pwyf-logo {
+    padding:0;
+}
+
+li.pwyf-logo a, li.pwyf-logo a:hover {
+    background:#fff !important;
+    color:#fff;
+    height:100%;
+    padding:2px !important;
+}
+
+li.pwyf-logo a img, li.pwyf-logo a:hover img {
+    height:45px;
+    padding:3px;
+}

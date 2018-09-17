@@ -20,8 +20,7 @@
     "matches": ["*://*.iatiregistry.org/dataset/*"],
     "run_at": "document_idle"
   }],
-  "web_accessible_resources": ["css/css.css", "fonts/*", "html/html.html"],
-
+  "web_accessible_resources": ["css/css.css", "fonts/*", "img/pwyf.png"],
   "page_action": {
     "default_icon": {
       "16": "img/icon-16.png",
