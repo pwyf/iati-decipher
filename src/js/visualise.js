@@ -53,6 +53,7 @@ var runApp = function (xml) {
       scales: {
         yAxes: [{
           ticks: {
+            min: 0,
             callback: function (value) {
               var val = numeral(value).format('0 a')
               return val + ' ' + defaultCurrency
