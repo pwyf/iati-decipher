@@ -37,6 +37,7 @@ var showTotalBudget = function (xml) {
       labels: labels,
       datasets: [{
         label: 'Total budget',
+        backgroundColor: '#6dacc5',
         data: data.map(function (i) {
           return i.value
         })
