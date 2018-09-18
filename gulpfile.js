@@ -12,6 +12,7 @@ const jsFiles = [
   './node_modules/chart.js/dist/Chart.js',
   './node_modules/moment/moment.js',
   './node_modules/numeral/numeral.js',
+  './node_modules/typeahead.js/dist/typeahead.bundle.js',
   './src/js/helpers.js',
   './src/js/visualise.js',
   './src/js/action.js'
@@ -37,7 +38,7 @@ gulp.task('build:_bg_js', () => {
 gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js'))
 
 gulp.task('build:css', () => {
-  return gulp.src(['./src/css/**', './node_modules/bootstrap/dist/css/bootstrap.css'])
+  return gulp.src(['./src/css/**', './node_modules/bootstrap/dist/css/bootstrap.css', './node_modules/typeahead.js-bootstrap-css/typeaheadjs.css'])
     .pipe(concat('css.css'))
     .pipe(sourcemaps.init())
     .pipe(cleanCSS())

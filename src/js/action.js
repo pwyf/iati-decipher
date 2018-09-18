@@ -8,6 +8,13 @@
  * https://github.com/pwyf/iati-org-viz/blob/master/LICENSE.md
  */
 
+var navbarSelect = function (id) {
+  $('.navbar-nav li').each(function () {
+    $(this).removeClass('active')
+  })
+  $('#' + id).parent().addClass('active')
+}
+
 $(function () {
   // Find the download button on the page
   var el = document.getElementsByClassName('btn-primary')[0]
@@ -36,6 +43,19 @@ $(function () {
       var html = new DOMParser().parseFromString(txt, 'text/html')
       var newDom = html.documentElement
 
+      // Total budget menu item
+      $('#show-total-budget', $('body', html)).on('click', function () {
+        navbarSelect('show-total-budget')
+        showTotalBudget(xml)
+        return false
+      })
+
+      $('#show-documents', $('body', html)).on('click', function () {
+        navbarSelect('show-documents')
+        showDocuments(xml)
+        return false
+      })
+
       // Reset button
       $('#revert', $('body', html)).on('click', function () {
         document.replaceChild(document.adoptNode(oldDom), document.documentElement)
@@ -45,7 +65,8 @@ $(function () {
       $('#pwyf-org-viz-btn', 'body').on('click', function () {
         document.replaceChild(document.adoptNode(newDom), document.documentElement)
         // Run the visualize app
-        runApp(xml)
+        navbarSelect('show-total-budget')
+        showTotalBudget(xml)
         return false
       }).removeClass('disabled')
     })
