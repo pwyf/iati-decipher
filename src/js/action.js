@@ -32,6 +32,12 @@ $(function () {
   chrome.runtime.sendMessage({action: 'msg.httprequest', url: xmlUrl}, function (response) {
     // Parse the dataset
     var xml = new DOMParser().parseFromString(response.txt, 'application/xml')
+
+    // if the root node is wrong, bail.
+    if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
+      return
+    }
+
     // Fetch our template
     chrome.runtime.sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')}, function (response) {
       var txt = response.txt
