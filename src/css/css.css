@@ -12,18 +12,19 @@ body {
   width: 80vw;
 }
 
-li.pwyf-logo {
-    padding:0;
+.navbar-inverse {
+  background-color: #6dacc5 !important;
+  border-color: #6dacc5 !important;
 }
 
-li.pwyf-logo a, li.pwyf-logo a:hover {
-    background:#fff !important;
-    color:#fff;
-    height:100%;
-    padding:2px !important;
+.navbar-inverse .navbar-nav>.active > a, .navbar-inverse .navbar-na v >.active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+  background-color: #448eab !important;
 }
 
-li.pwyf-logo a img, li.pwyf-logo a:hover img {
-    height:45px;
-    padding:3px;
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff !important;
+}
+
+.navbar-brand {
+  padding: 0 15px !important;
 }
