@@ -1,6 +1,6 @@
-# IATI Org File Visualiser
+# IATI Organisation File Visualiser
 
-Visualise IATI org files from the comfort of your own browser.
+Visualise IATI organisation files from the comfort of your own browser.
 
 ## Acceptance testing
 
