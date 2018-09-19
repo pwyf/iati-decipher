@@ -3,7 +3,6 @@ const del = require('del')
 const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const cleanCSS = require('gulp-clean-css')
-const sourcemaps = require('gulp-sourcemaps')
 
 const outPath = './dist'
 
@@ -40,9 +39,7 @@ gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js'))
 gulp.task('build:css', () => {
   return gulp.src(['./src/css/**', './node_modules/bootstrap/dist/css/bootstrap.css', './node_modules/typeahead.js-bootstrap-css/typeaheadjs.css'])
     .pipe(concat('css.css'))
-    .pipe(sourcemaps.init())
     .pipe(cleanCSS())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest(outPath + '/css'))
 })
 
