@@ -1,7 +1,7 @@
 {
   "name": "iati-org-file-visualiser",
   "version": "0.0.1",
-  "description": "Visualise IATI org files from the comfort of your own browser.",
+  "description": "Visualise IATI organisation files from the comfort of your own browser.",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
