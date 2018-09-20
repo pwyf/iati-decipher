@@ -3,8 +3,10 @@ const del = require('del')
 const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const cleanCSS = require('gulp-clean-css')
+const zip = require('gulp-zip')
+const gutil = require('gulp-util')
 
-const outPath = './dev'
+const outPath = gutil.env.env === 'prod' ? './dist' : './dev'
 
 const jsFiles = [
   './node_modules/jquery/dist/jquery.js',
@@ -22,16 +24,25 @@ gulp.task('clean', () => {
   return del(outPath)
 })
 
+gulp.task('zip', (done) => {
+  if (gutil.env.env === 'prod') {
+    return gulp.src(outPath + '/**')
+      .pipe(zip('extension.zip'))
+      .pipe(gulp.dest('.'))
+  }
+  return done()
+})
+
 gulp.task('build:_core_js', () => {
   return gulp.src(jsFiles)
     .pipe(concat('js.js'))
-    // .pipe(uglify())
+    .pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
 gulp.task('build:_bg_js', () => {
   return gulp.src('background.js', { cwd: './src/js' })
-    // .pipe(uglify())
+    .pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
@@ -40,7 +51,7 @@ gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js'))
 gulp.task('build:css', () => {
   return gulp.src(['./src/css/**', './node_modules/bootstrap/dist/css/bootstrap.css', './node_modules/typeahead.js-bootstrap-css/typeaheadjs.css'])
     .pipe(concat('css.css'))
-    // .pipe(cleanCSS())
+    .pipe(gutil.env.env === 'prod' ? cleanCSS() : gutil.noop())
     .pipe(gulp.dest(outPath + '/css'))
 })
 
@@ -49,7 +60,7 @@ gulp.task('build:assets', () => {
     .pipe(gulp.dest(outPath))
 })
 
-gulp.task('build', gulp.series('clean', gulp.parallel('build:css', 'build:js', 'build:assets')))
+gulp.task('build', gulp.series('clean', gulp.parallel('build:css', 'build:js', 'build:assets'), 'zip'))
 
 gulp.task('watch', gulp.series(['build'], () => {
   gulp.watch('./src/**', gulp.parallel('build'))

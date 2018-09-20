@@ -18,12 +18,15 @@
     "gulp": "^4.0.0",
     "gulp-clean-css": "^3.10.0",
     "gulp-concat": "^2.6.1",
-    "gulp-uglify": "^3.0.1"
+    "gulp-uglify": "^3.0.1",
+    "gulp-util": "^3.0.8",
+    "gulp-zip": "^4.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp",
-    "watch": "gulp watch"
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "dist": "gulp --env=prod build"
   },
   "repository": {
     "type": "git",
