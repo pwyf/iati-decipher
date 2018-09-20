@@ -4,7 +4,7 @@ const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const cleanCSS = require('gulp-clean-css')
 
-const outPath = './dist'
+const outPath = './dev'
 
 const jsFiles = [
   './node_modules/jquery/dist/jquery.js',
@@ -39,7 +39,7 @@ gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js'))
 gulp.task('build:css', () => {
   return gulp.src(['./src/css/**', './node_modules/bootstrap/dist/css/bootstrap.css', './node_modules/typeahead.js-bootstrap-css/typeaheadjs.css'])
     .pipe(concat('css.css'))
-    .pipe(cleanCSS())
+    // .pipe(cleanCSS())
     .pipe(gulp.dest(outPath + '/css'))
 })
 
