@@ -21,7 +21,7 @@ Then:
 
 ## Build for distribution
 
-First, be sure to bump the version number in package.json. Then run:
+First, be sure to bump the version number in package.json AND src/manifest.json. Then run:
 
 ```shell
 npm run dist
