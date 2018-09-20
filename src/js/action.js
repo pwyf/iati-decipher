@@ -56,6 +56,13 @@ $(function () {
         return false
       })
 
+      // Total expenditure menu item
+      $('#show-total-expenditure', $('body', html)).on('click', function () {
+        navbarSelect('show-total-expenditure')
+        showTotalExpenditure(xml)
+        return false
+      })
+
       $('#show-documents', $('body', html)).on('click', function () {
         navbarSelect('show-documents')
         showDocuments(xml)
