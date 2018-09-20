@@ -27,4 +27,4 @@ First, be sure to bump the version number in package.json. Then run:
 npm run dist
 ```
 
-This should update the files in the dist folder (which are in version control) and create an extension.zip file (which isn’t in version control). Then upload this zip file to the chrome webstore or the firefox add-on store.
+This should update the files in the `dist` folder (which are in version control) and create an extension.zip file (which isn’t in version control). Then upload this zip file to the chrome webstore or the firefox add-on store.
