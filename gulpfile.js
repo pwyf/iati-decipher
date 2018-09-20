@@ -13,7 +13,8 @@ const jsFiles = [
   './node_modules/numeral/numeral.js',
   './node_modules/typeahead.js/dist/typeahead.bundle.js',
   './src/js/helpers.js',
-  './src/js/visualise.js',
+  './src/js/graphs.js',
+  './src/js/documents.js',
   './src/js/action.js'
 ]
 
