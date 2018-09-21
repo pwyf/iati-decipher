@@ -32,6 +32,12 @@ $(function () {
   chrome.runtime.sendMessage({action: 'msg.httprequest', url: xmlUrl}, function (response) {
     // Parse the dataset
     var xml = new DOMParser().parseFromString(response.txt, 'application/xml')
+    var version = $('iati-organisations', xml).attr('version')
+    var $orgs = $('iati-organisations iati-organisation', xml)
+    // TODO: add an org switcher if the file declares
+    // multiple `iati-organisation`s. This is pretty unusual,
+    // though
+    var $org = $($orgs[0])
 
     // if the root node is wrong, bail.
     if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
@@ -52,20 +58,42 @@ $(function () {
       // Total budget menu item
       $('#show-total-budget', $('body', html)).on('click', function () {
         navbarSelect('show-total-budget')
-        showTotalBudget(xml)
+        showTotalBudget($org)
+        return false
+      })
+
+      // Org budget menu item
+      $('#show-org-budgets', $('body', html)).on('click', function () {
+        navbarSelect('show-org-budgets')
+        showOrgBudgets($org)
+        return false
+      })
+
+      // Region budget menu item
+      $('#show-region-budgets', $('body', html)).on('click', function () {
+        navbarSelect('show-region-budgets')
+        showRegionBudgets($org)
+        return false
+      })
+
+      // Country budget menu item
+      $('#show-country-budgets', $('body', html)).on('click', function () {
+        navbarSelect('show-country-budgets')
+        showCountryBudgets($org)
         return false
       })
 
       // Total expenditure menu item
       $('#show-total-expenditure', $('body', html)).on('click', function () {
         navbarSelect('show-total-expenditure')
-        showTotalExpenditure(xml)
+        showTotalExpenditure($org)
         return false
       })
 
+      // Documents menu item
       $('#show-documents', $('body', html)).on('click', function () {
         navbarSelect('show-documents')
-        showDocuments(xml)
+        showDocuments($org)
         return false
       })
 
@@ -77,9 +105,10 @@ $(function () {
 
       $('#pwyf-org-viz-btn', 'body').on('click', function () {
         document.replaceChild(document.adoptNode(newDom), document.documentElement)
+        $('#org-name').text(getOrgName($org, version))
         // Run the visualize app
         navbarSelect('show-total-budget')
-        showTotalBudget(xml)
+        showTotalBudget($org)
         return false
       }).removeClass('disabled')
     })

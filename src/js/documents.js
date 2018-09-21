@@ -1,6 +1,6 @@
-var showDocuments = function (xml) {
+var showDocuments = function ($org) {
   var $page = $('<div class="container"><input class="typeahead form-control" type="text" placeholder="Search documents..."></div>')
-  $documentLinks = $('document-link', xml)
+  $documentLinks = $('document-link', $org)
 
   var docs = [];
   $documentLinks.each(function () {

@@ -1,48 +1,48 @@
-var showTotalBudget = function (xml) {
-  var orgs = $('iati-organisations iati-organisation', xml)
-  // TODO: add an org switcher if the file declares
-  // multiple `iati-organisation`s. This is pretty unusual,
-  // though
-  var $currentOrg = $(orgs[0])
-  var $totalBudgets = $('total-budget', $currentOrg)
-
-  showGraph($totalBudgets, 'Total budget', $currentOrg)
+var showOrgBudgets = function ($org) {
+  var $orgBudgets = getBudgets($org, 'recipient-org-budget')
+  var groupBy = {
+    el: 'recipient-org',
+    attr: 'code'
+  }
+  showGraph($orgBudgets, '', $org, groupBy)
 }
 
-var showTotalExpenditure = function (xml) {
-  var orgs = $('iati-organisations iati-organisation', xml)
-  // TODO: add an org switcher if the file declares
-  // multiple `iati-organisation`s. This is pretty unusual,
-  // though
-  var $currentOrg = $(orgs[0])
-  var $totalExpenditures = $('total-expenditure', $currentOrg)
-
-  showGraph($totalExpenditures, 'Total expenditure', $currentOrg)
+var showRegionBudgets = function ($org) {
+  var $regionBudgets = getBudgets($org, 'recipient-region-budget')
+  var groupBy = {
+    el: 'recipient-region',
+    attr: 'code'
+  }
+  showGraph($regionBudgets, '', $org, groupBy)
 }
 
-var showGraph = function ($data, title, $currentOrg) {
-  var defaultCurrency = $currentOrg.attr('default-currency')
-  var data = []
+var showCountryBudgets = function ($org) {
+  var $countryBudgets = getBudgets($org, 'recipient-country-budget')
+  var groupBy = {
+    el: 'recipient-country',
+    attr: 'code'
+  }
+  showGraph($countryBudgets, '', $org, groupBy)
+}
 
-  $data.each(function () {
-    var $this = $(this)
-    var start = moment($('period-start', $this).attr('iso-date'))
-    var end = moment($('period-end', $this).attr('iso-date'))
-    if (start.isValid() && end.isValid()) {
-      var value = $('> value', $this).text()
-      data.push({
-        start: start,
-        end: end,
-        value: value
-      })
-    }
-  })
+var showTotalBudget = function ($org) {
+  var $totalBudgets = getBudgets($org, 'total-budget')
+  showGraph($totalBudgets, 'Total budget', $org)
+}
+
+var showTotalExpenditure = function ($org) {
+  var $totalExpenditures = getBudgets($org, 'total-expenditure')
+  showGraph($totalExpenditures, 'Total expenditure', $org)
+}
+
+var showGraph = function (data, title, $org, groupBy) {
+  var defaultCurrency = $org.attr('default-currency')
   data.sort(function (a, b) {
-    return (a.start < b.start) ? -1 : (a.start > b.start) ? 1 : 0
+    return (a.periodStart < b.periodStart) ? -1 : (a.periodStart > b.periodStart) ? 1 : 0
   })
 
   var labels = data.map(function (i) {
-    return i.start.format('MMM YYYY') + ' – ' + i.end.format('MMM YYYY')
+    return i.periodStart.format('MMM YYYY') + ' – ' + i.periodEnd.format('MMM YYYY')
   })
 
   $('#main').html($('<canvas id="chart"></canvas>'))
@@ -55,7 +55,7 @@ var showGraph = function ($data, title, $currentOrg) {
         label: title,
         backgroundColor: '#F0CB69',
         data: data.map(function (i) {
-          return i.value
+          return i.val
         })
       }]
     },
