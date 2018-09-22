@@ -32,17 +32,18 @@ $(function () {
   chrome.runtime.sendMessage({action: 'msg.httprequest', url: xmlUrl}, function (response) {
     // Parse the dataset
     var xml = new DOMParser().parseFromString(response.txt, 'application/xml')
+
+    // if the root node is wrong, bail.
+    if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
+      return
+    }
+
     var version = $('iati-organisations', xml).attr('version')
     var $orgs = $('iati-organisations iati-organisation', xml)
     // TODO: add an org switcher if the file declares
     // multiple `iati-organisation`s. This is pretty unusual,
     // though
     var $org = $($orgs[0])
-
-    // if the root node is wrong, bail.
-    if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
-      return
-    }
 
     // Fetch our template
     chrome.runtime.sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')}, function (response) {
