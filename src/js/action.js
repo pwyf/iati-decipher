@@ -16,10 +16,9 @@ var navbarSelect = function (id) {
 }
 
 $(function () {
-  // Find the download button on the page
-  var el = document.getElementsByClassName('btn-primary')[0]
-  // Get the dataset URL
-  var xmlUrl = el.getAttribute('href')
+  // Find the download button on the page, and
+  // get the dataset URL
+  var xmlUrl = $($('.btn-primary')[0]).attr('href')
 
   // Inject a 'Visualise!' button onto the page
   var btns = $('.resources').find('li')
