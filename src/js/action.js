@@ -16,6 +16,17 @@ var navbarSelect = function (id) {
 }
 
 $(function () {
+  // Check dataset metadata has file type "Organisation"
+  var fileType = $('section.additional-info th:contains("File Type")')
+    .parent()
+    .find('td.dataset-details')
+    .text()
+    .trim()
+  // If metadata doens't say it's an organisation file, bail.
+  if (fileType !== 'Organisation') {
+    return
+  }
+
   // Find the download button on the page, and
   // get the dataset URL
   var xmlUrl = $($('.btn-primary')[0]).attr('href')
