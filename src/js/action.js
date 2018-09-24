@@ -122,6 +122,8 @@ $(function () {
         // Parse the dataset
         var xml = new DOMParser().parseFromString(response.txt, 'application/xml')
 
+        $('#loading-spinner').hide()
+
         // if the root node is wrong, bail.
         if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
           return
