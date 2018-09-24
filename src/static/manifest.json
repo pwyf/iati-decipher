@@ -21,7 +21,7 @@
     "matches": ["*://*.iatiregistry.org/dataset/*", "*://*.iatiregistry.org/publisher/*"],
     "run_at": "document_idle"
   }],
-  "web_accessible_resources": ["css/css.css", "fonts/*", "img/pwyf.jpg"],
+  "web_accessible_resources": ["css/css.css", "fonts/*", "img/*"],
   "page_action": {
     "default_icon": {
       "16": "img/icon-16.png",
