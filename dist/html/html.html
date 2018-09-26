@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="iati-org-viz">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,11 +14,12 @@
   </head>
 
   <body>
+    <div id="loading-spinner"><div></div></div>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-level-navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -28,17 +29,34 @@
             <img src="{path:img/pwyf.jpg}" alt="Publish What You Fund logo" />
           </a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="top-level-navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a id="show-total-budget" href="#">Total budget</a></li>
+            <li><a id="show-budgets" href="#">Budgets</a></li>
             <li><a id="show-total-expenditure" href="#">Total expenditure</a></li>
             <li><a id="show-documents" href="#">Documents</a></li>
-            <li><a id="revert" href="#">Back to IATI Registry</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="hidden-sm"><a id="on-dportal" target="_blank" rel="noopener noreferrer" href="#"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> On d-portal</a></li>
+            <li class="hidden-sm"><a id="download-xml" target="_blank" rel="noopener noreferrer" href="#"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download XML</a></li>
+            <li><a id="exit" href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Exit</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
+    <nav class="navbar navbar-default second-navbar">
+      <ul class="nav navbar-nav">
+        <li><a id="show-total-budget" href="#">Total budget</a></li>
+        <li><a id="show-org-budgets" href="#">Recipient organisation budgets</a></li>
+        <li><a id="show-region-budgets" href="#">Recipient region budgets</a></li>
+        <li><a id="show-country-budgets" href="#">Recipient country budgets</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1 id="org-name" class="text-center"></h1>
+    </div>
     <div id="main"></div>
   </body>
 </html>
