@@ -23,48 +23,82 @@ var navbarSelect = function (id) {
   }
 }
 
-var setupHandlers = function (html, $org) {
+var setupMenus = function (html, $org) {
   // Total budget menu item
-  $('#show-total-budget, #show-budgets').on('click', function () {
-    navbarSelect('show-total-budget')
-    showTotalBudget($org)
-    return false
-  })
+  if ($('total-budget', $org).length > 0) {
+    $('#show-total-budget').on('click', function () {
+      navbarSelect('show-total-budget')
+      showTotalBudget($org)
+      return false
+    })
+  } else {
+    $('#show-total-budget').parent().addClass('disabled')
+  }
 
   // Org budget menu item
-  $('#show-org-budgets').on('click', function () {
-    navbarSelect('show-org-budgets')
-    showOrgBudgets($org)
-    return false
-  })
+  if ($('recipient-org-budget', $org).length > 0) {
+    $('#show-org-budgets').on('click', function () {
+      navbarSelect('show-org-budgets')
+      showOrgBudgets($org)
+      return false
+    })
+  } else {
+    $('#show-org-budgets').parent().addClass('disabled')
+  }
 
   // Region budget menu item
-  $('#show-region-budgets').on('click', function () {
-    navbarSelect('show-region-budgets')
-    showRegionBudgets($org)
-    return false
-  })
+  if ($('recipient-region-budget', $org).length > 0) {
+    $('#show-region-budgets').on('click', function () {
+      navbarSelect('show-region-budgets')
+      showRegionBudgets($org)
+      return false
+    })
+  } else {
+    $('#show-region-budgets').parent().addClass('disabled')
+  }
 
   // Country budget menu item
-  $('#show-country-budgets').on('click', function () {
-    navbarSelect('show-country-budgets')
-    showCountryBudgets($org)
-    return false
-  })
+  if ($('recipient-country-budget', $org).length > 0) {
+    $('#show-country-budgets').on('click', function () {
+      navbarSelect('show-country-budgets')
+      showCountryBudgets($org)
+      return false
+    })
+  } else {
+    $('#show-country-budgets').parent().addClass('disabled')
+  }
 
   // Total expenditure menu item
-  $('#show-total-expenditure').on('click', function () {
-    navbarSelect('show-total-expenditure')
-    showTotalExpenditure($org)
-    return false
-  })
+  if ($('total-expenditure', $org).length > 0) {
+    $('#show-total-expenditure').on('click', function () {
+      navbarSelect('show-total-expenditure')
+      showTotalExpenditure($org)
+      return false
+    })
+  } else {
+    $('#show-total-expenditure').parent().addClass('disabled')
+  }
 
   // Documents menu item
-  $('#show-documents').on('click', function () {
-    navbarSelect('show-documents')
-    showDocuments($org)
-    return false
-  })
+  if ($('document-link', $org).length > 0) {
+    $('#show-documents').on('click', function () {
+      navbarSelect('show-documents')
+      showDocuments($org)
+      return false
+    })
+  } else {
+    $('#show-documents').parent().addClass('disabled')
+  }
+
+  // Show budgets top level menu item
+  if ($('.second-navbar li:not(.disabled)').length > 0) {
+    $('#show-budgets').on('click', function () {
+      $('.second-navbar li:not(.disabled) a').first().click()
+      return false
+    })
+  } else {
+    $('#show-budgets').parent().addClass('disabled')
+  }
 }
 
 $(function () {
@@ -143,7 +177,7 @@ $(function () {
         // though
         var $org = $($orgs[0])
 
-        setupHandlers(html, $org)
+        setupMenus(html, $org)
 
         var version = $('iati-organisations', xml).attr('version')
         $('#org-name').text(getOrgName($org, version))

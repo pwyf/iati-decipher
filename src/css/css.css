@@ -21,6 +21,10 @@ body {
   border-color: #6dacc5;
 }
 
+#iati-org-viz .navbar-inverse .navbar-nav > .disabled > a, #iati-org-viz .navbar-inverse .navbar-nav > .disabled > a:hover, #iati-org-viz .navbar-default .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+}
+
 #iati-org-viz .navbar-inverse .navbar-nav>.active > a, #iati-org-viz .navbar-inverse .navbar-nav >.active > a:focus, #iati-org-viz .navbar-inverse .navbar-nav > .active > a:hover {
   background-color: #448eab;
 }
