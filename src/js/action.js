@@ -30,7 +30,9 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-total-budget').parent().addClass('disabled')
+    $('#show-total-budget').on('click', function () {
+      return false
+    }).parent().addClass('disabled')
   }
 
   // Org budget menu item
@@ -41,7 +43,9 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-org-budgets').parent().addClass('disabled')
+    $('#show-org-budgets').on('click', function () {
+      return false
+    }).parent().addClass('disabled')
   }
 
   // Region budget menu item
@@ -52,7 +56,9 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-region-budgets').parent().addClass('disabled')
+    $('#show-region-budgets').on('click', function () {
+      return false
+    }).parent().addClass('disabled')
   }
 
   // Country budget menu item
@@ -63,7 +69,9 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-country-budgets').parent().addClass('disabled')
+    $('#show-country-budgets').on('click', function () {
+      return false
+    }).parent().addClass('disabled')
   }
 
   // Total expenditure menu item
@@ -74,7 +82,9 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-total-expenditure').parent().addClass('disabled')
+    $('#show-total-expenditure').on('click', function () {
+      return false
+    }).parent().addClass('disabled')
   }
 
   // Documents menu item
@@ -85,7 +95,9 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-documents').parent().addClass('disabled')
+    $('#show-documents').on('click', function () {
+      return false
+    }).parent().addClass('disabled')
   }
 
   // Show budgets top level menu item
@@ -95,7 +107,9 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-budgets').parent().addClass('disabled')
+    $('#show-budgets').on('click', function () {
+      return false
+    }).parent().addClass('disabled')
   }
 
   if ($('organisation-identifier, iati-identifier', $org).length > 0) {
