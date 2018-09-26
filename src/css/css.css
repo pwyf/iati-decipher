@@ -1,3 +1,16 @@
+#iati-org-viz .navbar {
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+#iati-org-viz .navbar-inverse .navbar-toggle:hover, #iati-org-viz .navbar-inverse .navbar-toggle:focus {
+  background-color: #6dacc5;
+}
+
+#iati-org-viz .navbar-inverse .navbar-collapse, #iati-org-viz .navbar-inverse .navbar-form {
+  border-color: #6dacc5;
+}
+
 #iati-org-viz .navbar-inverse {
   background-color: #6dacc5;
   border-color: #6dacc5;
