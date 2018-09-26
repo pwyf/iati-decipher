@@ -146,16 +146,14 @@ $(function () {
       txt = txt.replace(/{path:([^}]+)}/g, function (_, assetPath) {
         return chrome.extension.getURL(assetPath)
       })
-      // Save the current DOM, so we can recover it later
-      var oldDom = document.documentElement
       // Parse our template
       var html = new DOMParser().parseFromString(txt, 'text/html')
       var newDom = html.documentElement
       document.replaceChild(document.adoptNode(newDom), document.documentElement)
 
-      // Reset button
-      $('#revert').on('click', function () {
-        document.replaceChild(document.adoptNode(oldDom), document.documentElement)
+      // Exit button
+      $('#exit').on('click', function () {
+        window.location.reload()
         return false
       })
 
