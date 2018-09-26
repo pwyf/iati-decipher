@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Root node check, to ensure an org file looks like an org file
  - Add support for IATI registry publisher pages, too
  - Add a loading animation
+ - Move budget graphs into a second level navigation bar
 
 ### Changed
  - Replace non-jquery javascript with jquery
