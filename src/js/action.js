@@ -23,7 +23,7 @@ var navbarSelect = function (id) {
   }
 }
 
-var setupMenus = function (html, $org) {
+var setupMenus = function ($org) {
   // Total budget menu item
   if ($('total-budget', $org).length > 0) {
     $('#show-total-budget').on('click', function () {
@@ -175,7 +175,7 @@ $(function () {
         // though
         var $org = $orgs.first()
 
-        setupMenus(html, $org)
+        setupMenus($org)
 
         var version = $('iati-organisations', xml).attr('version')
         $('#org-name').text(getOrgName($org, version))
