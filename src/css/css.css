@@ -1,11 +1,3 @@
-body {
-  padding-top: 102px;
-}
-
-.navbar-fixed-top.second-navbar {
-  top: 51px;
-}
-
 #iati-org-viz .navbar-inverse {
   background-color: #6dacc5;
   border-color: #6dacc5;
