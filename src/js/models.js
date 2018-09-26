@@ -2,7 +2,7 @@ function Recipient ($recipient, ref) {
   this.ref = ref
   // TODO: v1.0x
   // TODO: i18n
-  this.name = $($('narrative', $recipient)[0]).text()
+  this.name = $('narrative', $recipient).first().text()
 }
 
 function BudgetLine (ref, name) {

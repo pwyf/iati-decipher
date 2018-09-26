@@ -25,5 +25,5 @@ var getOrgName = function ($org, version) {
   } else {
     $names = $('name', $org)
   }
-  return $($names[0]).text()
+  return $names.first().text()
 }

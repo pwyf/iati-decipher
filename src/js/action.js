@@ -128,7 +128,7 @@ $(function () {
     if (fileType === 'Organisation') {
       // Find the download button on the page, and
       // get the dataset URL
-      var downloadUrl = $($('.resources .btn-primary')[0]).attr('href')
+      var downloadUrl = $('.resources .btn-primary').first().attr('href')
 
       // Inject a 'Visualise!' button onto the page
       var btns = $('.resources').find('li')
@@ -175,7 +175,7 @@ $(function () {
         // TODO: add an org switcher if the file declares
         // multiple `iati-organisation`s. This is pretty unusual,
         // though
-        var $org = $($orgs[0])
+        var $org = $orgs.first()
 
         setupMenus(html, $org)
 
