@@ -1,16 +1,6 @@
 body {
   padding-top: 102px;
 }
-.starter-template {
-  padding: 3rem 1.5rem;
-  text-align: center;
-}
-
-.chart-container {
-  position: relative;
-  height: 40vh;
-  width: 80vw;
-}
 
 .navbar-fixed-top.second-navbar {
   top: 51px;
