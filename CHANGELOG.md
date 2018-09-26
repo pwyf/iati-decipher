@@ -11,11 +11,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Add a loading animation
  - Move budget graphs into a second level navigation bar ([#22](https://github.com/pwyf/iati-org-viz/issues/22))
  - Disable menu items if the relevant data is not present in the org file ([#13](https://github.com/pwyf/iati-org-viz/issues/13))
+ - Add download XML button ([#14](https://github.com/pwyf/iati-org-viz/issues/14))
+ - Add link to d-portal ([#18](https://github.com/pwyf/iati-org-viz/issues/18))
 
 ### Changed
  - Replace non-jquery javascript with jquery
  - Don’t download file before clicking on it; check metadata instead ([#7](https://github.com/pwyf/iati-org-viz/issues/7))
  - Don’t use `!important` in custom css
+ - Change how the “back” button works; rename it “exit” ([#32](https://github.com/pwyf/iati-org-viz/issues/32))
 
 ## [0.0.2] - 2018-09-20
 ### Added
