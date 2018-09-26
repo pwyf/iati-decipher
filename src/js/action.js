@@ -99,6 +99,12 @@ var setupMenus = function ($org) {
   } else {
     $('#show-budgets').parent().addClass('disabled')
   }
+
+  // Exit button
+  $('#exit').on('click', function () {
+    window.location.reload()
+    return false
+  })
 }
 
 $(function () {
@@ -150,12 +156,6 @@ $(function () {
       var html = new DOMParser().parseFromString(txt, 'text/html')
       var newDom = html.documentElement
       document.replaceChild(document.adoptNode(newDom), document.documentElement)
-
-      // Exit button
-      $('#exit').on('click', function () {
-        window.location.reload()
-        return false
-      })
 
       // Download the dataset
       chrome.runtime.sendMessage({action: 'msg.httprequest', url: downloadUrl}, function (response) {
