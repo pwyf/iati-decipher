@@ -15,10 +15,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Add link to d-portal ([#18](https://github.com/pwyf/iati-org-viz/issues/18))
 
 ### Changed
- - Replace non-jquery javascript with jquery
  - Don’t download file before clicking on it; check metadata instead ([#7](https://github.com/pwyf/iati-org-viz/issues/7))
- - Don’t use `!important` in custom css
+ - Namespace CSS instead of using `!important`
  - Change how the “back” button works; rename it “exit” ([#32](https://github.com/pwyf/iati-org-viz/issues/32))
+ - Hide some menu items at narrow widths
 
 ## [0.0.2] - 2018-09-20
 ### Added
