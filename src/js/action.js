@@ -16,10 +16,10 @@ var navbarSelect = function (id) {
   if (id.indexOf('budget') !== -1) {
     $('#show-budgets').parent().addClass('active')
     $('.second-navbar').show()
-    $('body').css('padding-top', '14rem')
+    $('body').css('padding-top', '102px')
   } else {
     $('.second-navbar').hide()
-    $('body').css('padding-top', '7rem')
+    $('body').css('padding-top', '51px')
   }
 }
 
