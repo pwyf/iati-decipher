@@ -174,6 +174,7 @@ $(function () {
         // though
         var $org = $orgs.first()
 
+        $('#download-xml').attr('href', downloadUrl)
         setupMenus($org)
 
         var version = $('iati-organisations', xml).attr('version')
