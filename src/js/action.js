@@ -100,6 +100,16 @@ var setupMenus = function ($org) {
     $('#show-budgets').parent().addClass('disabled')
   }
 
+  if ($('organisation-identifier, iati-identifier', $org).length > 0) {
+    var orgId = $('organisation-identifier, iati-identifier', $org)
+      .first()
+      .text()
+    var dportalUrl = 'http://d-portal.org/ctrack.html?search&publisher=' + orgId + '#view=main'
+    $('#on-dportal').attr('href', dportalUrl)
+  } else {
+    $('#on-dportal').parent().addClass('disabled')
+  }
+
   // Exit button
   $('#exit').on('click', function () {
     window.location.reload()
