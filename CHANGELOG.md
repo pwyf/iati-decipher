@@ -7,22 +7,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Added
  - Root node check, to ensure an org file looks like an org file
- - Add support for IATI registry publisher pages, too (#9)
+ - Add support for IATI registry publisher pages, too ([#9](https://github.com/pwyf/iati-org-viz/issues/9))
  - Add a loading animation
- - Move budget graphs into a second level navigation bar (#22)
- - Disable menu items if the relevant data is not present in the org file (#13)
+ - Move budget graphs into a second level navigation bar ([#22](https://github.com/pwyf/iati-org-viz/issues/22))
+ - Disable menu items if the relevant data is not present in the org file ([#13](https://github.com/pwyf/iati-org-viz/issues/13))
 
 ### Changed
  - Replace non-jquery javascript with jquery
- - Don’t download file before clicking on it; check metadata instead (#7)
- - Don’t use !important in custom css
+ - Don’t download file before clicking on it; check metadata instead ([#7](https://github.com/pwyf/iati-org-viz/issues/7))
+ - Don’t use `!important` in custom css
 
 ## [0.0.2] - 2018-09-20
 ### Added
- - Basic support for total-expenditure
+ - Basic support for `total-expenditure`
  - This changelog
 
 ## 0.0.1 - 2018-09-19
 ### Added
- - Basic support for total-budgets
- - Basic support for documents
+ - Basic support for `total-budget`s
+ - Basic support for `document-link`s
