@@ -9,7 +9,7 @@
  */
 
 var navbarSelect = function (id) {
-  $('.navbar-nav li').each(function () {
+  $('.nav li').each(function () {
     $(this).removeClass('active')
   })
   $('#' + id).parent().addClass('active')
