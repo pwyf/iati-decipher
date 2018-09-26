@@ -153,8 +153,7 @@ $(function () {
         return chrome.extension.getURL(assetPath)
       })
       // Parse our template
-      var html = new DOMParser().parseFromString(txt, 'text/html')
-      var newDom = html.documentElement
+      var newDom = new DOMParser().parseFromString(txt, 'text/html').documentElement
       document.replaceChild(document.adoptNode(newDom), document.documentElement)
 
       // Download the dataset
