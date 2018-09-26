@@ -21,6 +21,12 @@ const jsFiles = [
   './src/js/action.js'
 ]
 
+const cssFiles = [
+  './node_modules/bootstrap/dist/css/bootstrap.css',
+  './node_modules/typeahead.js-bootstrap-css/typeaheadjs.css',
+  './src/css/**'
+]
+
 gulp.task('clean', () => {
   return del(outPath)
 })
@@ -50,7 +56,7 @@ gulp.task('build:_bg_js', () => {
 gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js'))
 
 gulp.task('build:css', () => {
-  return gulp.src(['./src/css/**', './node_modules/bootstrap/dist/css/bootstrap.css', './node_modules/typeahead.js-bootstrap-css/typeaheadjs.css'])
+  return gulp.src(cssFiles)
     .pipe(concat('css.css'))
     .pipe(gutil.env.env === 'prod' ? cleanCSS() : gutil.noop())
     .pipe(gulp.dest(outPath + '/css'))
