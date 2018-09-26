@@ -13,11 +13,19 @@ var navbarSelect = function (id) {
     $(this).removeClass('active')
   })
   $('#' + id).parent().addClass('active')
+  if (id.indexOf('budget') !== -1) {
+    $('#show-budgets').parent().addClass('active')
+    $('.second-navbar').show()
+    $('body').css('padding-top', '14rem')
+  } else {
+    $('.second-navbar').hide()
+    $('body').css('padding-top', '7rem')
+  }
 }
 
 var setupHandlers = function (html, $org) {
   // Total budget menu item
-  $('#show-total-budget').on('click', function () {
+  $('#show-total-budget, #show-budgets').on('click', function () {
     navbarSelect('show-total-budget')
     showTotalBudget($org)
     return false
