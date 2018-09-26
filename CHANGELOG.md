@@ -7,13 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Added
  - Root node check, to ensure an org file looks like an org file
- - Add support for IATI registry publisher pages, too
+ - Add support for IATI registry publisher pages, too (#9)
  - Add a loading animation
- - Move budget graphs into a second level navigation bar
+ - Move budget graphs into a second level navigation bar (#22)
+ - Disable menu items if the relevant data is not present in the org file (#13)
 
 ### Changed
  - Replace non-jquery javascript with jquery
- - Don’t download file before clicking on it; check metadata instead
+ - Don’t download file before clicking on it; check metadata instead (#7)
+ - Don’t use !important in custom css
 
 ## [0.0.2] - 2018-09-20
 ### Added
