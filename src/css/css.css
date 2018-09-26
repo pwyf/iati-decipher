@@ -16,21 +16,21 @@ body {
   top: 51px;
 }
 
-.navbar-inverse {
-  background-color: #6dacc5 !important;
-  border-color: #6dacc5 !important;
+#iati-org-viz .navbar-inverse {
+  background-color: #6dacc5;
+  border-color: #6dacc5;
 }
 
-.navbar-inverse .navbar-nav>.active > a, .navbar-inverse .navbar-na v >.active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
-  background-color: #448eab !important;
+#iati-org-viz .navbar-inverse .navbar-nav>.active > a, #iati-org-viz .navbar-inverse .navbar-nav >.active > a:focus, #iati-org-viz .navbar-inverse .navbar-nav > .active > a:hover {
+  background-color: #448eab;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-  color: #fff !important;
+#iati-org-viz .navbar-inverse .navbar-nav > li > a {
+  color: #fff;
 }
 
-.navbar-brand {
-  padding: 0 15px !important;
+#iati-org-viz .navbar-brand {
+  padding: 0 15px;
 }
 
 #loading-spinner {
