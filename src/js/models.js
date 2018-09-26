@@ -50,13 +50,3 @@ function CountryBudget ($budget, countryCode) {
   this.recipient = new Recipient($recipient, countryCode)
 }
 CountryBudget.prototype = Object.create(Budget.prototype)
-
-var getBudgets = function ($org, elName, recipientElName) {
-  var $budgets = $(elName, $org)
-  var budgets = []
-  $budgets.each(function () {
-    var $budget = $(this)
-    budgets.push(new Budget($budget, elName, recipientElName))
-  })
-  return budgets
-}
