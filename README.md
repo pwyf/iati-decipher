@@ -24,10 +24,23 @@ Then:
 
 ## Build for distribution
 
-First, be sure to bump the version number in package.json AND src/manifest.json. Then run:
+1. First, be sure to bump the version number in `package.json`, `src/manifest.json`, and `CHANGELOG.md`.
+2. Then run:
 
-```shell
-npm run dist
-```
+   ```shell
+   npm run dist
+   ```
 
-This should update the files in the `dist` folder (which are in version control) and create an extension.zip file (which isn’t in version control). Then upload this zip file to the chrome webstore or the firefox add-on store.
+   This should update the files in the `dist` folder (which are in version control) and create an extension.zip file (which isn’t in version control).
+
+3. Commit changes in the `dist` folder
+4. Create a new github release:
+
+   ```shell
+   npx gh-release
+   ```
+
+5. Finally, upload extension.zip to:
+
+    * [the chrome webstore](https://chrome.google.com/webstore/developer/dashboard/)
+    * [the firefox add-on store](https://addons.mozilla.org/en-GB/developers/addons).
