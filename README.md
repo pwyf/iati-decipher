@@ -1,18 +1,23 @@
-# IATI Organisation File Visualiser
+# IATI Organisation File Visualiser ![GitHub release](https://img.shields.io/github/release/pwyf/iati-org-viz.svg)
 
 Visualise IATI organisation files from the comfort of your own browser.
 
  * [Chrome extension](https://chrome.google.com/webstore/detail/iati-organisation-file-vi/akignlamolglcjboilhajenkkkcnohjj)
  * [Firefox add-on](https://addons.mozilla.org/en-GB/firefox/addon/iati-org-file-visualiser/)
 
-## Development ![GitHub release](https://img.shields.io/github/release/pwyf/iati-org-viz.svg)
+## Development
 
 You’ll need `git`, as well as recent versions of `npm`, `node` and `gulp-cli`.
 
 ```shell
+$ # clone the repo
 $ git clone https://github.com/pwyf/iati-org-viz.git
 $ cd iati-org-viz
+$
+$ # install dependencies
 $ npm install
+$
+$ # watch for changes & create development build
 $ npm run watch
 ```
 
@@ -43,4 +48,4 @@ Then:
 5. Finally, upload `extension.zip` to:
 
     * [the chrome webstore](https://chrome.google.com/webstore/developer/dashboard/)
-    * [the firefox add-on store](https://addons.mozilla.org/en-GB/developers/addons).
+    * [the firefox add-on store](https://addons.mozilla.org/en-GB/developers/addons)
