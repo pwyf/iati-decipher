@@ -169,19 +169,18 @@ $(function () {
 
     // Fetch our template
     chrome.runtime.sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')}, function (response) {
-      var txt = response.txt
       // Add special crx hrefs
-      txt = txt.replace(/{path:([^}]+)}/g, function (_, assetPath) {
+      response = response.replace(/{path:([^}]+)}/g, function (_, assetPath) {
         return chrome.extension.getURL(assetPath)
       })
       // Parse our template
-      var newDom = new DOMParser().parseFromString(txt, 'text/html').documentElement
+      var newDom = new DOMParser().parseFromString(response, 'text/html').documentElement
       document.replaceChild(document.adoptNode(newDom), document.documentElement)
 
       // Download the dataset
       chrome.runtime.sendMessage({action: 'msg.httprequest', url: downloadUrl}, function (response) {
         // Parse the dataset
-        var xml = new DOMParser().parseFromString(response.txt, 'application/xml')
+        var xml = new DOMParser().parseFromString(response, 'application/xml')
 
         // if the root node is wrong, bail.
         if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
