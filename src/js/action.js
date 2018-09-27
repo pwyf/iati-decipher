@@ -190,6 +190,15 @@ $(function () {
           return
         }
 
+        var docCategoryUrl = 'http://reference.iatistandard.org/203/codelists/downloads/clv2/json/en/DocumentCategory.json'
+        chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: docCategoryUrl}, function (response) {
+          var orgDocCats = $(response.data).filter(function () {
+            return this.category === 'B'
+          }).map(function () {
+            return {code: this.code, name: this.name}
+          }).get()
+        })
+
         var $orgs = $('iati-organisations iati-organisation', xml)
         // TODO: add an org switcher if the file declares
         // multiple `iati-organisation`s. This is pretty unusual,

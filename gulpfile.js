@@ -14,7 +14,6 @@ const jsFiles = [
   './node_modules/chart.js/dist/Chart.js',
   './node_modules/moment/moment.js',
   './node_modules/numeral/numeral.js',
-  './node_modules/typeahead.js/dist/typeahead.bundle.js',
   './node_modules/underscore/underscore.js',
   './src/js/helpers.js',
   './src/js/TimeGraph.js',
@@ -25,7 +24,6 @@ const jsFiles = [
 
 const cssFiles = [
   './node_modules/bootstrap/dist/css/bootstrap.css',
-  './node_modules/typeahead.js-bootstrap-css/typeaheadjs.css',
   './src/css/**'
 ]
 

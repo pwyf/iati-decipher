@@ -32,6 +32,10 @@
   padding: 0 15px;
 }
 
+#iati-org-viz .list-group-item {
+  margin-bottom: 15px;
+}
+
 #loading-spinner {
   background: rgba(0, 0, 0, 0.5);
   z-index: 9999;

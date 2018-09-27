@@ -1,65 +1,92 @@
 var showDocuments = function ($org) {
-  var $page = $('<div class="container"><input class="typeahead form-control" type="text" placeholder="Search documents..."></div>')
-  $documentLinks = $('document-link', $org)
+  var $page = $('<form class="container"><div class="form-group"><label for="search">Search documents</label><input class="form-control" type="text" placeholder="E.g. Annual report" id="document-search" /></div><div class="row"><div class="form-group col-sm-6"><label for="category-select">Filter by category</label><select class="form-control" id="category-select"></select></div><div class="form-group col-sm-6"><label for="country-select">Filter by country</label><select class="form-control" id="country-select"></select></div></div></form><div class="container"><div class="list-group"></div></div>')
 
-  var docs = [];
-  $documentLinks.each(function () {
-    var $this = $(this)
-    var link = $this.attr('url')
-    // TODO: not really v2.0x compatible.
-    var title = $('title', $this).text()
-    var category = $('category', $this).attr('code')
-    docs.push({
-      title: title,
-      link: link,
-      category: category
+  var $recipientCountries = $('document-link recipient-country', $org)
+  var $countrySelect = $('#country-select', $page)
+  if ($recipientCountries.length > 0) {
+    var recipientCountries = _.chain($recipientCountries).uniq(function (item) {
+      return $(item).attr('code')
+    }).map(function (item) {
+      var $item = $(item)
+      var attr = $item.attr('code')
+      var txt = $('narrative', $item).first().text() // TODO
+      return {
+        attr: attr,
+        text: txt || attr
+      }
+    }).sortBy(function (item) {
+      return item.text
+    }).value()
+
+    $countrySelect.append($('<option value="">All countries</option>'))
+    _.each(recipientCountries, function (item) {
+      $countrySelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
-  })
-  $('#main').html($page)
-
-  var matcher = function (docs) {
-    return function (q, cb) {
-      var matches
-
-      // an array that will be populated with substring matches
-      matches = []
-
-      // regex used to determine if a string contains the substring `q`
-      var substrRegex = new RegExp(q, 'i')
-
-      // iterate through the pool of strings and for any string that
-      // contains the substring `q`, add it to the `matches` array
-      $.each(docs, function (i, str) {
-        if (substrRegex.test(str.title)) {
-          matches.push(str)
-        } else if (substrRegex.test(str.category)) {
-          matches.push(str)
-        }
-      })
-
-      cb(matches)
-    }
+    $countrySelect.on('change', function () {
+      refreshDocuments($org)
+    })
+  } else {
+    $countrySelect.prop('disabled', 'disabled')
   }
 
-  $('.typeahead').typeahead({
-    hint: true,
-    highlight: true
-  },
-  {
-    name: 'documents',
-    source: matcher(docs),
-    display: 'title',
-    templates: {
-      suggestion: function (suggestion) {
-        return [
-          '<a href="' + suggestion.link + '" ',
-          'target="_blank" rel="noopener noreferrer">',
-          suggestion.title,
-          '<br>',
-          'Category: ' + suggestion.category,
-          '</a>'
-        ].join('\n')
+  var $categories = $('document-link category', $org)
+  var $categorySelect = $('#category-select', $page)
+  if ($categories.length > 0) {
+    var categories = _.chain($categories).uniq(function (item) {
+      return $(item).attr('code')
+    }).map(function (item) {
+      var $item = $(item)
+      var attr = $item.attr('code')
+      var txt = null
+      return {
+        attr: attr,
+        text: txt || attr
       }
-    }
+    }).sortBy(function (item) {
+      return item.text
+    }).value()
+
+    $categorySelect.append($('<option value="">All categories</option>'))
+    _.each(categories, function (item) {
+      $categorySelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
+    })
+    $categorySelect.on('change', function () {
+      refreshDocuments($org)
+    })
+  } else {
+    $categorySelect.prop('disabled', 'disabled')
+  }
+
+  $('#document-search', $page).on('keyup', function () {
+    refreshDocuments($org)
   })
+
+  $('#main').html($page)
+}
+
+var refreshDocuments = function ($org) {
+  var cat = $('#category-select option:selected').val()
+  var country = $('#country-select option:selected').val()
+  var search = $('#document-search').val()
+
+  var query = 'document-link'
+  if (cat) {
+    query += ':has(category[code="' + cat + '"])'
+  }
+  if (country) {
+    query += ':has(recipient-country[code="' + country + '"])'
+  }
+  if (search) {
+    query += ':containsIN("' + search + '")'
+  }
+  $('.list-group').html('')
+  _.chain($(query, $org)).first(20)
+    .each(function (item) {
+      var $item = $(item)
+      var link = $item.attr('url')
+      // TODO: not really v2.0x compatible.
+      var title = $('title', $item).text()
+      var category = $('category', $item).attr('code')
+      $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><p class="list-group-item-text">Category: ' + category + '</p></a>'))
+    })
 }

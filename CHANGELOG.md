@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Add support for filtering by country / region / organisation
  - Add support for filtering by budget-line / expense-line ([#36](https://github.com/pwyf/iati-org-viz/issues/36))
  - Show organisation identifier prominently ([#16](https://github.com/pwyf/iati-org-viz/issues/16))
+ - Add category and country filters to document search ([#21](https://github.com/pwyf/iati-org-viz/issues/21))
 
 ### Fixed
  - Don’t incorrectly identify an activity file with zero activities as an organisation file ([#33](https://github.com/pwyf/iati-org-viz/issues/33))
