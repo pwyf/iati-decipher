@@ -31,7 +31,7 @@ Then:
    npm run dist
    ```
 
-   This should update the files in the `dist` folder (which are in version control) and create an extension.zip file (which isn’t in version control).
+   This should update the files in the `dist` folder (which are in version control) and create an `extension.zip` file (which isn’t in version control).
 
 3. Commit changes in the `dist` folder
 4. Create a new github release:
@@ -40,7 +40,7 @@ Then:
    npx gh-release
    ```
 
-5. Finally, upload extension.zip to:
+5. Finally, upload `extension.zip` to:
 
     * [the chrome webstore](https://chrome.google.com/webstore/developer/dashboard/)
     * [the firefox add-on store](https://addons.mozilla.org/en-GB/developers/addons).
