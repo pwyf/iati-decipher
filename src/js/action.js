@@ -26,7 +26,8 @@ var setupMenus = function ($org) {
   if ($('total-budget', $org).length > 0) {
     $('#show-total-budget').on('click', function () {
       navbarSelect('show-total-budget')
-      showTotalBudget($org)
+      var graph = setupTotalBudget($org)
+      graph.show()
       return false
     })
   } else {
@@ -39,7 +40,8 @@ var setupMenus = function ($org) {
   if ($('recipient-org-budget', $org).length > 0) {
     $('#show-org-budgets').on('click', function () {
       navbarSelect('show-org-budgets')
-      showOrgBudgets($org)
+      var graph = setupOrgBudget($org)
+      graph.show()
       return false
     })
   } else {
@@ -52,7 +54,8 @@ var setupMenus = function ($org) {
   if ($('recipient-region-budget', $org).length > 0) {
     $('#show-region-budgets').on('click', function () {
       navbarSelect('show-region-budgets')
-      showRegionBudgets($org)
+      var graph = setupRegionBudget($org)
+      graph.show()
       return false
     })
   } else {
@@ -65,7 +68,8 @@ var setupMenus = function ($org) {
   if ($('recipient-country-budget', $org).length > 0) {
     $('#show-country-budgets').on('click', function () {
       navbarSelect('show-country-budgets')
-      showCountryBudgets($org)
+      var graph = setupCountryBudget($org)
+      graph.show()
       return false
     })
   } else {
@@ -78,7 +82,8 @@ var setupMenus = function ($org) {
   if ($('total-expenditure', $org).length > 0) {
     $('#show-total-expenditure').on('click', function () {
       navbarSelect('show-total-expenditure')
-      showTotalExpenditure($org)
+      var graph = setupTotalExpenditure($org)
+      graph.show()
       return false
     })
   } else {
@@ -112,6 +117,7 @@ var setupMenus = function ($org) {
     }).parent().addClass('disabled')
   }
 
+  // Show d-portal top level menu item
   if ($('organisation-identifier, iati-identifier', $org).length > 0) {
     var orgId = $('organisation-identifier, iati-identifier', $org)
       .first()
@@ -202,7 +208,8 @@ $(function () {
 
         // Run the visualize app
         navbarSelect('show-total-budget')
-        showTotalBudget($org)
+        var graph = setupTotalBudget($org)
+        graph.show()
 
         $('#loading-spinner').hide()
       })

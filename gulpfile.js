@@ -16,8 +16,8 @@ const jsFiles = [
   './node_modules/typeahead.js/dist/typeahead.bundle.js',
   './node_modules/underscore/underscore.js',
   './src/js/helpers.js',
-  './src/js/models.js',
-  './src/js/graphs.js',
+  './src/js/TimeGraph.js',
+  './src/js/graphSetup.js',
   './src/js/documents.js',
   './src/js/action.js'
 ]
