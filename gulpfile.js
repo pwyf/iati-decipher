@@ -14,6 +14,7 @@ const jsFiles = [
   './node_modules/moment/moment.js',
   './node_modules/numeral/numeral.js',
   './node_modules/typeahead.js/dist/typeahead.bundle.js',
+  './node_modules/underscore/underscore.js',
   './src/js/helpers.js',
   './src/js/models.js',
   './src/js/graphs.js',
