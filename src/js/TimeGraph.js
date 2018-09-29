@@ -105,13 +105,27 @@ TimeGraph.prototype.statuses = function () {
 TimeGraph.prototype.show = function () {
   var self = this
   var $els = null
+  var query = null
+  var breakdownVal = $('#breakdown-select option:selected').val()
+
+  var valQuery = '> value'
+  if (breakdownVal) {
+    valQuery = self.breakdown.el + '[ref="' + breakdownVal + '"]' + ' value'
+  }
+
   if (self.filter) {
     var filterVal = $('#filter-select option:selected').val()
-    var query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"])'
-    $els = $(query, self.$org)
+    if (breakdownVal) {
+      query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"]):has(' + self.breakdown.el + '[ref="' + breakdownVal + '"])'
+    } else {
+      query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"])'
+    }
+  } else if (breakdownVal) {
+    query = self.el + ':has(' + self.breakdown.el + '[ref="' + breakdownVal + '"])'
   } else {
-    $els = $(self.el, self.$org)
+    query = self.el
   }
+  $els = $(query, self.$org)
 
   var els = _.map($els, function (el) {
     var $el = $(el)
@@ -119,7 +133,7 @@ TimeGraph.prototype.show = function () {
       status: $el.attr('status') === '2' ? 'actual' : 'indicative',
       periodStart: moment($('period-start', $el).attr('iso-date')),
       periodEnd: moment($('period-end', $el).attr('iso-date')),
-      val: $('> value', $el).text()
+      val: $(valQuery, $el).text()
     }
   })
 
