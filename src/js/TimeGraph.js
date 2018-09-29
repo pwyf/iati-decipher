@@ -4,7 +4,7 @@ function TimeGraph ($org, options) {
   self.title = options.title
   self.el = options.el
   self.filter = options.filter
-  self.breakdownEl = options.breakdownEl
+  self.breakdown = options.breakdown
   self.currency = $org.attr('default-currency')
   self.chart = null
 
@@ -31,9 +31,9 @@ function TimeGraph ($org, options) {
 
   var breakdownCats = self.breakdownCats()
   if (breakdownCats.length > 0) {
-    $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by breakdown</label><select class="form-control" id="filter-select"></select></div>')
+    $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by ' + self.breakdown.name + '</label><select class="form-control" id="breakdown-select"><option value="">Show all</option></select></div>')
     var $breakdownSelect = $('#breakdown-select', $breakdown)
-    $.each(filterCats, function () {
+    $.each(breakdownCats, function () {
       $breakdownSelect.append($('<option value="' + this.attr + '">' + this.text + '</option>'))
     })
     $breakdownSelect.on('change', function () {
@@ -76,7 +76,7 @@ TimeGraph.prototype.filterCats = function () {
 }
 
 TimeGraph.prototype.breakdownCats = function () {
-  var $breakdownCats = $(this.el + ' ' + this.breakdownEl, this.$org)
+  var $breakdownCats = $(this.el + ' ' + this.breakdown.el, this.$org)
   var breakdownAttr = 'ref'
   var breakdownCats = _.chain($breakdownCats).map(function (cat) {
     var $cat = $(cat)

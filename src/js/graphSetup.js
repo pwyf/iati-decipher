@@ -8,7 +8,10 @@ var setupOrgBudget = function ($org) {
       attr: 'ref',
       codelist: null
     },
-    breakdownEl: 'budget-line'
+    breakdown: {
+      name: 'budget line',
+      el: 'budget-line'
+    }
   }
   return new TimeGraph($org, options)
 }
@@ -23,7 +26,10 @@ var setupRegionBudget = function ($org) {
       attr: 'code',
       codelist: 'Region'
     },
-    breakdownEl: 'budget-line'
+    breakdown: {
+      name: 'budget line',
+      el: 'budget-line'
+    }
   }
   return new TimeGraph($org, options)
 }
@@ -38,7 +44,10 @@ var setupCountryBudget = function ($org) {
       attr: 'code',
       codelist: 'Country'
     },
-    breakdownEl: 'budget-line'
+    breakdown: {
+      name: 'budget line',
+      el: 'budget-line'
+    }
   }
   return new TimeGraph($org, options)
 }
@@ -48,7 +57,10 @@ var setupTotalBudget = function ($org) {
     title: 'Total budget',
     el: 'total-budget',
     filter: null,
-    breakdownEl: 'budget-line'
+    breakdown: {
+      name: 'budget line',
+      el: 'budget-line'
+    }
   }
   return new TimeGraph($org, options)
 }
@@ -58,7 +70,10 @@ var setupTotalExpenditure = function ($org) {
     title: 'Total expenditure',
     el: 'total-expenditure',
     filter: null,
-    breakdownEl: 'expense-line'
+    breakdown: {
+      name: 'expense line',
+      el: 'expense-line'
+    }
   }
   return new TimeGraph($org, options)
 }
