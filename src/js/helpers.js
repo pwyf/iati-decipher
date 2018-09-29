@@ -33,13 +33,3 @@ var getOrgId = function ($org) {
     .first()
     .text()
 }
-
-var getBudgets = function ($org, elName, recipientElName) {
-  var $budgets = $(elName, $org)
-  var budgets = []
-  $budgets.each(function () {
-    var $budget = $(this)
-    budgets.push(new Budget($budget, elName, recipientElName))
-  })
-  return budgets
-}
