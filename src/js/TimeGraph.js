@@ -20,8 +20,8 @@ function TimeGraph ($org, options) {
     var filterCats = self.filterCats()
     $filter = $('<div class="form-group col-sm-6"><label for="filter-select">Filter by ' + self.filter.name + '</label><select class="form-control" id="filter-select"></select></div>')
     var $filterSelect = $('#filter-select', $filter)
-    $.each(filterCats, function () {
-      $filterSelect.append($('<option value="' + this.attr + '">' + this.text + '</option>'))
+    _.each(filterCats, function (item) {
+      $filterSelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
     $filterSelect.on('change', function () {
       self.show()
@@ -32,8 +32,8 @@ function TimeGraph ($org, options) {
   if (breakdownCats.length > 0) {
     $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by ' + self.breakdown.name + '</label><select class="form-control" id="breakdown-select"><option value="">Show all</option></select></div>')
     var $breakdownSelect = $('#breakdown-select', $breakdown)
-    $.each(breakdownCats, function () {
-      $breakdownSelect.append($('<option value="' + this.attr + '">' + this.text + '</option>'))
+    _.each(breakdownCats, function (item) {
+      $breakdownSelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
     $breakdownSelect.on('change', function () {
       self.show()
