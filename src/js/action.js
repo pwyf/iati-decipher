@@ -140,10 +140,9 @@ $(function () {
     var $datasets = $('.dataset-content')
     if ($datasets.length > 0) {
       // this is a publisher page
-      var searchStr = 'No. of Activities:'
       $datasets.each(function () {
         var $dataset = $(this)
-        if ($dataset.text().indexOf(searchStr) === -1) {
+        if ($('p a:contains("CSV")', $dataset).length === 0) {
           var downloadUrl = $('p a:contains("Download")', $dataset).attr('href')
           $('p a', $dataset).parent().append(' · ').append($('<a class="pwyf-org-viz-btn" data-download-url="' + downloadUrl + '" href="#">Visualise! <i class="icon-bar-chart"></i></a>'))
         }
