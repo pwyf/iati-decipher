@@ -6,6 +6,7 @@ function TimeGraph ($org, options) {
   self.filter = options.filter
   self.breakdown = options.breakdown
   self.currency = $org.attr('default-currency')
+  self.language = $org.attr('xml:lang')
   self.chart = null
 
   if (self.statuses().length > 1) {
