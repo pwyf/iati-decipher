@@ -90,7 +90,7 @@ TimeGraph.prototype.breakdownCats = function () {
   }).uniq(function (item) {
     return item.attr
   }).sortBy(function (item) {
-    return item.attr
+    return item.text
   }).value()
   return breakdownCats
 }
