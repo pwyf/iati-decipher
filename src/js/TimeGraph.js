@@ -14,8 +14,6 @@ function TimeGraph ($org, options) {
     // We need a status filter
   }
 
-  $('#main').html('')
-
   var $filter = null
   var $breakdown = null
   if (self.filter) {
@@ -41,6 +39,8 @@ function TimeGraph ($org, options) {
       self.show()
     })
   }
+
+  $('#main').html('')
 
   if ($filter || $breakdown) {
     var $controlForm = $('<form class="container"><div class="row"></div></form>')
