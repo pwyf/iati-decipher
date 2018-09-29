@@ -28,6 +28,12 @@ var getOrgName = function ($org, version) {
   return $names.first().text()
 }
 
+var getOrgId = function ($org) {
+  return $('organisation-identifier, iati-identifier', $org)
+    .first()
+    .text()
+}
+
 var getBudgets = function ($org, elName, recipientElName) {
   var $budgets = $(elName, $org)
   var budgets = []

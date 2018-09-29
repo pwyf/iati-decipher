@@ -119,9 +119,7 @@ var setupMenus = function ($org) {
 
   // Show d-portal top level menu item
   if ($('organisation-identifier, iati-identifier', $org).length > 0) {
-    var orgId = $('organisation-identifier, iati-identifier', $org)
-      .first()
-      .text()
+    var orgId = getOrgId($org)
     var dportalUrl = 'http://d-portal.org/ctrack.html?search&publisher=' + orgId + '#view=main'
     $('#on-dportal').attr('href', dportalUrl)
   } else {
@@ -202,8 +200,11 @@ $(function () {
         $('#download-xml').attr('href', downloadUrl)
         setupMenus($org)
 
+        var orgId = getOrgId($org)
         var version = $('iati-organisations', xml).attr('version')
-        $('#org-name').text(getOrgName($org, version))
+        var orgName = getOrgName($org, version)
+        $('#org-name').text(orgName + ' ').append($('<span class="badge" data-toggle="tooltip" title="' + orgId + '">?</span>'))
+        $('[data-toggle="tooltip"]').tooltip()
 
         // Run the visualize app
         navbarSelect('show-total-budget')
