@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Added
  - Add support for filtering by country / region / organisation
- - Add support for filtering by budget-line / expense-line
+ - Add support for filtering by budget-line / expense-line ([#36](https://github.com/pwyf/iati-org-viz/issues/36))
 
 ### Changed
 
