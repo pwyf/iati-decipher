@@ -62,9 +62,10 @@ TimeGraph.prototype.filterCats = function () {
   var filterCats = _.chain($filterCats).map(function (cat) {
     var $cat = $(cat)
     var txt = $cat.text() // TODO
+    var attr = $cat.attr(filterAttr)
     return {
-      attr: $cat.attr(filterAttr),
-      text: txt
+      attr: attr,
+      text: txt || attr
     }
   }).uniq(function (item) {
     return item.attr
@@ -80,9 +81,10 @@ TimeGraph.prototype.breakdownCats = function () {
   var breakdownCats = _.chain($breakdownCats).map(function (cat) {
     var $cat = $(cat)
     var txt = $('narrative', $cat).first().text() // TODO
+    var attr = $cat.attr(breakdownAttr)
     return {
-      attr: $cat.attr(breakdownAttr),
-      text: txt
+      attr: attr,
+      text: txt || attr
     }
   }).uniq(function (item) {
     return item.attr
