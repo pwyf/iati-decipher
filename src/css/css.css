@@ -51,3 +51,7 @@
   height: 256px;
   transform: translate(-50%, -50%);
 }
+
+#org-name .badge {
+  cursor: help;
+}
