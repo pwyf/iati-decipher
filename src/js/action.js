@@ -1,7 +1,6 @@
 /*!
  * IATI Org File Visualiser
  * https://github.com/pwyf/iati-org-viz
- * Version: 0.0.1
  *
  * Copyright 2018 Publish What You Fund
  * Released under the MIT license
