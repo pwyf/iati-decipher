@@ -62,6 +62,7 @@ var showDocuments = function ($org) {
   })
 
   $('#main').html($page)
+  refreshDocuments($org)
 }
 
 var refreshDocuments = function ($org) {
