@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
  - Added an MVP website
 
+### Changed
+ - Change how document counters work when filters are used
+
 ## [0.0.4] - 2018-09-30
 ### Added
  - Add support for filtering by country / region / organisation

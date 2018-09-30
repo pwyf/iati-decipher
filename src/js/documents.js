@@ -66,6 +66,7 @@ var showDocuments = function ($org) {
 }
 
 var refreshDocuments = function ($org) {
+  $('.list-group').html('')
   var maxResults = 20
   var cat = $('#category-select option:selected').val()
   var country = $('#country-select option:selected').val()
@@ -82,11 +83,10 @@ var refreshDocuments = function ($org) {
     query += ':containsIN("' + search + '")'
   }
   $results = $(query, $org)
-  var totalFiltered = _.min([$results.length, maxResults])
-  var totalDocuments = numeral($('document-link', $org).length).format('0,')
-  $('.list-group').html('')
+  var totalFiltered = $results.length
+  var totalPage = _.min([totalFiltered, maxResults])
   if (totalFiltered > 0) {
-    $('h2').text('Showing 1-' + totalFiltered + ' of ' + totalDocuments + ' documents')
+    $('h2').text('Showing 1-' + totalPage + ' of ' + numeral(totalFiltered).format('0,') + ' documents')
     _.chain($results).first(maxResults)
       .each(function (item) {
         var $item = $(item)
