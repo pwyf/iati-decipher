@@ -1,1 +1,1 @@
-chrome.runtime.onMessage.addListener(function(e,t,n){switch(e.action){case"msg.httprequest":var s=new XMLHttpRequest;s.open("GET",e.url,!0),s.onreadystatechange=function(){4===s.readyState&&n({txt:s.responseText})},s.send()}return!0});
+chrome.runtime.onMessage.addListener(function(e,n,s){var t=new XMLHttpRequest;return"msg.jsonrequest"===e.action&&(t.responseType="json"),t.open("GET",e.url,!0),t.onreadystatechange=function(){4===t.readyState&&("msg.httprequest"===e.action?s(t.responseText):"msg.jsonrequest"===e.action&&s(t.response))},t.send(),!0});
