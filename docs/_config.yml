@@ -1,4 +1,7 @@
-title: IATI Organisation File Visualiser
-description: Visualise IATI organisation files from the comfort of your own browser.
+title: IATI Org File Visualiser
+description: Browser plugins for visualising IATI organisation files.
 show_downloads: false
 theme: jekyll-theme-slate
+github:
+  owner_name: Publish What You Fund
+  owner_url: http://www.publishwhatyoufund.org
