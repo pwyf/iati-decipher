@@ -14,8 +14,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
  - Don’t incorrectly identify an activity file with zero activities as an organisation file ([#33](https://github.com/pwyf/iati-org-viz/issues/33))
 
-### Changed
-
 ## [0.0.3] - 2018-09-26
 ### Added
  - Root node check, to ensure an org file looks like an org file
