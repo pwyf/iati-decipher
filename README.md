@@ -29,7 +29,7 @@ Then:
 
 ## Build for distribution
 
-1. First, be sure to bump the version number in `package.json`, `src/manifest.json`, and `CHANGELOG.md`.
+1. First, be sure to bump the version number in `package.json`, `src/static/manifest.json`, and `CHANGELOG.md`.
 2. Then run:
 
    ```shell
