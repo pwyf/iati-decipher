@@ -21,6 +21,12 @@ var navbarSelect = function (id) {
 }
 
 var setupMenus = function ($org) {
+  $('#show-summary').on('click', function () {
+    navbarSelect('show-summary')
+    showSummary($org)
+    return false
+  })
+
   // Total budget menu item
   if ($('total-budget', $org).length > 0) {
     $('#show-total-budget').on('click', function () {
@@ -213,9 +219,8 @@ $(function () {
         $('[data-toggle="tooltip"]').tooltip()
 
         // Run the visualize app
-        navbarSelect('show-total-budget')
-        var graph = setupTotalBudget($org)
-        graph.show()
+        navbarSelect('show-summary')
+        showSummary($org)
 
         $('#loading-spinner').hide()
       })

@@ -19,6 +19,7 @@ const jsFiles = [
   './src/js/TimeGraph.js',
   './src/js/graphSetup.js',
   './src/js/documents.js',
+  './src/js/summary.js',
   './src/js/action.js'
 ]
 
