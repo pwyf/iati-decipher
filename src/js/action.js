@@ -209,7 +209,7 @@ $(function () {
         var orgId = getOrgId($org)
         var version = $('iati-organisations', xml).attr('version')
         var orgName = getOrgName($org, version)
-        $('#org-name').text(orgName + '&nbsp;').append($('<span class="badge" data-toggle="tooltip" title="' + orgId + '">?</span>'))
+        $('#org-name').text(orgName).append('&nbsp;').append($('<span class="badge" data-toggle="tooltip" title="' + orgId + '">?</span>'))
         $('[data-toggle="tooltip"]').tooltip()
 
         // Run the visualize app
