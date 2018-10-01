@@ -92,9 +92,26 @@ var refreshDocuments = function ($org) {
         var $item = $(item)
         var link = $item.attr('url')
         // TODO: not really v2.0x compatible.
-        var title = $('title', $item).text()
+        var title = $('title', $item).first().text()
+        // TODO: deal with multiple categories
         var category = $('category', $item).attr('code')
-        $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><p class="list-group-item-text">Category: ' + category + '</p></a>'))
+        var description = $('description narrative', $item).first().text()
+        // TODO: deal with multiple languages
+        var language = $('language', $item).attr('code')
+        var documentDate = $('document-date', $item).attr('iso-date')
+
+        var content = ['Category: ' + category]
+        if (description) {
+          content.push('Description: ' + description)
+        }
+        if (language) {
+          content.push('Language: ' + language)
+        }
+        if (documentDate) {
+          content.push('Date: ' + documentDate)
+        }
+
+        $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><p class="list-group-item-text">' + content.join('<br />') + '</p></a>'))
       })
   } else {
     $('h2').text('No documents to show')

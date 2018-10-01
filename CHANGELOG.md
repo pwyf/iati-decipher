@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Changed
  - Prevent org ID badge from being orphaned
+ - Add language, description and date to document listings
 
 ## [0.0.6] - 2018-10-01
 ### Changed
