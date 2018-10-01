@@ -108,7 +108,7 @@ var refreshDocuments = function ($org) {
           content.push('Language: ' + language)
         }
         if (documentDate) {
-          content.push('Date: ' + documentDate)
+          content.push('Date: ' + moment(documentDate).format('D MMMM YYYY'))
         }
 
         $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><p class="list-group-item-text">' + content.join('<br />') + '</p></a>'))
