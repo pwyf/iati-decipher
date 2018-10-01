@@ -18,7 +18,7 @@
   },
   "content_scripts": [{
     "js": ["js/js.js"],
-    "matches": ["*://*.iatiregistry.org/dataset/*", "*://*.iatiregistry.org/publisher/*"],
+    "matches": ["*://*.iatiregistry.org/dataset*", "*://*.iatiregistry.org/publisher/*"],
     "run_at": "document_idle"
   }],
   "web_accessible_resources": ["css/css.css", "fonts/*", "img/*"],

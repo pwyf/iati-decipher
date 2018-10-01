@@ -133,20 +133,18 @@ var setupMenus = function ($org) {
 }
 
 $(function () {
-  if (window.location.toString().split('/')[3] === 'publisher') {
-    var $datasets = $('.dataset-content')
-    if ($datasets.length > 0) {
-      // this is a publisher page
-      $datasets.each(function () {
-        var $dataset = $(this)
-        if ($('p a:contains("CSV")', $dataset).length === 0) {
-          var downloadUrl = $('p a:contains("Download")', $dataset).attr('href')
-          $('p a', $dataset).parent().append(' · ').append($('<a class="pwyf-org-viz-btn" data-download-url="' + downloadUrl + '" href="#">Visualise! <i class="icon-bar-chart"></i></a>'))
-        }
-      })
-    }
+  var $datasets = $('.dataset-content')
+  if ($datasets.length > 0) {
+    // this is a dataset list page
+    $datasets.each(function () {
+      var $dataset = $(this)
+      if ($('p a:contains("CSV")', $dataset).length === 0) {
+        var downloadUrl = $('p a:contains("Download")', $dataset).attr('href')
+        $('p a', $dataset).parent().append(' · ').append($('<a class="pwyf-org-viz-btn" data-download-url="' + downloadUrl + '" href="#">Visualise! <i class="icon-bar-chart"></i></a>'))
+      }
+    })
   } else {
-    // this is a dataset page
+    // this is a dataset metadata page
     //
     // Check dataset metadata has file type "Organisation"
     var fileType = $('section.additional-info th:contains("File Type")')
