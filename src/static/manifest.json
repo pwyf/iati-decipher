@@ -1,6 +1,6 @@
 {
   "name": "IATI Organisation File Visualiser",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Visualise IATI organisation files from the comfort of your own browser.",
   "manifest_version": 2,
   "background": {
