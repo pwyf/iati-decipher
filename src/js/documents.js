@@ -86,7 +86,7 @@ var refreshDocuments = function ($org) {
   var totalFiltered = $results.length
   var totalPage = _.min([totalFiltered, maxResults])
   if (totalFiltered > 0) {
-    $('h2').text('Showing 1-' + totalPage + ' of ' + numeral(totalFiltered).format('0,') + ' documents')
+    $('h2').text('Showing 1-' + totalPage + ' of ' + numeral(totalFiltered).format('0,') + ' document' + (totalFiltered === 1 ? '' : 's'))
     _.chain($results).first(maxResults)
       .each(function (item) {
         var $item = $(item)
