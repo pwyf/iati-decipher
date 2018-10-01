@@ -1,4 +1,10 @@
 ---
 ---
- * [Chrome extension](https://chrome.google.com/webstore/detail/iati-organisation-file-vi/akignlamolglcjboilhajenkkkcnohjj)
- * [Firefox add-on](https://addons.mozilla.org/en-GB/firefox/addon/iati-org-file-visualiser/)
+
+## On the Chrome Webstore
+
+[![Download for Chrome](chrome-150.png)](https://chrome.google.com/webstore/detail/iati-organisation-file-vi/akignlamolglcjboilhajenkkkcnohjj)
+
+## On the Firefox Add-on Store
+
+[![Download for Chrome](firefox-150.png)](https://addons.mozilla.org/en-GB/firefox/addon/iati-org-file-visualiser/)
