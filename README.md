@@ -1,4 +1,4 @@
-# IATI Organisation File Visualiser ![GitHub release](https://img.shields.io/github/release/pwyf/iati-org-viz.svg)
+# IATI Organisation File Visualiser [![GitHub release](https://img.shields.io/github/release/pwyf/iati-org-viz.svg)](https://github.com/pwyf/iati-org-viz/releases/latest)
 
 Visualise IATI organisation files from the comfort of your own browser.
 
