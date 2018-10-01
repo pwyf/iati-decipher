@@ -102,7 +102,7 @@ TimeGraph.prototype.statuses = function () {
   }))
 }
 
-TimeGraph.prototype.show = function () {
+TimeGraph.prototype.getDataset = function () {
   var self = this
   var $els = null
   var query = null
@@ -125,9 +125,9 @@ TimeGraph.prototype.show = function () {
   } else {
     query = self.el
   }
-  $els = $(query, self.$org)
+  $data = $(query, self.$org)
 
-  var els = _.map($els, function (el) {
+  var data = _.map($data, function (el) {
     var $el = $(el)
     return {
       status: $el.attr('status') === '2' ? 'actual' : 'indicative',
@@ -137,11 +137,23 @@ TimeGraph.prototype.show = function () {
     }
   })
 
-  els = _.sortBy(els, function (a) {
+  data = _.sortBy(data, function (a) {
     return a.periodStart
   })
 
-  var labels = _.map(els, function (a) {
+  return data
+}
+
+TimeGraph.prototype.download = function (data) {
+  // TODO
+}
+
+TimeGraph.prototype.show = function () {
+  var self = this
+
+  var data = self.getDataset()
+
+  var labels = _.map(data, function (a) {
     return a.periodStart.format('MMM YYYY') + ' – ' + a.periodEnd.format('MMM YYYY')
   })
 
@@ -155,7 +167,7 @@ TimeGraph.prototype.show = function () {
       datasets: [{
         label: self.title,
         backgroundColor: '#F0CB69',
-        data: _.map(els, function (a) {
+        data: _.map(data, function (a) {
           return a.val
         })
       }]
