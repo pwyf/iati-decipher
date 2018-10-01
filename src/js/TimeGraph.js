@@ -129,11 +129,13 @@ TimeGraph.prototype.getDataset = function () {
 
   var data = _.map($data, function (el) {
     var $el = $(el)
+    var $val = $(valQuery, $el)
     return {
       status: $el.attr('status') === '2' ? 'actual' : 'indicative',
       periodStart: moment($('period-start', $el).attr('iso-date')),
       periodEnd: moment($('period-end', $el).attr('iso-date')),
-      val: $(valQuery, $el).text()
+      val: $val.text(),
+      currency: $val.attr('currency') || self.currency
     }
   })
 
