@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 ### Added
- - Added an MVP summary page
+ - Add a summary page
+ - Add a footer
 
 ### Changed
  - Prevent org ID badge from being orphaned
@@ -18,7 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.0.5] - 2018-10-01
 ### Added
- - Added an MVP website
+ - Add an MVP website
 
 ### Changed
  - Change how document counters work when filters are used
