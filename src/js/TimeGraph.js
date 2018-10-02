@@ -20,7 +20,7 @@ function TimeGraph ($org, options) {
     var filterCats = self.filterCats()
     $filter = $('<div class="form-group col-sm-6"><label for="filter-select">Filter by ' + self.filter.name + '</label><select class="form-control" id="filter-select"></select></div>')
     var $filterSelect = $('#filter-select', $filter)
-    _.each(filterCats, function (item) {
+    filterCats.forEach(function (item) {
       $filterSelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
     $filterSelect.on('change', function () {
@@ -32,7 +32,7 @@ function TimeGraph ($org, options) {
   if (breakdownCats.length > 0) {
     $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by ' + self.breakdown.name + '</label><select class="form-control" id="breakdown-select"><option value="">Show all</option></select></div>')
     var $breakdownSelect = $('#breakdown-select', $breakdown)
-    _.each(breakdownCats, function (item) {
+    breakdownCats.forEach(function (item) {
       $breakdownSelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
     $breakdownSelect.on('change', function () {
@@ -155,7 +155,7 @@ TimeGraph.prototype.show = function () {
 
   var data = self.getDataset()
 
-  var labels = _.map(data, function (a) {
+  var labels = data.map(function (a) {
     return a.periodStart.format('MMM YYYY') + ' – ' + a.periodEnd.format('MMM YYYY')
   })
 
@@ -169,7 +169,7 @@ TimeGraph.prototype.show = function () {
       datasets: [{
         label: self.title,
         backgroundColor: '#F0CB69',
-        data: _.map(data, function (a) {
+        data: data.map(function (a) {
           return a.val
         })
       }]

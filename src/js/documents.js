@@ -19,7 +19,7 @@ var showDocuments = function ($org) {
     }).value()
 
     $countrySelect.append($('<option value="">All countries</option>'))
-    _.each(recipientCountries, function (item) {
+    recipientCountries.forEach(function (item) {
       $countrySelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
     $countrySelect.on('change', function () {
@@ -47,7 +47,7 @@ var showDocuments = function ($org) {
     }).value()
 
     $categorySelect.append($('<option value="">All categories</option>'))
-    _.each(categories, function (item) {
+    categories.forEach(function (item) {
       $categorySelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
     $categorySelect.on('change', function () {
