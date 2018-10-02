@@ -20,7 +20,18 @@ var navbarSelect = function (id) {
   }
 }
 
+var addNotProvidedPopup = function ($el, name, isSingular) {
+  var title = name + ' ' + (isSingular ? 'is' : 'are') + ' not provided in this file.'
+  $el.attr('title', title)
+    .attr('data-toggle', 'tooltip')
+    .attr('data-placement', 'bottom')
+    .parent()
+    .addClass('disabled')
+}
+
 var setupMenus = function ($org) {
+  var $el = null
+
   $('#show-summary').on('click', function () {
     navbarSelect('show-summary')
     showSummary($org)
@@ -36,9 +47,10 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-total-budget').on('click', function () {
+    $el = $('#show-total-budget').on('click', function () {
       return false
-    }).parent().addClass('disabled')
+    })
+    addNotProvidedPopup($el, 'Total budgets', false)
   }
 
   // Org budget menu item
@@ -50,9 +62,10 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-org-budgets').on('click', function () {
+    $el = $('#show-org-budgets').on('click', function () {
       return false
-    }).parent().addClass('disabled')
+    })
+    addNotProvidedPopup($el, 'Recipient organisation budgets', false)
   }
 
   // Region budget menu item
@@ -64,9 +77,10 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-region-budgets').on('click', function () {
+    $el = $('#show-region-budgets').on('click', function () {
       return false
-    }).parent().addClass('disabled')
+    })
+    addNotProvidedPopup($el, 'Recipient region budgets', false)
   }
 
   // Country budget menu item
@@ -78,9 +92,10 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-country-budgets').on('click', function () {
+    $el = $('#show-country-budgets').on('click', function () {
       return false
-    }).parent().addClass('disabled')
+    })
+    addNotProvidedPopup($el, 'Recipient country budgets', false)
   }
 
   // Total expenditure menu item
@@ -92,9 +107,10 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-total-expenditure').on('click', function () {
+    $el = $('#show-total-expenditure').on('click', function () {
       return false
-    }).parent().addClass('disabled')
+    })
+    addNotProvidedPopup($el, 'Total expenditure', true)
   }
 
   // Documents menu item
@@ -105,9 +121,10 @@ var setupMenus = function ($org) {
       return false
     })
   } else {
-    $('#show-documents').on('click', function () {
+    $el = $('#show-documents').on('click', function () {
       return false
-    }).parent().addClass('disabled')
+    })
+    addNotProvidedPopup($el, 'Document links', false)
   }
 
   // Show budgets top level menu item
@@ -128,7 +145,7 @@ var setupMenus = function ($org) {
     var dportalUrl = 'http://d-portal.org/ctrack.html?search&publisher=' + orgId + '#view=main'
     $('#on-dportal').attr('href', dportalUrl)
   } else {
-    $('#on-dportal').parent().addClass('disabled')
+    addNotProvidedPopup($el, 'An organisation identifier', true)
   }
 
   // Exit button
