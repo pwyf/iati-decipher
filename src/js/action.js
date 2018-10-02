@@ -29,6 +29,14 @@ var addNotProvidedPopup = function ($el, name, isSingular) {
     .addClass('disabled')
 }
 
+var sendMessage = function (obj) {
+  return new Promise(function (resolve, reject) {
+    chrome.runtime.sendMessage(obj, function (response) {
+      resolve(response)
+    })
+  })
+}
+
 var setupMenus = function ($org) {
   var $el = null
 
@@ -191,7 +199,7 @@ $(function () {
     var downloadUrl = $(this).data('download-url')
 
     // Fetch our template
-    chrome.runtime.sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')}, function (response) {
+    sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')}).then(function (response) {
       // Add special crx hrefs
       response = response.replace(/{path:([^}]+)}/g, function (_, assetPath) {
         return chrome.extension.getURL(assetPath)
@@ -201,7 +209,7 @@ $(function () {
       document.replaceChild(document.adoptNode(newDom), document.documentElement)
 
       // Download the dataset
-      chrome.runtime.sendMessage({action: 'msg.httprequest', url: downloadUrl}, function (response) {
+      sendMessage({action: 'msg.httprequest', url: downloadUrl}).then(function (response) {
         // Parse the dataset
         var xml = new DOMParser().parseFromString(response, 'application/xml')
 
@@ -212,7 +220,7 @@ $(function () {
         }
 
         var docCategoryUrl = 'http://reference.iatistandard.org/203/codelists/downloads/clv2/json/en/DocumentCategory.json'
-        chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: docCategoryUrl}, function (response) {
+        sendMessage({action: 'msg.jsonrequest', url: docCategoryUrl}).then(function (response) {
           var orgDocCats = $(response.data).filter(function () {
             return this.category === 'B'
           }).map(function () {
