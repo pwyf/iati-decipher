@@ -12,7 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
  - Prevent org ID badge from being orphaned
  - Add language, description and date to document listings
- - Prevent document search form from being submitted
+
+### Fixed
+
+ - Prevent document search form from being submitted ([#49](https://github.com/pwyf/iati-org-viz/issues/49))
  - Disable autocomplete on document search
 
 ## [0.0.6] - 2018-10-01
