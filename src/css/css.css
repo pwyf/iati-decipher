@@ -1,3 +1,7 @@
+.second-navbar {
+  display: none;
+}
+
 #iati-org-viz .navbar {
   border-radius: 0;
   margin-bottom: 0;
