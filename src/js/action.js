@@ -207,48 +207,39 @@ $(function () {
       // Parse our template
       var newDom = new DOMParser().parseFromString(response, 'text/html').documentElement
       document.replaceChild(document.adoptNode(newDom), document.documentElement)
+    })
 
-      // Download the dataset
-      sendMessage({action: 'msg.httprequest', url: downloadUrl}).then(function (response) {
-        // Parse the dataset
-        var xml = new DOMParser().parseFromString(response, 'application/xml')
+    // Download the dataset
+    sendMessage({action: 'msg.httprequest', url: downloadUrl}).then(function (response) {
+      // Parse the dataset
+      var xml = new DOMParser().parseFromString(response, 'application/xml')
 
-        // if the root node is wrong, bail.
-        if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
-          // TODO
-          return
-        }
+      // if the root node is wrong, bail.
+      if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
+        // TODO
+        return
+      }
 
-        var docCategoryUrl = 'http://reference.iatistandard.org/203/codelists/downloads/clv2/json/en/DocumentCategory.json'
-        sendMessage({action: 'msg.jsonrequest', url: docCategoryUrl}).then(function (response) {
-          var orgDocCats = $(response.data).filter(function () {
-            return this.category === 'B'
-          }).map(function () {
-            return {code: this.code, name: this.name}
-          }).get()
-        })
+      var $orgs = $('iati-organisations iati-organisation', xml)
+      // TODO: add an org switcher if the file declares
+      // multiple `iati-organisation`s. This is pretty unusual,
+      // though
+      var $org = $orgs.first()
 
-        var $orgs = $('iati-organisations iati-organisation', xml)
-        // TODO: add an org switcher if the file declares
-        // multiple `iati-organisation`s. This is pretty unusual,
-        // though
-        var $org = $orgs.first()
+      $('#download-xml').attr('href', downloadUrl)
+      setupMenus($org)
 
-        $('#download-xml').attr('href', downloadUrl)
-        setupMenus($org)
+      var orgId = getOrgId($org)
+      var version = $('iati-organisations', xml).attr('version')
+      var orgName = getOrgName($org, version)
+      $('#org-name').text(orgName).append('&nbsp;').append($('<span class="badge" data-toggle="tooltip" title="' + orgId + '">?</span>'))
+      $('[data-toggle="tooltip"]').tooltip()
 
-        var orgId = getOrgId($org)
-        var version = $('iati-organisations', xml).attr('version')
-        var orgName = getOrgName($org, version)
-        $('#org-name').text(orgName).append('&nbsp;').append($('<span class="badge" data-toggle="tooltip" title="' + orgId + '">?</span>'))
-        $('[data-toggle="tooltip"]').tooltip()
+      // Run the visualize app
+      navbarSelect('show-summary')
+      showSummary($org)
 
-        // Run the visualize app
-        navbarSelect('show-summary')
-        showSummary($org)
-
-        $('#loading-spinner').hide()
-      })
+      $('#loading-spinner').hide()
     })
 
     return false
