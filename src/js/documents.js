@@ -61,6 +61,10 @@ var showDocuments = function ($org) {
     refreshDocuments($org)
   })
 
+  $('#document-search-form', $page).on('submit', function () {
+    return false
+  })
+
   $('#main').html($page)
   refreshDocuments($org)
 }
