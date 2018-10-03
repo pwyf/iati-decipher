@@ -1,6 +1,6 @@
 {
   "name": "IATI Organisation File Visualiser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Visualise IATI organisation files from the comfort of your own browser.",
   "manifest_version": 2,
   "background": {
@@ -21,7 +21,7 @@
     "matches": ["*://*.iatiregistry.org/dataset*", "*://*.iatiregistry.org/publisher/*"],
     "run_at": "document_idle"
   }],
-  "web_accessible_resources": ["css/css.css", "fonts/*", "img/*"],
+  "web_accessible_resources": ["css/css.css", "fonts/*", "img/*", "json/*"],
   "page_action": {
     "default_icon": {
       "16": "img/icon-16.png",
