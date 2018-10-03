@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+ - Hide the graph when there’s no data to show ([#57](https://github.com/pwyf/iati-org-viz/issues/57))
+
 ## [0.0.7] - 2018-10-03
 ### Added
  - Add a summary page

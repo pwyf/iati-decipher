@@ -165,6 +165,12 @@ TimeGraph.prototype.show = function () {
   if (self.chart !== null) {
     self.chart.destroy()
   }
+
+  if (data.length === 0) {
+    // TODO: Add an error message or something
+    return
+  }
+
   self.chart = new Chart('chart', {
     type: 'bar',
     data: {
