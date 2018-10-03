@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Add a summary page
  - Add a footer
  - Add an explanation for why menu items have a disabled state ([#54](https://github.com/pwyf/iati-org-viz/issues/54))
+ - Added the requisite codelists as static json files
 
 ### Changed
  - Prevent org ID badge from being orphaned
