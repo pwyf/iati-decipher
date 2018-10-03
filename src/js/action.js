@@ -221,9 +221,8 @@ $(function () {
         // Parse the dataset
         var xml = new DOMParser().parseFromString(response, 'application/xml')
 
-        // if the root node is wrong, bail.
         if ($(':root', xml)[0].nodeName !== 'iati-organisations') {
-          // TODO
+          // if the root node is wrong, bail.
           return Promise.reject(Error('Not a valid IATI organisation file'))
         }
 
