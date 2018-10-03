@@ -107,17 +107,24 @@ var refreshDocuments = function ($org, codelists) {
         if (codelists.DocumentCategory[category]) {
           category = codelists.DocumentCategory[category] + ' (' + category + ')'
         }
+        // TODO: deal with multiple recipient countries
+        var recipientCountry = $('recipient-country', $item).first()
         var description = $('description narrative', $item).first().text()
         // TODO: deal with multiple languages
         var language = $('language', $item).attr('code')
-        language = codelists.Language[language] || language
         var documentDate = $('document-date', $item).attr('iso-date')
 
         var content = ['Category: ' + category]
+        if (recipientCountry.length > 0) {
+          var recipientCountryCode = recipientCountry.attr('code')
+          recipientCountry = recipientCountry.text() || codelists.Country[recipientCountryCode] || recipientCountryCode
+          content.push('Recipient country: ' + recipientCountry)
+        }
         if (description) {
           content.push('Description: ' + description)
         }
         if (language) {
+          language = codelists.Language[language] || language
           content.push('Language: ' + language)
         }
         if (documentDate) {
