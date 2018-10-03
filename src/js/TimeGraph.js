@@ -33,7 +33,7 @@ function TimeGraph ($org, options) {
     $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by ' + self.breakdown.name + '</label><select class="form-control" id="breakdown-select"><option value="">Show all</option></select></div>')
     var $breakdownSelect = $('#breakdown-select', $breakdown)
     breakdownCats.forEach(function (item) {
-      $breakdownSelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
+      $breakdownSelect.append($('<option data-value-field="' + item.valueField + '" value="' + item.attr + '">' + item.text + '</option>'))
     })
     $breakdownSelect.on('change', function () {
       self.show()
@@ -85,8 +85,15 @@ TimeGraph.prototype.breakdownCats = function () {
     var $cat = $(cat)
     var txt = $('narrative', $cat).first().text() // TODO
     var attr = $cat.attr(breakdownAttr)
+    var valueField = 'attr'
+    var attrOrText = attr
+    if (!attr) {
+      attrOrText = txt
+      valueField = 'text'
+    }
     return {
-      attr: attr,
+      attr: attrOrText,
+      valueField: valueField,
       text: txt || self.filter.codelistLookup[attr] || attr
     }
   }).uniq(function (item) {
@@ -109,22 +116,35 @@ TimeGraph.prototype.getDataset = function () {
   var self = this
   var $els = null
   var query = null
-  var breakdownVal = $('#breakdown-select option:selected').val()
+  var $breakdown = $('#breakdown-select option:selected')
+  var breakdownVal = $breakdown.val()
 
   var valQuery = '> value'
   if (breakdownVal) {
-    valQuery = self.breakdown.el + '[ref="' + breakdownVal + '"]' + ' value'
+    if ($breakdown.data('value-field') === 'attr') {
+      valQuery = self.breakdown.el + '[ref="' + breakdownVal + '"]' + ' value'
+    } else {
+      valQuery = self.breakdown.el + ':has(narrative:contains("' + breakdownVal + '"))' + ' value'
+    }
   }
 
   if (self.filter) {
     var filterVal = $('#filter-select option:selected').val()
     if (breakdownVal) {
-      query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"]):has(' + self.breakdown.el + '[ref="' + breakdownVal + '"])'
+      if ($breakdown.data('value-field') === 'attr') {
+        query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"]):has(' + self.breakdown.el + '[ref="' + breakdownVal + '"])'
+      } else {
+        query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"]):has(' + self.breakdown.el + ' narrative:contains("' + breakdownVal + '"))'
+      }
     } else {
       query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"])'
     }
   } else if (breakdownVal) {
-    query = self.el + ':has(' + self.breakdown.el + '[ref="' + breakdownVal + '"])'
+    if ($breakdown.data('value-field') === 'attr') {
+      query = self.el + ':has(' + self.breakdown.el + '[ref="' + breakdownVal + '"])'
+    } else {
+      query = self.el + ':has(' + self.breakdown.el + ' narrative:contains("' + breakdownVal + '"))'
+    }
   } else {
     query = self.el
   }

@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+ - Add support for `budget-line`s / `expense-line`s that don’t use the `@ref` attribute ([#37](https://github.com/pwyf/iati-org-viz/issues/37))
+
 ### Changed
  - Restyled document listings to look a bit smarter
  - Ignore document categories from category A (since these are activity categories)
