@@ -38,7 +38,7 @@ var showDocuments = function ($org, codelists) {
       var $item = $(item)
       var attr = $item.attr('code')
       var txt = codelists.DocumentCategory[attr]
-      if (txt !== null) {
+      if (txt) {
         txt = txt + ' (' + attr + ')'
       } else {
         txt = attr

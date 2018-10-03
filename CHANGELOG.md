@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
  - Hide the graph when there’s no data to show ([#57](https://github.com/pwyf/iati-org-viz/issues/57))
+ - Display unrecognised DocumentCategory codes nicely
 
 ## [0.0.7] - 2018-10-03
 ### Added
