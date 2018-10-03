@@ -213,9 +213,10 @@ $(function () {
         var newDom = new DOMParser().parseFromString(response, 'text/html').documentElement
         document.replaceChild(document.adoptNode(newDom), document.documentElement)
       })
-
-    // Download the dataset
-    sendMessage({action: 'msg.httprequest', url: downloadUrl})
+      .then(function () {
+        // Download the dataset
+        return sendMessage({action: 'msg.httprequest', url: downloadUrl})
+      })
       .then(function (response) {
         // Parse the dataset
         var xml = new DOMParser().parseFromString(response, 'application/xml')
