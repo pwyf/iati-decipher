@@ -16,7 +16,7 @@ var get = function (url, responseType) {
       } else {
         // Otherwise reject with the status text
         // which will hopefully be a meaningful error
-        reject(Error(req.statusText))
+        reject(Error(req.statusText + ' (' + req.status + ')'))
       }
     }
 
@@ -37,10 +37,12 @@ chrome.runtime.onMessage.addListener(function (request, sender, reply) {
   }
   get(request.url, responseType).then(function (response) {
     if (request.action === 'msg.httprequest') {
-      reply(response.responseText)
+      reply({success: true, message: response.responseText})
     } else if (request.action === 'msg.jsonrequest') {
-      reply(response.response)
+      reply({success: true, message: response.response})
     }
+  }).catch(function (err) {
+    reply({success: false, message: err.message})
   })
 
   return true
