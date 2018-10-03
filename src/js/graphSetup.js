@@ -16,7 +16,7 @@ var setupOrgBudget = function ($org) {
   return new TimeGraph($org, options)
 }
 
-var setupRegionBudget = function ($org) {
+var setupRegionBudget = function ($org, codelists) {
   var options = {
     title: 'Recipient region budget',
     el: 'recipient-region-budget',
@@ -24,7 +24,8 @@ var setupRegionBudget = function ($org) {
       name: 'region',
       el: 'recipient-region',
       attr: 'code',
-      codelist: 'Region'
+      codelist: 'Region',
+      codelistLookup: codelists.Region
     },
     breakdown: {
       name: 'budget line',
@@ -34,7 +35,7 @@ var setupRegionBudget = function ($org) {
   return new TimeGraph($org, options)
 }
 
-var setupCountryBudget = function ($org) {
+var setupCountryBudget = function ($org, codelists) {
   var options = {
     title: 'Recipient country budget',
     el: 'recipient-country-budget',
@@ -42,7 +43,8 @@ var setupCountryBudget = function ($org) {
       name: 'country',
       el: 'recipient-country',
       attr: 'code',
-      codelist: 'Country'
+      codelist: 'Country',
+      codelistLookup: codelists.Country
     },
     breakdown: {
       name: 'budget line',

@@ -41,7 +41,7 @@ var sendMessage = function (obj) {
   })
 }
 
-var setupMenus = function ($org) {
+var setupMenus = function ($org, codelists) {
   var $el = null
 
   $('#show-summary').on('click', function () {
@@ -84,7 +84,7 @@ var setupMenus = function ($org) {
   if ($('recipient-region-budget', $org).length > 0) {
     $('#show-region-budgets').on('click', function () {
       navbarSelect('show-region-budgets')
-      var graph = setupRegionBudget($org)
+      var graph = setupRegionBudget($org, codelists)
       graph.show()
       return false
     })
@@ -99,7 +99,7 @@ var setupMenus = function ($org) {
   if ($('recipient-country-budget', $org).length > 0) {
     $('#show-country-budgets').on('click', function () {
       navbarSelect('show-country-budgets')
-      var graph = setupCountryBudget($org)
+      var graph = setupCountryBudget($org, codelists)
       graph.show()
       return false
     })
@@ -129,7 +129,7 @@ var setupMenus = function ($org) {
   if ($('document-link', $org).length > 0) {
     $('#show-documents').on('click', function () {
       navbarSelect('show-documents')
-      showDocuments($org)
+      showDocuments($org, codelists)
       return false
     })
   } else {
@@ -201,9 +201,10 @@ $(function () {
 
   $('.pwyf-org-viz-btn', 'body').on('click', function () {
     var downloadUrl = $(this).data('download-url')
+    var codelistFiles = ['Country', 'Region', 'Language', 'DocumentCategory']
 
     // Fetch our template
-    sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')})
+    var xmlPromise = sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')})
       .then(function (response) {
         // Add special crx hrefs
         response = response.replace(/{path:([^}]+)}/g, function (_, assetPath) {
@@ -225,7 +226,33 @@ $(function () {
           // if the root node is wrong, bail.
           return Promise.reject(Error('Not a valid IATI organisation file'))
         }
+        return Promise.resolve(xml)
+      })
+      .catch(function (err) {
+        alert('An error occurred: ' + err.message)
+        window.location.reload()
+      })
 
+    var codelistsPromise = xmlPromise.then(function (xml) {
+      return Promise.all(
+        codelistFiles.map(function (codelistFile) {
+          var jsonUrl = chrome.extension.getURL('json/' + codelistFile + '.json')
+          return sendMessage({action: 'msg.jsonrequest', url: jsonUrl})
+        }))
+        .then(function (codelistDataArr) {
+          var codelists = {}
+          codelistDataArr.forEach(function (codelistData, i) {
+            codelists[codelistFiles[i]] = codelistData.data.reduce(function (codelist, codelistItem) {
+              codelist[codelistItem.code] = codelistItem.name
+              return codelist
+            }, {})
+          })
+          return Promise.resolve(codelists)
+        })
+    })
+
+    Promise.all([xmlPromise, codelistsPromise])
+      .then(function ([xml, codelists]) {
         var $orgs = $('iati-organisations iati-organisation', xml)
         // TODO: add an org switcher if the file declares
         // multiple `iati-organisation`s. This is pretty unusual,
@@ -233,7 +260,7 @@ $(function () {
         var $org = $orgs.first()
 
         $('#download-xml').attr('href', downloadUrl)
-        setupMenus($org)
+        setupMenus($org, codelists)
 
         var orgId = getOrgId($org)
         var version = $('iati-organisations', xml).attr('version')
@@ -246,10 +273,6 @@ $(function () {
         showSummary($org)
 
         $('#loading-spinner').hide()
-      })
-      .catch(function (err) {
-        alert('An error occurred: ' + err.message)
-        window.location.reload()
       })
 
     return false

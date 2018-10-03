@@ -1,4 +1,4 @@
-var showDocuments = function ($org) {
+var showDocuments = function ($org, codelists) {
   var $page = $('<div class="container"><form autocomplete="off" id="document-search-form"><div class="form-group"><label for="search">Search documents</label><input autocomplete="off" class="form-control" type="text" placeholder="E.g. Annual report" id="document-search" /></div><div class="row"><div class="form-group col-sm-6"><label for="category-select">Filter by category</label><select class="form-control" id="category-select"></select></div><div class="form-group col-sm-6"><label for="country-select">Filter by country</label><select class="form-control" id="country-select"></select></div></div></form></div><div class="container"><h2></h2><div class="list-group"></div></div>')
 
   var $recipientCountries = $('document-link recipient-country', $org)
@@ -12,7 +12,7 @@ var showDocuments = function ($org) {
       var txt = $('narrative', $item).first().text() // TODO
       return {
         attr: attr,
-        text: txt || attr
+        text: txt || codelists.Country[attr] || attr
       }
     }).sortBy(function (item) {
       return item.text
@@ -23,7 +23,7 @@ var showDocuments = function ($org) {
       $countrySelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
     $countrySelect.on('change', function () {
-      refreshDocuments($org)
+      refreshDocuments($org, codelists)
     })
   } else {
     $countrySelect.prop('disabled', 'disabled')
@@ -37,10 +37,15 @@ var showDocuments = function ($org) {
     }).map(function (item) {
       var $item = $(item)
       var attr = $item.attr('code')
-      var txt = null
+      var txt = codelists.DocumentCategory[attr]
+      if (txt !== null) {
+        txt = txt + ' (' + attr + ')'
+      } else {
+        txt = attr
+      }
       return {
         attr: attr,
-        text: txt || attr
+        text: txt
       }
     }).sortBy(function (item) {
       return item.text
@@ -51,14 +56,14 @@ var showDocuments = function ($org) {
       $categorySelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
     $categorySelect.on('change', function () {
-      refreshDocuments($org)
+      refreshDocuments($org, codelists)
     })
   } else {
     $categorySelect.prop('disabled', 'disabled')
   }
 
   $('#document-search', $page).on('keyup', function () {
-    refreshDocuments($org)
+    refreshDocuments($org, codelists)
   })
 
   $('#document-search-form', $page).on('submit', function () {
@@ -66,10 +71,10 @@ var showDocuments = function ($org) {
   })
 
   $('#main').html($page)
-  refreshDocuments($org)
+  refreshDocuments($org, codelists)
 }
 
-var refreshDocuments = function ($org) {
+var refreshDocuments = function ($org, codelists) {
   $('.list-group').html('')
   var maxResults = 20
   var cat = $('#category-select option:selected').val()
@@ -99,9 +104,13 @@ var refreshDocuments = function ($org) {
         var title = $('title', $item).first().text()
         // TODO: deal with multiple categories
         var category = $('category', $item).attr('code')
+        if (codelists.DocumentCategory[category]) {
+          category = codelists.DocumentCategory[category] + ' (' + category + ')'
+        }
         var description = $('description narrative', $item).first().text()
         // TODO: deal with multiple languages
         var language = $('language', $item).attr('code')
+        language = codelists.Language[language] || language
         var documentDate = $('document-date', $item).attr('iso-date')
 
         var content = ['Category: ' + category]

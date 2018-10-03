@@ -58,15 +58,16 @@ function TimeGraph ($org, options) {
 }
 
 TimeGraph.prototype.filterCats = function () {
-  var $filterCats = $(this.el + ' ' + this.filter.el, this.$org)
-  var filterAttr = this.filter.attr
+  var self = this
+  var $filterCats = $(self.el + ' ' + self.filter.el, self.$org)
+  var filterAttr = self.filter.attr
   var filterCats = _.chain($filterCats).map(function (cat) {
     var $cat = $(cat)
     var txt = $cat.text() // TODO
     var attr = $cat.attr(filterAttr)
     return {
       attr: attr,
-      text: txt || attr
+      text: txt || self.filter.codelistLookup[attr] || attr
     }
   }).uniq(function (item) {
     return item.attr
@@ -77,7 +78,8 @@ TimeGraph.prototype.filterCats = function () {
 }
 
 TimeGraph.prototype.breakdownCats = function () {
-  var $breakdownCats = $(this.el + ' ' + this.breakdown.el, this.$org)
+  var self = this
+  var $breakdownCats = $(self.el + ' ' + self.breakdown.el, self.$org)
   var breakdownAttr = 'ref'
   var breakdownCats = _.chain($breakdownCats).map(function (cat) {
     var $cat = $(cat)
@@ -85,7 +87,7 @@ TimeGraph.prototype.breakdownCats = function () {
     var attr = $cat.attr(breakdownAttr)
     return {
       attr: attr,
-      text: txt || attr
+      text: txt || self.filter.codelistLookup[attr] || attr
     }
   }).uniq(function (item) {
     return item.attr
