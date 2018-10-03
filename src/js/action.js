@@ -252,7 +252,9 @@ $(function () {
     })
 
     Promise.all([xmlPromise, codelistsPromise])
-      .then(function ([xml, codelists]) {
+      .then(function (args) {
+        var xml = args[0]
+        var codelists = args[1]
         var $orgs = $('iati-organisations iati-organisation', xml)
         // TODO: add an org switcher if the file declares
         // multiple `iati-organisation`s. This is pretty unusual,
