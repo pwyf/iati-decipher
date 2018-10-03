@@ -40,6 +40,10 @@
   margin-bottom: 15px;
 }
 
+#iati-org-viz .dl-horizontal {
+  margin-bottom: 0;
+}
+
 #loading-spinner {
   background: rgba(0, 0, 0, 0.5);
   z-index: 9999;

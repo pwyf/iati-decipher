@@ -114,24 +114,24 @@ var refreshDocuments = function ($org, codelists) {
         var language = $('language', $item).attr('code')
         var documentDate = $('document-date', $item).attr('iso-date')
 
-        var content = ['Category: ' + category]
+        var content = ['<dt>Category:</dt><dd>' + category + '</dd>']
         if (recipientCountry.length > 0) {
           var recipientCountryCode = recipientCountry.attr('code')
           recipientCountry = recipientCountry.text() || codelists.Country[recipientCountryCode] || recipientCountryCode
-          content.push('Recipient country: ' + recipientCountry)
+          content.push('<dt>Recipient country:</dt><dd>' + recipientCountry + '</dd>')
         }
         if (description) {
-          content.push('Description: ' + description)
+          content.push('<dt>Description:</dt><dd>' + description + '</dd>')
         }
         if (language) {
           language = codelists.Language[language] || language
-          content.push('Language: ' + language)
+          content.push('<dt>Language:</dt><dd>' + language + '</dd>')
         }
         if (documentDate) {
-          content.push('Date: ' + moment(documentDate).format('D MMMM YYYY'))
+          content.push('<dt>Publication date:</dt><dd>' + moment(documentDate).format('D MMMM YYYY')) + '</dd>'
         }
 
-        $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><p class="list-group-item-text">' + content.join('<br />') + '</p></a>'))
+        $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><dl class="dl-horizontal">' + content.join('') + '</dl></a>'))
       })
   } else {
     $('h2').text('No documents to show')

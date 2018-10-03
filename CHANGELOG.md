@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+ - Restyled document listings to look a bit smarter
+
 ### Fixed
  - Hide the graph when there’s no data to show ([#57](https://github.com/pwyf/iati-org-viz/issues/57))
 
