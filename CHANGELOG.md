@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Prevent org ID badge from being orphaned
  - Add language, description and date to document listings
  - Hide second navbar by default
+ - Use javascript promises for all HTTP requests ([#53](https://github.com/pwyf/iati-org-viz/issues/53))
  - Improve error handling throughout, including handling invalid org files ([#48](https://github.com/pwyf/iati-org-viz/issues/48))
 
 ### Fixed
