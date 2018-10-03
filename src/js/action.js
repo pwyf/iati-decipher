@@ -242,7 +242,13 @@ $(function () {
         .then(function (codelistDataArr) {
           var codelists = {}
           codelistDataArr.forEach(function (codelistData, i) {
-            codelists[codelistFiles[i]] = codelistData.data.reduce(function (codelist, codelistItem) {
+            var data = codelistData.data
+            if (codelistFiles[i] === 'DocumentCategory') {
+              data = data.filter(function (codelistItem) {
+                return codelistItem.category === 'B'
+              })
+            }
+            codelists[codelistFiles[i]] = data.reduce(function (codelist, codelistItem) {
               codelist[codelistItem.code] = codelistItem.name
               return codelist
             }, {})
