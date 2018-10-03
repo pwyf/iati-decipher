@@ -98,7 +98,8 @@ TimeGraph.prototype.breakdownCats = function () {
 }
 
 TimeGraph.prototype.statuses = function () {
-  var $els = $(this.el, this.$org)
+  var self = this
+  var $els = $(self.el, self.$org)
   return _.uniq(_.map($els, function (el) {
     return $(el).attr('status') || 1
   }))
