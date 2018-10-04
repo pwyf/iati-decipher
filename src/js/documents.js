@@ -174,8 +174,10 @@ var refreshDocuments = function ($org, page, codelists) {
       }
 
       $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><dl class="dl-horizontal">' + content.join('') + '</dl></a>'))
+      $('.pager').show()
     })
   } else {
+    $('.pager').hide()
     $('h2').text('No documents to show')
   }
 }
