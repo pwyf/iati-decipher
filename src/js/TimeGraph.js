@@ -148,8 +148,8 @@ TimeGraph.prototype.getDataset = function () {
       var $amount = $('> value', breakdownEl)
       return {
         status: $el.attr('status') === '2' ? 'actual' : 'indicative',
-        periodStart: new Date($('period-start', $el).attr('iso-date')),
-        periodEnd: new Date($('period-end', $el).attr('iso-date')),
+        periodStart: $('period-start', $el).attr('iso-date'),
+        periodEnd: $('period-end', $el).attr('iso-date'),
         amount: $amount.text(),
         currency: $amount.attr('currency') || self.currency
       }
@@ -160,8 +160,8 @@ TimeGraph.prototype.getDataset = function () {
       var $amount = $('> value', $el)
       return {
         status: $el.attr('status') === '2' ? 'actual' : 'indicative',
-        periodStart: new Date($('period-start', $el).attr('iso-date')),
-        periodEnd: new Date($('period-end', $el).attr('iso-date')),
+        periodStart: $('period-start', $el).attr('iso-date'),
+        periodEnd: $('period-end', $el).attr('iso-date'),
         amount: $amount.text(),
         currency: $amount.attr('currency') || self.currency
       }
@@ -190,7 +190,9 @@ TimeGraph.prototype.show = function () {
 
   var labels = data.map(function (a) {
     var opts = {year: 'numeric', month: 'short'}
-    return a.periodStart.toLocaleDateString('en-GB', opts) + ' – ' + a.periodEnd.toLocaleDateString('en-US', opts)
+    var dateStart = new Date(a.periodStart)
+    var dateEnd = new Date(a.periodEnd)
+    return dateStart.toLocaleDateString('en-GB', opts) + ' – ' + dateEnd.toLocaleDateString('en-GB', opts)
   })
 
   if (self.chart !== null) {
