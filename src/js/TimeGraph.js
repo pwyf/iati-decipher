@@ -115,11 +115,9 @@ TimeGraph.prototype.statuses = function () {
 TimeGraph.prototype.getDataset = function () {
   var self = this
   var $els = null
-  var query = null
   var $breakdown = $('#breakdown-select option:selected')
   var breakdownVal = $breakdown.val()
 
-  var valQuery = '> value'
   if (breakdownVal) {
     if ($breakdown.data('value-field') === 'attr') {
       valQuery = self.breakdown.el + '[ref="' + breakdownVal + '"]' + ' value'
@@ -128,39 +126,46 @@ TimeGraph.prototype.getDataset = function () {
     }
   }
 
+  $data = $(self.el, self.$org)
+
   if (self.filter) {
     var filterVal = $('#filter-select option:selected').val()
-    if (breakdownVal) {
-      if ($breakdown.data('value-field') === 'attr') {
-        query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"]):has(' + self.breakdown.el + '[ref="' + breakdownVal + '"])'
-      } else {
-        query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"]):has(' + self.breakdown.el + ' narrative:contains("' + breakdownVal + '"))'
-      }
-    } else {
-      query = self.el + ':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"])'
-    }
-  } else if (breakdownVal) {
-    if ($breakdown.data('value-field') === 'attr') {
-      query = self.el + ':has(' + self.breakdown.el + '[ref="' + breakdownVal + '"])'
-    } else {
-      query = self.el + ':has(' + self.breakdown.el + ' narrative:contains("' + breakdownVal + '"))'
-    }
-  } else {
-    query = self.el
+    $data = $data.filter(':has(' + self.filter.el + '[' + self.filter.attr + '="' + filterVal + '"])')
   }
-  $data = $(query, self.$org)
 
-  var data = _.map($data, function (el) {
-    var $el = $(el)
-    var $val = $(valQuery, $el)
-    return {
-      status: $el.attr('status') === '2' ? 'actual' : 'indicative',
-      periodStart: moment($('period-start', $el).attr('iso-date')),
-      periodEnd: moment($('period-end', $el).attr('iso-date')),
-      val: $val.text(),
-      currency: $val.attr('currency') || self.currency
+  var data = null
+  if (breakdownVal) {
+    if ($breakdown.data('value-field') === 'attr') {
+      $data = $(self.breakdown.el + '[ref="' + breakdownVal + '"]', $data)
+    } else {
+      $data = $(self.breakdown.el, $data).filter(function () {
+        return $('narrative:first', this).text() === breakdownVal
+      })
     }
-  })
+    data = _.map($data, function (breakdownEl) {
+      var $el = $(breakdownEl).parent()
+      var $val = $('> value', breakdownEl)
+      return {
+        status: $el.attr('status') === '2' ? 'actual' : 'indicative',
+        periodStart: moment($('period-start', $el).attr('iso-date')),
+        periodEnd: moment($('period-end', $el).attr('iso-date')),
+        val: $val.text(),
+        currency: $val.attr('currency') || self.currency
+      }
+    })
+  } else {
+    data = _.map($data, function (el) {
+      var $el = $(el)
+      var $val = $('> value', $el)
+      return {
+        status: $el.attr('status') === '2' ? 'actual' : 'indicative',
+        periodStart: moment($('period-start', $el).attr('iso-date')),
+        periodEnd: moment($('period-end', $el).attr('iso-date')),
+        val: $val.text(),
+        currency: $val.attr('currency') || self.currency
+      }
+    })
+  }
 
   data = _.sortBy(data, function (a) {
     return a.periodStart
