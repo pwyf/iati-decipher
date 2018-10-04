@@ -54,6 +54,7 @@ function TimeGraph ($org, options) {
     $('#main').append($controlForm)
   }
 
+  $('#main').append($('<div class="container" id="chart-content"></div>'))
   $('#main').append($('<canvas id="chart"></canvas>'))
 }
 
@@ -175,7 +176,11 @@ TimeGraph.prototype.getDataset = function () {
 }
 
 TimeGraph.prototype.download = function (data) {
-  // TODO
+  var ws = XLSX.utils.json_to_sheet(data)
+  var wb = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')
+  XLSX.writeFile(wb, 'export.xlsx')
+  return false
 }
 
 TimeGraph.prototype.show = function () {
@@ -196,6 +201,11 @@ TimeGraph.prototype.show = function () {
     // TODO: Add an error message or something
     return
   }
+
+  var $downloadLink = $('<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download XLSX</a>').on('click', function () {
+    self.download(data)
+  })
+  $('#chart-content').html($downloadLink)
 
   self.chart = new Chart('chart', {
     type: 'bar',

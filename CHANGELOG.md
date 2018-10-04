@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
  - Add support for `budget-line`s / `expense-line`s that don’t use the `@ref` attribute ([#37](https://github.com/pwyf/iati-org-viz/issues/37))
+ - Add spreadsheet download ([#12](https://github.com/pwyf/iati-org-viz/issues/12))
 
 ### Changed
  - Restyled document listings to look a bit smarter
