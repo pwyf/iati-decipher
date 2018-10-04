@@ -267,7 +267,7 @@ $(function () {
         // though
         var $org = $orgs.first()
 
-        $('#download-xml').attr('href', downloadUrl)
+        $('#view-xml').attr('href', downloadUrl)
         setupMenus($org, codelists)
 
         var orgId = getOrgId($org)

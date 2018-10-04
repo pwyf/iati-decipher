@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
  - Restyled document listings to look a bit smarter
  - Ignore document categories from category A (since these are activity categories)
+ - Rename “Download XML” to “Source XML”
 
 ### Fixed
  - Hide the graph when there’s no data to show ([#57](https://github.com/pwyf/iati-org-viz/issues/57))
