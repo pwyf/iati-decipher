@@ -204,7 +204,7 @@ TimeGraph.prototype.show = function () {
     return
   }
 
-  var $downloadLink = $('<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download XLSX</a>').on('click', function () {
+  var $downloadLink = $('<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download .xlsx</a>').on('click', function () {
     self.download(data)
   })
   $('#chart-content').html($downloadLink)
