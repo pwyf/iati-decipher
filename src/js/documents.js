@@ -93,6 +93,7 @@ var refreshDocuments = function ($org, codelists) {
   }
   $results = $(query, $org)
   var totalFiltered = $results.length
+  var dateOpts = {date: 'numeric', month: 'long', year: 'numeric'}
   var totalPage = _.min([totalFiltered, maxResults])
   if (totalFiltered > 0) {
     $('h2').text('Showing 1-' + totalPage + ' of ' + numeral(totalFiltered).format('0,') + ' document' + (totalFiltered === 1 ? '' : 's'))
@@ -128,7 +129,7 @@ var refreshDocuments = function ($org, codelists) {
           content.push('<dt>Language:</dt><dd>' + language + '</dd>')
         }
         if (documentDate) {
-          content.push('<dt>Publication date:</dt><dd>' + moment(documentDate).format('D MMMM YYYY')) + '</dd>'
+          content.push('<dt>Publication date:</dt><dd>' + new Date(documentDate).toLocaleDateString('en-GB', dateOpts)) + '</dd>'
         }
 
         $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><dl class="dl-horizontal">' + content.join('') + '</dl></a>'))
