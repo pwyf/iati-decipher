@@ -144,25 +144,25 @@ TimeGraph.prototype.getDataset = function () {
     }
     data = _.map($data, function (breakdownEl) {
       var $el = $(breakdownEl).parent()
-      var $val = $('> value', breakdownEl)
+      var $amount = $('> value', breakdownEl)
       return {
         status: $el.attr('status') === '2' ? 'actual' : 'indicative',
         periodStart: new Date($('period-start', $el).attr('iso-date')),
         periodEnd: new Date($('period-end', $el).attr('iso-date')),
-        val: $val.text(),
-        currency: $val.attr('currency') || self.currency
+        amount: $amount.text(),
+        currency: $amount.attr('currency') || self.currency
       }
     })
   } else {
     data = _.map($data, function (el) {
       var $el = $(el)
-      var $val = $('> value', $el)
+      var $amount = $('> value', $el)
       return {
         status: $el.attr('status') === '2' ? 'actual' : 'indicative',
         periodStart: new Date($('period-start', $el).attr('iso-date')),
         periodEnd: new Date($('period-end', $el).attr('iso-date')),
-        val: $val.text(),
-        currency: $val.attr('currency') || self.currency
+        amount: $amount.text(),
+        currency: $amount.attr('currency') || self.currency
       }
     })
   }
@@ -205,7 +205,7 @@ TimeGraph.prototype.show = function () {
         label: self.title,
         backgroundColor: '#F0CB69',
         data: data.map(function (a) {
-          return a.val
+          return a.amount
         })
       }]
     },
@@ -214,8 +214,8 @@ TimeGraph.prototype.show = function () {
         callbacks: {
           label: function (tooltipItem, data) {
             var label = data.datasets[0].label
-            var val = numeral(tooltipItem.yLabel).format('0.00 a')
-            return label + ': ' + val + ' ' + self.currency
+            var formattedAmount = numeral(tooltipItem.yLabel).format('0.00 a')
+            return label + ': ' + formattedAmount + ' ' + self.currency
           }
         }
       },
@@ -226,9 +226,9 @@ TimeGraph.prototype.show = function () {
         yAxes: [{
           ticks: {
             min: 0,
-            callback: function (value) {
-              var val = numeral(value).format('0 a')
-              return val + ' ' + self.currency
+            callback: function (amount) {
+              var formattedAmount = numeral(amount).format('0 a')
+              return formattedAmount + ' ' + self.currency
             }
           }
         }]
