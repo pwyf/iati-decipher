@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Fixed
  - Work around XLSX export bug
+ - Remove download button if there’s no chart data
 
 ## [0.0.8] - 2018-10-04
 ### Added

@@ -201,6 +201,7 @@ TimeGraph.prototype.show = function () {
 
   if (data.length === 0) {
     // TODO: Add an error message or something
+    $('#chart-content').html('')
     return
   }
 
