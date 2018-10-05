@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Changed
  - Make counts on summary page include all `budget-line`s and `expense-line`s
+ - Pluralise total budgets in nav
 
 ## [0.0.9] - 2018-10-05
 ### Added
