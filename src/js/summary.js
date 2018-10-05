@@ -13,7 +13,12 @@ var showSummary = function ($org, metadata) {
   var $listGroup = $('.list-group', $page)
 
   stuff.forEach(function (obj) {
-    var total = $(obj.el, $org).length
+    var total = null
+    if (obj.el === 'document-link') {
+      total = $(obj.el, $org).length
+    } else {
+      total = $(obj.el + ' value', $org).length
+    }
     var $item = $('<a href="#" data-el="' + obj.el + '" class="list-group-item ' + (total === 0 ? 'disabled' : '') + '"><span class="badge">' + numeral(total).format(',') + '</span> ' + obj.name + '</a>').on('click', function () {
       var $this = $(this)
       if ($this.hasClass('disabled')) {
