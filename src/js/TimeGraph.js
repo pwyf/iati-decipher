@@ -217,7 +217,7 @@ TimeGraph.prototype.groupData = function (data) {
     return item.periodStart + ' // ' + item.periodEnd
   })
 
-  var backgroundColors = ['#D67D1C', '#EEC32A', '#9EB437']
+  var backgroundColors = ['#EEC32A', '#D67D1C', '#9EB437']
 
   var datasets = statuses.map(function (status, idx) {
     return {
