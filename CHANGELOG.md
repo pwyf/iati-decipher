@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
  - Add pagination to documents ([#47](https://github.com/pwyf/iati-org-viz/issues/47))
  - Add a fade on the loading animation
+ - Add a summary to the summary page
 
 ### Changed
  - Use ISO 3166 lower case short names for countries

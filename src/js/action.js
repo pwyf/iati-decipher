@@ -41,12 +41,12 @@ var sendMessage = function (obj) {
   })
 }
 
-var setupMenus = function ($org, codelists) {
+var setupMenus = function ($org, codelists, metadata) {
   var $el = null
 
   $('#show-summary').on('click', function () {
     navbarSelect('show-summary')
-    showSummary($org)
+    showSummary($org, metadata)
     return false
   })
 
@@ -67,14 +67,14 @@ var setupMenus = function ($org, codelists) {
 
   // Org budget menu item
   if ($('recipient-org-budget', $org).length > 0) {
-    $('#show-org-budgets').on('click', function () {
-      navbarSelect('show-org-budgets')
+    $('#show-recipient-organisation-budget').on('click', function () {
+      navbarSelect('show-recipient-organisation-budget')
       var graph = setupOrgBudget($org)
       graph.show()
       return false
     })
   } else {
-    $el = $('#show-org-budgets').on('click', function () {
+    $el = $('#show-recipient-organisation-budget').on('click', function () {
       return false
     })
     addNotProvidedPopup($el, 'Recipient organisation budgets', false)
@@ -82,14 +82,14 @@ var setupMenus = function ($org, codelists) {
 
   // Region budget menu item
   if ($('recipient-region-budget', $org).length > 0) {
-    $('#show-region-budgets').on('click', function () {
-      navbarSelect('show-region-budgets')
+    $('#show-recipient-region-budget').on('click', function () {
+      navbarSelect('show-recipient-region-budget')
       var graph = setupRegionBudget($org, codelists)
       graph.show()
       return false
     })
   } else {
-    $el = $('#show-region-budgets').on('click', function () {
+    $el = $('#show-recipient-region-budget').on('click', function () {
       return false
     })
     addNotProvidedPopup($el, 'Recipient region budgets', false)
@@ -97,14 +97,14 @@ var setupMenus = function ($org, codelists) {
 
   // Country budget menu item
   if ($('recipient-country-budget', $org).length > 0) {
-    $('#show-country-budgets').on('click', function () {
-      navbarSelect('show-country-budgets')
+    $('#show-recipient-country-budget').on('click', function () {
+      navbarSelect('show-recipient-country-budget')
       var graph = setupCountryBudget($org, codelists)
       graph.show()
       return false
     })
   } else {
-    $el = $('#show-country-budgets').on('click', function () {
+    $el = $('#show-recipient-country-budget').on('click', function () {
       return false
     })
     addNotProvidedPopup($el, 'Recipient country budgets', false)
@@ -127,13 +127,13 @@ var setupMenus = function ($org, codelists) {
 
   // Documents menu item
   if ($('document-link', $org).length > 0) {
-    $('#show-documents').on('click', function () {
-      navbarSelect('show-documents')
+    $('#show-document-link').on('click', function () {
+      navbarSelect('show-document-link')
       showDocuments($org, codelists)
       return false
     })
   } else {
-    $el = $('#show-documents').on('click', function () {
+    $el = $('#show-document-link').on('click', function () {
       return false
     })
     addNotProvidedPopup($el, 'Document links', false)
@@ -205,6 +205,7 @@ $(function () {
 
   $('.pwyf-org-viz-btn', 'body').on('click', function () {
     var downloadUrl = $(this).data('download-url')
+    var datasetName = $(this).data('dataset-name')
     var codelistFiles = ['Country', 'Region', 'Language', 'DocumentCategory']
 
     // Fetch our template
@@ -261,10 +262,16 @@ $(function () {
         })
     })
 
-    Promise.all([xmlPromise, codelistsPromise])
+    var metadataPromise = xmlPromise.then(function (xml) {
+      metadataUrl = 'https://iatiregistry.org/api/3/action/package_show?id=' + datasetName
+      return sendMessage({action: 'msg.jsonrequest', url: metadataUrl})
+    })
+
+    Promise.all([xmlPromise, codelistsPromise, metadataPromise])
       .then(function (args) {
         var xml = args[0]
         var codelists = args[1]
+        var metadata = args[2]
         var $orgs = $('iati-organisations iati-organisation', xml)
         // TODO: add an org switcher if the file declares
         // multiple `iati-organisation`s. This is pretty unusual,
@@ -272,7 +279,7 @@ $(function () {
         var $org = $orgs.first()
 
         $('#view-xml').attr('href', downloadUrl)
-        setupMenus($org, codelists)
+        setupMenus($org, codelists, metadata)
 
         var orgId = getOrgId($org)
         var version = $('iati-organisations', xml).attr('version')
@@ -282,7 +289,7 @@ $(function () {
 
         // Run the visualize app
         navbarSelect('show-summary')
-        showSummary($org)
+        showSummary($org, metadata)
 
         $('#loading-spinner').fadeOut()
       })
