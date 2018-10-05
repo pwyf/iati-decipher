@@ -146,8 +146,12 @@ TimeGraph.prototype.getDataset = function () {
     data = _.map($data, function (breakdownEl) {
       var $el = $(breakdownEl).parent()
       var $amount = $('> value', breakdownEl)
+      var status = $el.attr('status') === '2' ? 'Committed' : 'Indicative'
+      if ($el.attr('usg:type')) {
+        status = $el.attr('usg:type')
+      }
       return {
-        status: $el.attr('status') === '2' ? 'actual' : 'indicative',
+        status: status,
         periodStart: $('period-start', $el).attr('iso-date'),
         periodEnd: $('period-end', $el).attr('iso-date'),
         amount: $amount.text(),
@@ -158,8 +162,12 @@ TimeGraph.prototype.getDataset = function () {
     data = _.map($data, function (el) {
       var $el = $(el)
       var $amount = $('> value', $el)
+      var status = $el.attr('status') === '2' ? 'Committed' : 'Indicative'
+      if ($el.attr('usg:type')) {
+        status = $el.attr('usg:type')
+      }
       return {
-        status: $el.attr('status') === '2' ? 'actual' : 'indicative',
+        status: status,
         periodStart: $('period-start', $el).attr('iso-date'),
         periodEnd: $('period-end', $el).attr('iso-date'),
         amount: $amount.text(),
@@ -183,17 +191,57 @@ TimeGraph.prototype.download = function (data) {
   return false
 }
 
+TimeGraph.prototype.groupData = function (data) {
+  // Find all statuses used
+  var statuses = data.reduce(function (acc, obj) {
+    if (acc.indexOf(obj.status) === -1) {
+      acc.push(obj.status)
+    }
+    return acc
+  }, [])
+
+  statuses.sort(function (a, b) {
+    var order = ['Request', 'Appropriation', 'Actual', 'Indicative', 'Committed']
+    var aInd = order.indexOf(a)
+    var bInd = order.indexOf(b)
+    if (aInd < bInd) {
+      return -1
+    }
+    if (aInd > bInd) {
+      return 1
+    }
+    return 0
+  })
+
+  var labels = _.uniq(data, true, function (item) {
+    return item.periodStart + ' // ' + item.periodEnd
+  })
+
+  var backgroundColors = ['#D67D1C', '#EEC32A', '#9EB437']
+
+  var datasets = statuses.map(function (status, idx) {
+    return {
+      label: status,
+      backgroundColor: backgroundColors[idx],
+      data: labels.map(function (l) {
+        var d = data.find(function (item) {
+          return (l.periodStart === item.periodStart && l.periodEnd === item.periodEnd && item.status === status)
+        })
+        return (!d) ? null : d.amount
+      })
+    }
+  })
+
+  return {
+    datasets: datasets,
+    labels: labels
+  }
+}
+
 TimeGraph.prototype.show = function () {
   var self = this
 
   var data = self.getDataset()
-
-  var labels = data.map(function (a) {
-    var opts = {year: 'numeric', month: 'short'}
-    var dateStart = new Date(a.periodStart)
-    var dateEnd = new Date(a.periodEnd)
-    return dateStart.toLocaleDateString('en-GB', opts) + ' – ' + dateEnd.toLocaleDateString('en-GB', opts)
-  })
 
   if (self.chart !== null) {
     self.chart.destroy()
@@ -205,6 +253,17 @@ TimeGraph.prototype.show = function () {
     return
   }
 
+  var groupData = self.groupData(data)
+
+  console.log(groupData)
+
+  var labels = groupData.labels.map(function (item) {
+    var opts = {year: 'numeric', month: 'short'}
+    var dateStart = new Date(item.periodStart)
+    var dateEnd = new Date(item.periodEnd)
+    return dateStart.toLocaleDateString('en-GB', opts) + ' – ' + dateEnd.toLocaleDateString('en-GB', opts)
+  })
+
   var $downloadLink = $('<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download .xlsx</a>').on('click', function () {
     self.download(data)
   })
@@ -214,26 +273,20 @@ TimeGraph.prototype.show = function () {
     type: 'bar',
     data: {
       labels: labels,
-      datasets: [{
-        label: self.title,
-        backgroundColor: '#F0CB69',
-        data: data.map(function (a) {
-          return a.amount
-        })
-      }]
+      datasets: groupData.datasets
     },
     options: {
       tooltips: {
         callbacks: {
           label: function (tooltipItem, data) {
-            var label = data.datasets[0].label
+            var label = self.title + ' (' + data.datasets[tooltipItem.datasetIndex].label + ')'
             var formattedAmount = numeral(tooltipItem.yLabel).format('0.00 a')
             return label + ': ' + formattedAmount + ' ' + self.currency
           }
         }
       },
       legend: {
-        display: false
+        display: true
       },
       scales: {
         yAxes: [{
