@@ -294,10 +294,9 @@ $(function () {
         $('#view-xml').attr('href', downloadUrl)
         setupMenus($org, codelists, metadata)
 
-        var orgId = getOrgId($org)
         var version = $('iati-organisations', xml).attr('version')
         var orgName = getOrgName($org, version)
-        $('#org-name').text(orgName).append('&nbsp;').append($('<span class="badge" data-toggle="tooltip" title="' + orgId + '">?</span>'))
+        $('#org-name').text(orgName)
         $('[data-toggle="tooltip"]').tooltip()
 
         // Run the visualize app

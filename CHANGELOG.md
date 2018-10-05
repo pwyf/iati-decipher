@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
  - Make counts on summary page include all `budget-line`s and `expense-line`s
  - Pluralise total budgets in nav
+ - Remove org ID hover
 
 ## [0.0.9] - 2018-10-05
 ### Added
