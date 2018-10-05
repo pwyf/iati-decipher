@@ -284,7 +284,7 @@ $(function () {
         navbarSelect('show-summary')
         showSummary($org)
 
-        $('#loading-spinner').hide()
+        $('#loading-spinner').fadeOut()
       })
 
     return false
