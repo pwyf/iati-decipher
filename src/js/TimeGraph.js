@@ -200,10 +200,10 @@ TimeGraph.prototype.groupData = function (data) {
     return acc
   }, [])
 
+  var ordering = ['Request', 'Appropriation', 'Actual', 'Indicative', 'Committed']
   statuses.sort(function (a, b) {
-    var order = ['Request', 'Appropriation', 'Actual', 'Indicative', 'Committed']
-    var aInd = order.indexOf(a)
-    var bInd = order.indexOf(b)
+    var aInd = ordering.indexOf(a)
+    var bInd = ordering.indexOf(b)
     if (aInd < bInd) {
       return -1
     }
