@@ -286,7 +286,7 @@ TimeGraph.prototype.show = function () {
         }
       },
       legend: {
-        display: true
+        display: (groupData.datasets.length > 1)
       },
       scales: {
         yAxes: [{
