@@ -32,7 +32,7 @@ var addNotProvidedPopup = function ($el, name, isSingular) {
 var sendMessage = function (obj) {
   return new Promise(function (resolve, reject) {
     chrome.runtime.sendMessage(obj, function (response) {
-      if (response.success === true) {
+      if (response && response.success === true) {
         resolve(response.message)
       } else {
         reject(Error(response.message))
