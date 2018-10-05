@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.0.10] - 2018-10-06
 ### Added
- - Separate budgets by @status / @usg:type ([#40](https://github.com/pwyf/iati-org-viz/issues/40); [#3](https://github.com/pwyf/iati-org-viz/issues/3))
+ - Separate budgets by `@status` / `@usg:type` ([#40](https://github.com/pwyf/iati-org-viz/issues/40); [#3](https://github.com/pwyf/iati-org-viz/issues/3))
 
 ### Changed
  - Make counts on summary page include all `budget-line`s and `expense-line`s
