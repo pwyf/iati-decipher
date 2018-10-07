@@ -26,6 +26,7 @@ const jsFiles = [
 const cssFiles = [
   './node_modules/bootstrap/dist/css/bootstrap.css',
   './node_modules/@fortawesome/fontawesome-free/css/solid.css',
+  './node_modules/@fortawesome/fontawesome-free/css/brands.css',
   './node_modules/@fortawesome/fontawesome-free/css/fontawesome.css',
   './src/css/**'
 ]
@@ -69,7 +70,8 @@ gulp.task('build:assets', () => {
   return gulp.src([
     './src/static/**',
     './node_modules/bootstrap/dist/fonts*/*',
-    './node_modules/@fortawesome/fontawesome-free/webfonts*/fa-solid-*'
+    './node_modules/@fortawesome/fontawesome-free/webfonts*/fa-solid-*',
+    './node_modules/@fortawesome/fontawesome-free/webfonts*/fa-brands-*'
   ])
     .pipe(gulp.dest(outPath))
 })
