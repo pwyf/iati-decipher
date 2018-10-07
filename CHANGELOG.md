@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
  - Add link to github repo ([#62](https://github.com/pwyf/iati-org-viz/issues/62))
  - Use icons in footer
+ - Open mailto link in new tab
 
 ## [0.0.10] - 2018-10-06
 ### Added
