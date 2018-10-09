@@ -33,6 +33,13 @@ const cssFiles = [
   './src/css/**'
 ]
 
+const codelists = [
+  // 'Country', // TODO
+  'Region',
+  'Language',
+  'DocumentCategory'
+]
+
 gulp.task('clean', () => {
   return del(outPath)
 })
@@ -48,7 +55,6 @@ gulp.task('zip', (done) => {
 
 gulp.task('build:codelists', (done) => {
   var baseUrl = 'http://reference.iatistandard.org/203/codelists/downloads/clv2/json/en/'
-  var codelists = ['Region', 'Language', 'DocumentCategory'] // TODO: Add 'Country'
   codelists.map(function (codelist) {
     return request(baseUrl + codelist + '.json')
       .pipe(fs.createWriteStream('./src/static/json/' + codelist + '.json'))
