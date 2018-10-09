@@ -34,7 +34,7 @@ const cssFiles = [
 ]
 
 const codelists = [
-  // 'Country', // TODO
+  // 'Country', // TODO: Waiting on https://github.com/IATI/IATI-Codelists-NonEmbedded/pull/274
   'Region',
   'Language',
   'DocumentCategory'
