@@ -54,11 +54,13 @@ gulp.task('zip', (done) => {
 })
 
 gulp.task('build:codelists', (done) => {
-  var baseUrl = 'http://reference.iatistandard.org/203/codelists/downloads/clv2/json/en/'
-  codelists.map(function (codelist) {
-    return request(baseUrl + codelist + '.json')
-      .pipe(fs.createWriteStream('./src/static/json/' + codelist + '.json'))
-  })
+  if (gutil.env.env === 'prod') {
+    var baseUrl = 'http://reference.iatistandard.org/203/codelists/downloads/clv2/json/en/'
+    codelists.map(function (codelist) {
+      return request(baseUrl + codelist + '.json')
+        .pipe(fs.createWriteStream('./src/static/json/' + codelist + '.json'))
+    })
+  }
   return done()
 })
 
