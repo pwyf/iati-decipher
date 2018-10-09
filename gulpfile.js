@@ -1,5 +1,7 @@
 const gulp = require('gulp')
 const del = require('del')
+const fs = require('fs')
+const request = require('request')
 const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const cleanCSS = require('gulp-clean-css')
@@ -44,6 +46,16 @@ gulp.task('zip', (done) => {
   return done()
 })
 
+gulp.task('build:codelists', (done) => {
+  var baseUrl = 'http://reference.iatistandard.org/203/codelists/downloads/clv2/json/en/'
+  var codelists = ['Region', 'Language', 'DocumentCategory'] // TODO: Add 'Country'
+  codelists.map(function (codelist) {
+    return request(baseUrl + codelist + '.json')
+      .pipe(fs.createWriteStream('./src/static/json/' + codelist + '.json'))
+  })
+  return done()
+})
+
 gulp.task('build:_core_js', () => {
   return gulp.src(jsFiles)
     .pipe(concat('js.js'))
@@ -76,7 +88,11 @@ gulp.task('build:assets', () => {
     .pipe(gulp.dest(outPath))
 })
 
-gulp.task('build', gulp.series('clean', gulp.parallel('build:css', 'build:js', 'build:assets'), 'zip'))
+gulp.task('build',
+  gulp.series(
+    gulp.parallel('clean', 'build:codelists'),
+    gulp.parallel('build:css', 'build:js', 'build:assets'),
+    'zip'))
 
 gulp.task('watch', gulp.series(['build'], () => {
   gulp.watch('./src/**', gulp.parallel('build'))
