@@ -31,6 +31,11 @@ var get = function (url, responseType) {
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, reply) {
+  if (request.action === 'msg.show') {
+    chrome.pageAction.show(sender.tab.id)
+    reply({success: true, message: ''})
+    return true
+  }
   var responseType = null
   if (request.action === 'msg.jsonrequest') {
     responseType = 'json'
@@ -46,4 +51,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, reply) {
   })
 
   return true
+})
+
+chrome.pageAction.onClicked.addListener(function (tab) {
+  chrome.tabs.reload(tab.id)
 })

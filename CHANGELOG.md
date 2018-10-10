@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Added
  - Update codelists using gulp ([#59](https://github.com/pwyf/iati-org-viz/issues/59))
+ - Make browser bar icon function as an off switch ([#65](https://github.com/pwyf/iati-org-viz/issues/65))
 
 ## [0.0.11] - 2018-10-08
 ### Changed
