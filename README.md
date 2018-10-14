@@ -2,6 +2,8 @@
 
 Visualise IATI organisation files from the comfort of your own browser.
 
+## Installation
+
  * [Chrome extension](https://chrome.google.com/webstore/detail/iati-organisation-file-vi/akignlamolglcjboilhajenkkkcnohjj)
  * [Firefox add-on](https://addons.mozilla.org/en-GB/firefox/addon/iati-org-file-visualiser/)
 
