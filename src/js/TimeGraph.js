@@ -267,6 +267,22 @@ TimeGraph.prototype.show = function () {
   })
   $('#chart-content').html($downloadLink)
 
+  var numTicks = 10
+  var minVal = 0
+  var maxVal = Math.max(...data.map(function (d) {
+    return parseFloat(d.amount)
+  }))
+  var stepSize = d3.tickStep(minVal, maxVal, numTicks)
+  var precisionPrefix = d3.precisionPrefix(stepSize, maxVal)
+  var d3formatter = d3.formatPrefix('.' + precisionPrefix, maxVal)
+  var formatter = function (val) {
+    var f = d3formatter(val)
+    f = f.replace('K', ' thousand')
+      .replace('M', ' million')
+      .replace('G', ' billion')
+    return f
+  }
+
   self.chart = new Chart('chart', {
     type: 'bar',
     data: {
@@ -278,7 +294,7 @@ TimeGraph.prototype.show = function () {
         callbacks: {
           label: function (tooltipItem, data) {
             var label = self.title + ' (' + data.datasets[tooltipItem.datasetIndex].label + ')'
-            var formattedAmount = d3.format('.2s')(tooltipItem.yLabel)
+            var formattedAmount = d3.format(',')(tooltipItem.yLabel)
             return label + ': ' + formattedAmount + ' ' + self.currency
           }
         }
@@ -289,9 +305,11 @@ TimeGraph.prototype.show = function () {
       scales: {
         yAxes: [{
           ticks: {
-            min: 0,
+            min: minVal,
+            suggestedMax: maxVal,
+            stepSize: stepSize,
             callback: function (amount) {
-              var formattedAmount = d3.format('.2s')(amount)
+              var formattedAmount = formatter(amount)
               return formattedAmount + ' ' + self.currency
             }
           }

@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Add a popup to the browser action ([#68](https://github.com/pwyf/iati-org-viz/issues/68); [#65](https://github.com/pwyf/iati-org-viz/issues/65))
  - Sort codelist values to show known values first ([#67](https://github.com/pwyf/iati-org-viz/issues/67))
  - Replace numeraljs with d3-format
+ - Use d3 for scales; fix y-axis precision issues ([#11](https://github.com/pwyf/iati-org-viz/issues/11))
 
 ## [0.0.11] - 2018-10-08
 ### Changed
