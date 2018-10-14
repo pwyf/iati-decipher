@@ -18,7 +18,7 @@ var showDocuments = function ($org, codelists) {
         text: txt || codelists.Country[attr] || attr
       }
     }).sortBy(function (item) {
-      return (item.attr in codelists.Country) ? 'a' + item.text : 'b' + item.text
+      return (item.text !== item.attr) ? 'a' + item.text : 'b' + item.text
     }).value()
 
     $countrySelect.append($('<option value="">All countries</option>'))
