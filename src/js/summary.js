@@ -19,7 +19,7 @@ var showSummary = function ($org, metadata) {
     } else {
       total = $(obj.el + ' value', $org).length
     }
-    var $item = $('<a href="#" data-el="' + obj.el + '" class="list-group-item ' + (total === 0 ? 'disabled' : '') + '"><span class="badge">' + numeral(total).format(',') + '</span> ' + obj.name + '</a>').on('click', function () {
+    var $item = $('<a href="#" data-el="' + obj.el + '" class="list-group-item ' + (total === 0 ? 'disabled' : '') + '"><span class="badge">' + d3.format(',')(total) + '</span> ' + obj.name + '</a>').on('click', function () {
       var $this = $(this)
       if ($this.hasClass('disabled')) {
         return false

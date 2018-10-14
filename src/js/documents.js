@@ -138,7 +138,7 @@ var refreshDocuments = function ($org, page, codelists) {
   $('.prev-page').data('page', page - 1)
 
   if (totalFiltered > 0) {
-    $('h2').text('Showing ' + (offset + 1) + '-' + (offset + pageResults.length) + ' of ' + numeral(totalFiltered).format('0,') + ' document' + (totalFiltered === 1 ? '' : 's'))
+    $('h2').text('Showing ' + (offset + 1) + '-' + (offset + pageResults.length) + ' of ' + d3.format(',')(totalFiltered) + ' document' + (totalFiltered === 1 ? '' : 's'))
     pageResults.forEach(function (item) {
       var $item = $(item)
       var link = $item.attr('url')

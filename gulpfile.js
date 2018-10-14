@@ -14,7 +14,7 @@ const jsFiles = [
   './node_modules/jquery/dist/jquery.js',
   './node_modules/bootstrap/dist/js/bootstrap.js',
   './node_modules/chart.js/dist/Chart.js',
-  './node_modules/numeral/numeral.js',
+  './node_modules/d3-format/dist/d3-format.js',
   './node_modules/underscore/underscore.js',
   './node_modules/xlsx/dist/xlsx.full.min.js',
   './src/js/helpers.js',

@@ -280,7 +280,7 @@ TimeGraph.prototype.show = function () {
         callbacks: {
           label: function (tooltipItem, data) {
             var label = self.title + ' (' + data.datasets[tooltipItem.datasetIndex].label + ')'
-            var formattedAmount = numeral(tooltipItem.yLabel).format('0.00 a')
+            var formattedAmount = d3.format('.2s')(tooltipItem.yLabel)
             return label + ': ' + formattedAmount + ' ' + self.currency
           }
         }
@@ -293,7 +293,7 @@ TimeGraph.prototype.show = function () {
           ticks: {
             min: 0,
             callback: function (amount) {
-              var formattedAmount = numeral(amount).format('0 a')
+              var formattedAmount = d3.format('.2s')(amount)
               return formattedAmount + ' ' + self.currency
             }
           }
