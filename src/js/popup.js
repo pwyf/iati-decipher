@@ -27,6 +27,10 @@ $(function () {
   var tmpl = 'https://iatiregistry.org/api/3/action/package_search?fq=extras_filetype:organisation&qf=title&q='
   $('#org-file-name').on('keyup', debounce(function () {
     var searchStr = $(this).val()
+    if (searchStr === '') {
+      $('.list-group').html('')
+      return
+    }
     chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl + searchStr}, function (data) {
       var results = data.message.result.results
       var links = []
