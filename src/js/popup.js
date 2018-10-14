@@ -19,6 +19,10 @@ function debounce (func, wait, immediate) {
 }
 
 $(function () {
+  $('form').on('submit', function () {
+    return false
+  })
+
   $('body').on('click', 'a.list-group-item', function () {
     chrome.runtime.sendMessage({action: 'msg.opentab', url: $(this).attr('href')})
     return false
