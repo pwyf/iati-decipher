@@ -24,11 +24,9 @@ $(function () {
     return false
   })
 
-  var tmpl = 'https://iatiregistry.org/api/3/action/package_search?fq=extras_filetype:organisation&q=title:'
+  var tmpl = 'https://iatiregistry.org/api/3/action/package_search?fq=extras_filetype:organisation&qf=title&q='
   $('#org-file-name').on('keyup', debounce(function () {
     var searchStr = $(this).val()
-    searchStr = searchStr.split(' ')
-    searchStr = '(+*' + searchStr.join('* +*') + '*)'
     chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl + searchStr}, function (data) {
       var results = data.message.result.results
       var links = []
