@@ -9,11 +9,6 @@ function TimeGraph ($org, options) {
   self.language = $org.attr('xml:lang')
   self.chart = null
 
-  if (self.statuses().length > 1) {
-    // TODO
-    // We need a status filter
-  }
-
   var $filter = null
   var $breakdown = null
   if (self.filter) {
@@ -103,14 +98,6 @@ TimeGraph.prototype.breakdownCats = function () {
     return item.text
   }).value()
   return breakdownCats
-}
-
-TimeGraph.prototype.statuses = function () {
-  var self = this
-  var $els = $(self.el, self.$org)
-  return _.uniq(_.map($els, function (el) {
-    return $(el).attr('status') || 1
-  }))
 }
 
 TimeGraph.prototype.getDataset = function () {
