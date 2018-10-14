@@ -31,9 +31,8 @@ var get = function (url, responseType) {
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, reply) {
-  if (request.action === 'msg.show') {
-    chrome.pageAction.show(sender.tab.id)
-    reply({success: true, message: ''})
+  if (request.action === 'msg.opentab') {
+    chrome.tabs.create({url: request.url})
     return true
   }
   var responseType = null
@@ -51,8 +50,4 @@ chrome.runtime.onMessage.addListener(function (request, sender, reply) {
   })
 
   return true
-})
-
-chrome.pageAction.onClicked.addListener(function (tab) {
-  chrome.tabs.reload(tab.id)
 })

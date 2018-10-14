@@ -72,12 +72,19 @@ gulp.task('build:_core_js', () => {
 })
 
 gulp.task('build:_bg_js', () => {
-  return gulp.src('background.js', { cwd: './src/js' })
+  return gulp.src('./src/js/background.js')
     .pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
-gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js'))
+gulp.task('build:_popup_js', () => {
+  return gulp.src(['./node_modules/jquery/dist/jquery.js', './src/js/popup.js'])
+    .pipe(concat('popup.js'))
+    .pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
+    .pipe(gulp.dest(outPath + '/js'))
+})
+
+gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js', 'build:_popup_js'))
 
 gulp.task('build:css', () => {
   return gulp.src(cssFiles)

@@ -76,14 +76,14 @@
 }
 
 /* Sticky footer stuff */
-html {
+html#iati-org-viz {
   position: relative;
   min-height: 100%;
 }
-body {
+#iati-org-viz body {
   margin-bottom: 80px;
 }
-.footer {
+#iati-org-viz .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -92,6 +92,11 @@ body {
   border-top: 1px solid #e7e7e7;
   padding: 20px 0;
 }
-.footer a {
+#iati-org-viz .footer a {
   color: #555;
+}
+
+#iati-org-popup body {
+  width: 350px;
+  padding-top: 10px;
 }

@@ -231,7 +231,6 @@ $(function () {
           // if the root node is wrong, bail.
           return Promise.reject(Error('Not a valid IATI organisation file'))
         }
-        sendMessage({action: 'msg.show'})
         return Promise.resolve(xml)
       })
       .catch(function (err) {
