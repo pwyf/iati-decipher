@@ -18,7 +18,7 @@ var showDocuments = function ($org, codelists) {
         text: txt || codelists.Country[attr] || attr
       }
     }).sortBy(function (item) {
-      return item.text
+      return (item.attr in codelists.Country) ? 'a' + item.text : 'b' + item.text
     }).value()
 
     $countrySelect.append($('<option value="">All countries</option>'))
@@ -51,7 +51,7 @@ var showDocuments = function ($org, codelists) {
         text: txt
       }
     }).sortBy(function (item) {
-      return item.text
+      return (item.attr in codelists.DocumentCategory) ? 'a' + item.text : 'b' + item.text
     }).value()
 
     $categorySelect.append($('<option value="">All categories</option>'))
