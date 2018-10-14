@@ -255,8 +255,6 @@ TimeGraph.prototype.show = function () {
 
   var groupData = self.groupData(data)
 
-  console.log(groupData)
-
   var labels = groupData.labels.map(function (item) {
     var opts = {year: 'numeric', month: 'short'}
     var dateStart = new Date(item.periodStart)
