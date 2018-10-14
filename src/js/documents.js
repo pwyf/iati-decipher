@@ -152,8 +152,10 @@ var refreshDocuments = function ($org, page, codelists) {
       // TODO: deal with multiple recipient countries
       var recipientCountry = $('recipient-country', $item).first()
       var description = $('description narrative', $item).first().text()
-      // TODO: deal with multiple languages
-      var language = $('language', $item).attr('code')
+      var languages = $('language', $item).map(function () {
+        var language = $(this).attr('code')
+        return codelists.Language[language] || language
+      }).toArray()
       var documentDate = $('document-date', $item).attr('iso-date')
 
       var content = ['<dt>Category:</dt><dd>' + category + '</dd>']
@@ -165,9 +167,8 @@ var refreshDocuments = function ($org, page, codelists) {
       if (description) {
         content.push('<dt>Description:</dt><dd>' + description + '</dd>')
       }
-      if (language) {
-        language = codelists.Language[language] || language
-        content.push('<dt>Language:</dt><dd>' + language + '</dd>')
+      if (languages.length > 0) {
+        content.push('<dt>Language:</dt><dd>' + languages.join('; ') + '</dd>')
       }
       if (documentDate) {
         content.push('<dt>Publication date:</dt><dd>' + new Date(documentDate).toLocaleDateString('en-GB', dateOpts)) + '</dd>'
