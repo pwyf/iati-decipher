@@ -24,7 +24,8 @@
     "gulp-uglify": "^3.0.1",
     "gulp-util": "^3.0.8",
     "gulp-zip": "^4.2.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "uglify-es": "^3.3.9"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

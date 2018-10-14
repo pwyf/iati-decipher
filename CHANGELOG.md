@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
  - Sort codelist values to show known values first ([#67](https://github.com/pwyf/iati-org-viz/issues/67))
  - Replace numeraljs with d3-format
+ - Use uglify-es for javascript uglifying
 
 ### Fixed
  - Fix y-axis precision issues ([#11](https://github.com/pwyf/iati-org-viz/issues/11))

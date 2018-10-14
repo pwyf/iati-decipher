@@ -3,10 +3,13 @@ const del = require('del')
 const fs = require('fs')
 const request = require('request')
 const concat = require('gulp-concat')
-const uglify = require('gulp-uglify')
 const cleanCSS = require('gulp-clean-css')
 const zip = require('gulp-zip')
 const gutil = require('gulp-util')
+
+const uglifyes = require('uglify-es')
+const composer = require('gulp-uglify/composer')
+var minify = composer(uglifyes, console)
 
 const outPath = gutil.env.env === 'prod' ? './dist' : './dev'
 
@@ -68,20 +71,20 @@ gulp.task('build:codelists', (done) => {
 gulp.task('build:_core_js', () => {
   return gulp.src(jsFiles)
     .pipe(concat('js.js'))
-    .pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
+    .pipe(gutil.env.env === 'prod' ? minify() : gutil.noop())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
 gulp.task('build:_bg_js', () => {
   return gulp.src('./src/js/background.js')
-    .pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
+    .pipe(gutil.env.env === 'prod' ? minify() : gutil.noop())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
 gulp.task('build:_popup_js', () => {
   return gulp.src(['./node_modules/jquery/dist/jquery.js', './src/js/popup.js'])
     .pipe(concat('popup.js'))
-    .pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
+    .pipe(gutil.env.env === 'prod' ? minify() : gutil.noop())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
