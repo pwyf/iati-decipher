@@ -144,13 +144,19 @@ var refreshDocuments = function ($org, page, codelists) {
       var link = $item.attr('url')
       // TODO: not really v2.0x compatible.
       var title = $('title', $item).first().text()
-      // TODO: deal with multiple categories
-      var category = $('category', $item).attr('code')
-      if (codelists.DocumentCategory[category]) {
-        category = codelists.DocumentCategory[category] + ' (' + category + ')'
-      }
-      // TODO: deal with multiple recipient countries
-      var recipientCountry = $('recipient-country', $item).first()
+      var categories = $('category', $item).map(function () {
+        var category = $(this).attr('code')
+        if (category in codelists.DocumentCategory) {
+          return codelists.DocumentCategory[category] + ' (' + category + ')'
+        }
+        return category
+      }).toArray()
+      var recipientCountries = $('recipient-country', $item).map(function () {
+        var $this = $(this)
+        var recipientCountryCode = $this.attr('code')
+        return $this.text() || codelists.Country[recipientCountryCode] || recipientCountryCode
+      }).toArray()
+
       var description = $('description narrative', $item).first().text()
       var languages = $('language', $item).map(function () {
         var language = $(this).attr('code')
@@ -158,11 +164,9 @@ var refreshDocuments = function ($org, page, codelists) {
       }).toArray()
       var documentDate = $('document-date', $item).attr('iso-date')
 
-      var content = ['<dt>Category:</dt><dd>' + category + '</dd>']
-      if (recipientCountry.length > 0) {
-        var recipientCountryCode = recipientCountry.attr('code')
-        recipientCountry = recipientCountry.text() || codelists.Country[recipientCountryCode] || recipientCountryCode
-        content.push('<dt>Recipient country:</dt><dd>' + recipientCountry + '</dd>')
+      var content = ['<dt>Category:</dt><dd>' + categories.join('; ') + '</dd>']
+      if (recipientCountries.length > 0) {
+        content.push('<dt>Recipient country:</dt><dd>' + recipientCountries.join('; ') + '</dd>')
       }
       if (description) {
         content.push('<dt>Description:</dt><dd>' + description + '</dd>')
