@@ -3,6 +3,7 @@ function TimeGraph ($org, options) {
   self.$org = $org
   self.title = options.title
   self.el = options.el
+  self.hasStatuses = options.hasStatuses
   self.filter = options.filter
   self.breakdown = options.breakdown
   self.currency = $org.attr('default-currency')
@@ -133,9 +134,13 @@ TimeGraph.prototype.getDataset = function () {
     data = _.map($data, function (breakdownEl) {
       var $el = $(breakdownEl).parent()
       var $amount = $('> value', breakdownEl)
-      var status = $el.attr('status') === '2' ? 'Committed' : 'Indicative'
-      if ($el.attr('usg:type')) {
-        status = $el.attr('usg:type')
+      var status = null
+      if (self.hasStatuses) {
+        if ($el.attr('usg:type')) {
+          status = $el.attr('usg:type')
+        } else {
+          status = $el.attr('status') === '2' ? 'Committed' : 'Indicative'
+        }
       }
       return {
         status: status,
@@ -149,9 +154,13 @@ TimeGraph.prototype.getDataset = function () {
     data = _.map($data, function (el) {
       var $el = $(el)
       var $amount = $('> value', $el)
-      var status = $el.attr('status') === '2' ? 'Committed' : 'Indicative'
-      if ($el.attr('usg:type')) {
-        status = $el.attr('usg:type')
+      var status = null
+      if (self.hasStatuses) {
+        if ($el.attr('usg:type')) {
+          status = $el.attr('usg:type')
+        } else {
+          status = $el.attr('status') === '2' ? 'Committed' : 'Indicative'
+        }
       }
       return {
         status: status,
@@ -280,7 +289,11 @@ TimeGraph.prototype.show = function () {
       tooltips: {
         callbacks: {
           label: function (tooltipItem, data) {
-            var label = self.title + ' (' + data.datasets[tooltipItem.datasetIndex].label + ')'
+            var status = data.datasets[tooltipItem.datasetIndex].label
+            var label = self.title
+            if (status) {
+              label += ' (' + status + ')'
+            }
             var formattedAmount = d3.format(',')(tooltipItem.yLabel)
             return label + ': ' + formattedAmount + ' ' + self.currency
           }

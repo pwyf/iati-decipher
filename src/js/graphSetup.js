@@ -2,6 +2,7 @@ var setupOrgBudget = function ($org) {
   var options = {
     title: 'Recipient organisation budget',
     el: 'recipient-org-budget',
+    hasStatuses: true,
     filter: {
       name: 'organisation',
       el: 'recipient-org',
@@ -20,6 +21,7 @@ var setupRegionBudget = function ($org, codelists) {
   var options = {
     title: 'Recipient region budget',
     el: 'recipient-region-budget',
+    hasStatuses: true,
     filter: {
       name: 'region',
       el: 'recipient-region',
@@ -39,6 +41,7 @@ var setupCountryBudget = function ($org, codelists) {
   var options = {
     title: 'Recipient country budget',
     el: 'recipient-country-budget',
+    hasStatuses: true,
     filter: {
       name: 'country',
       el: 'recipient-country',
@@ -58,6 +61,7 @@ var setupTotalBudget = function ($org) {
   var options = {
     title: 'Total budget',
     el: 'total-budget',
+    hasStatuses: true,
     filter: null,
     breakdown: {
       name: 'budget line',
@@ -71,6 +75,7 @@ var setupTotalExpenditure = function ($org) {
   var options = {
     title: 'Total expenditure',
     el: 'total-expenditure',
+    hasStatuses: false,
     filter: null,
     breakdown: {
       name: 'expense line',

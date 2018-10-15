@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
  - Show the day of publication as part of the document date
+ - Don’t mark `total-expenditure`s as indicative ([#70](https://github.com/pwyf/iati-org-viz/issues/70))
 
 ## [0.0.12] - 2018-10-14
 ### Added
