@@ -178,7 +178,7 @@ var refreshDocuments = function ($org, page, codelists) {
         content.push('<dt>Publication date:</dt><dd>' + new Date(documentDate).toLocaleDateString('en-GB', dateOpts)) + '</dd>'
       }
 
-      $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><h4 class="list-group-item-heading">' + title + '</h4><dl class="dl-horizontal">' + content.join('') + '</dl></a>'))
+      $('.list-group').append($('<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="list-group-item"><span class="badge"><span class="fas fa-link"></span></span><h4 class="list-group-item-heading">' + title + '</h4><dl class="dl-horizontal">' + content.join('') + '</dl></a>'))
       $('.pager').show()
     })
   } else {

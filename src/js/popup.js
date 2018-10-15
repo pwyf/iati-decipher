@@ -40,7 +40,7 @@ $(function () {
       var results = data.message.result.results
       var links = []
       results.forEach(function (el) {
-        links.push('<a href="https://iatiregistry.org/dataset/' + el.name + '" class="list-group-item">' + el.title + '</a>')
+        links.push('<a href="https://iatiregistry.org/dataset/' + el.name + '" class="list-group-item"><span class="badge"><span class="fas fa-link"></span></span> ' + el.title + '</a>')
       })
       $('.list-group').html(links.join(''))
     })
