@@ -44,7 +44,7 @@
   margin-bottom: 0;
 }
 
-#loading-spinner {
+#iati-org-viz #loading-spinner {
   background: rgba(0, 0, 0, 0.5);
   z-index: 9999;
   width: 100%;
@@ -54,7 +54,7 @@
   left: 0;
 }
 
-#loading-spinner > div {
+#iati-org-viz #loading-spinner > div {
   position: relative;
   background: url('../img/loading.gif');
   top: 50%;
@@ -96,7 +96,21 @@ html#iati-org-viz {
   color: #555;
 }
 
+/* Popup stuff */
+
 #iati-org-popup body {
   width: 350px;
   padding-top: 10px;
+}
+
+#iati-org-popup #loading-spinner {
+  text-align: center;
+}
+
+#iati-org-popup #loading-spinner > div {
+  display: inline-block;
+  background: url('../img/loading.gif');
+  background-size: 100px;
+  width: 100px;
+  height: 100px;
 }

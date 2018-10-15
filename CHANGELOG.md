@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Added
  - Add support for document links with multiple categories / languages / recipient countries ([#69](https://github.com/pwyf/iati-org-viz/issues/69))
+ - Add loading spinner to popup
 
 ## [0.0.12] - 2018-10-14
 ### Added
