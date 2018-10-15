@@ -117,6 +117,9 @@ var refreshDocuments = function ($org, page, codelists) {
     return
   }
 
+  var defaultLanguage = $org.attr('xml:lang')
+  defaultLanguage = codelists.Language[defaultLanguage] || defaultLanguage
+
   $('.list-group').html('')
 
   // pagination stuff
@@ -162,6 +165,9 @@ var refreshDocuments = function ($org, page, codelists) {
         var language = $(this).attr('code')
         return codelists.Language[language] || language
       }).toArray()
+      if (languages.length === 0 && defaultLanguage) {
+        languages.push(defaultLanguage)
+      }
       var documentDate = $('document-date', $item).attr('iso-date')
 
       var content = ['<dt>Category:</dt><dd>' + categories.join('; ') + '</dd>']

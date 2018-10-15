@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Add loading spinner to popup
  - Add link icon badges to popup links and document links
 
+### Changed
+ - Set document language to the default language, where relevant ([#71](https://github.com/pwyf/iati-org-viz/issues/71))
+
 ### Fixed
  - Show the day of publication as part of the document date
  - Don’t mark `total-expenditure`s as indicative ([#70](https://github.com/pwyf/iati-org-viz/issues/70))
