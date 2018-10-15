@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Add loading spinner to popup
  - Add link icon badges to popup links and document links
 
+### Fixed
+ - Show the day of publication as part of the document date
+
 ## [0.0.12] - 2018-10-14
 ### Added
  - Update codelists using gulp ([#59](https://github.com/pwyf/iati-org-viz/issues/59))

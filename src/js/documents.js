@@ -87,7 +87,7 @@ var refreshDocuments = function ($org, page, codelists) {
   if (page < 1) { return }
 
   var maxResults = 20
-  var dateOpts = {date: 'numeric', month: 'long', year: 'numeric'}
+  var dateOpts = {day: 'numeric', month: 'long', year: 'numeric'}
 
   var offset = (page - 1) * maxResults
   var cat = $('#category-select option:selected').val()
