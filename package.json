@@ -1,6 +1,6 @@
 {
   "name": "iati-decipher",
-  "version": "0.0.13",
+  "version": "1.0.0",
   "description": "Visualise IATI organisation files from the comfort of your own browser.",
   "private": true,
   "dependencies": {

@@ -1,6 +1,6 @@
 {
-  "name": "IATI Organisation File Visualiser",
-  "version": "0.0.13",
+  "name": "IATI Decipher",
+  "version": "1.0.0",
   "description": "Visualise IATI organisation files from the comfort of your own browser.",
   "manifest_version": 2,
   "background": {
@@ -29,7 +29,7 @@
       "32": "img/icon-32.png",
       "128": "img/icon-128.png"
     },
-    "default_title": "IATI Organisation File Visualiser",
+    "default_title": "IATI Decipher",
     "default_popup": "html/popup.html"
   }
 }
