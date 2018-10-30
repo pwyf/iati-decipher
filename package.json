@@ -1,5 +1,5 @@
 {
-  "name": "iati-org-file-visualiser",
+  "name": "iati-decipher",
   "version": "0.0.13",
   "description": "Visualise IATI organisation files from the comfort of your own browser.",
   "private": true,
@@ -35,12 +35,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pwyf/iati-org-viz.git"
+    "url": "git+https://github.com/pwyf/iati-decipher.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pwyf/iati-org-viz/issues"
+    "url": "https://github.com/pwyf/iati-decipher/issues"
   },
-  "homepage": "https://github.com/pwyf/iati-org-viz#readme"
+  "homepage": "https://github.com/pwyf/iati-decipher#readme"
 }

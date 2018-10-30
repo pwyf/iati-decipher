@@ -4,14 +4,16 @@ $.extend($.expr[':'], {
   }
 })
 
-var getOrgName = function ($org, version) {
-  var $names
+var getNarrative = function (el, $org, version, language) {
+  var defaultLanguage = $org.attr('xml:lang')
+  language = language || defaultLanguage || 'en'
+  var $els
   if (version[0] === '2') {
-    $names = $('name narrative', $org)
+    $els = $(el + ' narrative', $org)
   } else {
-    $names = $('name', $org)
+    $els = $(el, $org)
   }
-  return $names.first().text()
+  return $els.first().text()
 }
 
 var getOrgId = function ($org) {

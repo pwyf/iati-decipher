@@ -1,4 +1,4 @@
-# IATI Organisation File Visualiser [![GitHub release](https://img.shields.io/github/release/pwyf/iati-org-viz.svg)](https://github.com/pwyf/iati-org-viz/releases/latest)
+# IATI Decipher [![GitHub release](https://img.shields.io/github/release/pwyf/iati-decipher.svg)](https://github.com/pwyf/iati-decipher/releases/latest)
 
 Visualise IATI organisation files from the comfort of your own browser.
 
@@ -13,8 +13,8 @@ You’ll need `git`, as well as recent versions of `npm`, `node` and `gulp-cli`.
 
 ```shell
 $ # clone the repo
-$ git clone https://github.com/pwyf/iati-org-viz.git
-$ cd iati-org-viz
+$ git clone https://github.com/pwyf/iati-decipher.git
+$ cd iati-decipher
 $
 $ # install dependencies
 $ npm install

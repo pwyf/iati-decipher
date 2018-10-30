@@ -1,10 +1,10 @@
 /*!
- * IATI Org File Visualiser
- * https://github.com/pwyf/iati-org-viz
+ * IATI Decipher
+ * https://github.com/pwyf/iati-decipher
  *
  * Copyright 2018 Publish What You Fund
  * Released under the MIT license
- * https://github.com/pwyf/iati-org-viz/blob/master/LICENSE.md
+ * https://github.com/pwyf/iati-decipher/blob/master/LICENSE.md
  */
 
 var navbarSelect = function (id) {
@@ -295,7 +295,7 @@ $(function () {
         setupMenus($org, codelists, metadata)
 
         var version = $('iati-organisations', xml).attr('version')
-        var orgName = getOrgName($org, version)
+        var orgName = getNarrative('name', $org, version)
         $('#org-name').text(orgName)
         $('[data-toggle="tooltip"]').tooltip()
 

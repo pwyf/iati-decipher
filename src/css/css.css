@@ -2,49 +2,49 @@
   display: none;
 }
 
-#iati-org-viz .navbar {
+#iati-decipher .navbar {
   border-radius: 0;
   margin-bottom: 0;
 }
 
-#iati-org-viz .navbar-inverse .navbar-toggle:hover, #iati-org-viz .navbar-inverse .navbar-toggle:focus {
+#iati-decipher .navbar-inverse .navbar-toggle:hover, #iati-decipher .navbar-inverse .navbar-toggle:focus {
   background-color: #6dacc5;
 }
 
-#iati-org-viz .navbar-inverse .navbar-collapse, #iati-org-viz .navbar-inverse .navbar-form {
+#iati-decipher .navbar-inverse .navbar-collapse, #iati-decipher .navbar-inverse .navbar-form {
   border-color: #6dacc5;
 }
 
-#iati-org-viz .navbar-inverse {
+#iati-decipher .navbar-inverse {
   background-color: #6dacc5;
   border-color: #6dacc5;
 }
 
-#iati-org-viz .navbar-inverse .navbar-nav > .disabled > a, #iati-org-viz .navbar-inverse .navbar-nav > .disabled > a:hover, #iati-org-viz .navbar-default .navbar-nav > .disabled > a:focus {
+#iati-decipher .navbar-inverse .navbar-nav > .disabled > a, #iati-decipher .navbar-inverse .navbar-nav > .disabled > a:hover, #iati-decipher .navbar-default .navbar-nav > .disabled > a:focus {
   color: #ccc;
 }
 
-#iati-org-viz .navbar-inverse .navbar-nav>.active > a, #iati-org-viz .navbar-inverse .navbar-nav >.active > a:focus, #iati-org-viz .navbar-inverse .navbar-nav > .active > a:hover {
+#iati-decipher .navbar-inverse .navbar-nav>.active > a, #iati-decipher .navbar-inverse .navbar-nav >.active > a:focus, #iati-decipher .navbar-inverse .navbar-nav > .active > a:hover {
   background-color: #448eab;
 }
 
-#iati-org-viz .navbar-inverse .navbar-nav > li > a {
+#iati-decipher .navbar-inverse .navbar-nav > li > a {
   color: #fff;
 }
 
-#iati-org-viz .navbar-brand {
+#iati-decipher .navbar-brand {
   padding: 0 15px;
 }
 
-#iati-org-viz .list-group-item {
+#iati-decipher .list-group-item {
   margin-bottom: 15px;
 }
 
-#iati-org-viz .dl-horizontal {
+#iati-decipher .dl-horizontal {
   margin-bottom: 0;
 }
 
-#iati-org-viz #loading-spinner {
+#iati-decipher #loading-spinner {
   background: rgba(0, 0, 0, 0.5);
   z-index: 9999;
   width: 100%;
@@ -54,7 +54,7 @@
   left: 0;
 }
 
-#iati-org-viz #loading-spinner > div {
+#iati-decipher #loading-spinner > div {
   position: relative;
   background: url('../img/loading.gif');
   top: 50%;
@@ -76,14 +76,14 @@
 }
 
 /* Sticky footer stuff */
-html#iati-org-viz {
+html#iati-decipher {
   position: relative;
   min-height: 100%;
 }
-#iati-org-viz body {
+#iati-decipher body {
   margin-bottom: 80px;
 }
-#iati-org-viz .footer {
+#iati-decipher .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -92,7 +92,7 @@ html#iati-org-viz {
   border-top: 1px solid #e7e7e7;
   padding: 20px 0;
 }
-#iati-org-viz .footer a {
+#iati-decipher .footer a {
   color: #555;
 }
 
