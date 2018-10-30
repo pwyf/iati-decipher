@@ -7,4 +7,4 @@
 
 ## On the Firefox Add-on Store
 
-[![Download for Chrome](img/firefox-150.png)](https://addons.mozilla.org/en-GB/firefox/addon/iati-org-file-visualiser/)
+[![Download for Chrome](img/firefox-150.png)](https://addons.mozilla.org/en-GB/firefox/addon/iati-decipher/)
