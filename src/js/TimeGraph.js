@@ -299,6 +299,13 @@ TimeGraph.prototype.show = function () {
         }
       }
     },
+    tooltip: {
+      format: {
+        value: function (value, ratio, id, index) {
+          return d3.format(',')(value) + ' ' + self.currency
+        }
+      }
+    },
     legend: {
       hide: !!(groupData.datasets === 1),
       position: 'inset'
