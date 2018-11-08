@@ -5,11 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), ~~and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)~~.
 
 ## [Unreleased]
+### Changed
+ - Sort documents by document-date ([#72](https://github.com/pwyf/iati-decipher/issues/72))
+
+### Added
+ - Make it clear that `total-expenditure` is v2.02+ only ([#60](https://github.com/pwyf/iati-decipher/issues/60))
+
 ### Fixed
  - Fix alignment on second navbar ([#80](https://github.com/pwyf/iati-decipher/issues/80))
- - Make it clear that `total-expenditure` is v2.02+ only ([#60](https://github.com/pwyf/iati-decipher/issues/60))
  - Don’t show any currency if one hasn’t been set ([#82](https://github.com/pwyf/iati-decipher/issues/82))
- - Sort documents by document-date ([#72](https://github.com/pwyf/iati-decipher/issues/72))
 
 ## [1.0.0] - 2018-10-30
 ### Changed
