@@ -307,7 +307,7 @@ TimeGraph.prototype.show = function () {
       }
     },
     legend: {
-      hide: !!(groupData.datasets === 1),
+      hide: !!(groupData.datasets.length === 1),
       position: 'inset'
     },
     bar: {
