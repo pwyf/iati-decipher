@@ -268,7 +268,7 @@ TimeGraph.prototype.show = function () {
   var d3formatter = d3.formatPrefix('.' + precisionPrefix, maxVal)
   var formatter = function (val) {
     var f = d3formatter(val)
-    f = f.replace('K', ' thousand')
+    f = f.replace('k', ' thousand')
       .replace('M', ' million')
       .replace('G', ' billion')
     return f
@@ -290,6 +290,13 @@ TimeGraph.prototype.show = function () {
       x: {
         type: 'category',
         categories: labels
+      },
+      y: {
+        tick: {
+          format: function (d) {
+            return formatter(d) + ' ' + self.currency
+          }
+        }
       }
     },
     legend: {
