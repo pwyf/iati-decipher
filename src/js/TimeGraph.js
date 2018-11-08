@@ -146,7 +146,7 @@ TimeGraph.prototype.getDataset = function () {
         periodStart: $('period-start', $el).attr('iso-date'),
         periodEnd: $('period-end', $el).attr('iso-date'),
         amount: $amount.text(),
-        currency: $amount.attr('currency') || self.currency
+        currency: $amount.attr('currency') || self.currency || ''
       }
     })
   } else {
@@ -166,7 +166,7 @@ TimeGraph.prototype.getDataset = function () {
         periodStart: $('period-start', $el).attr('iso-date'),
         periodEnd: $('period-end', $el).attr('iso-date'),
         amount: $amount.text(),
-        currency: $amount.attr('currency') || self.currency
+        currency: $amount.attr('currency') || self.currency || ''
       }
     })
   }
