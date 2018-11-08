@@ -316,43 +316,4 @@ TimeGraph.prototype.show = function () {
       }
     }
   })
-
-  // self.chart = new Chart('chart', {
-  //   type: 'bar',
-  //   data: {
-  //     labels: labels,
-  //     datasets: groupData.datasets
-  //   },
-  //   options: {
-  //     tooltips: {
-  //       callbacks: {
-  //         label: function (tooltipItem, data) {
-  //           var status = data.datasets[tooltipItem.datasetIndex].label
-  //           var label = self.title
-  //           if (status) {
-  //             label += ' (' + status + ')'
-  //           }
-  //           var formattedAmount = d3.format(',')(tooltipItem.yLabel)
-  //           return label + ': ' + formattedAmount + ' ' + self.currency
-  //         }
-  //       }
-  //     },
-  //     legend: {
-  //       display: (groupData.datasets.length > 1)
-  //     },
-  //     scales: {
-  //       yAxes: [{
-  //         ticks: {
-  //           min: minVal,
-  //           suggestedMax: maxVal,
-  //           stepSize: stepSize,
-  //           callback: function (amount) {
-  //             var formattedAmount = formatter(amount)
-  //             return formattedAmount + ' ' + self.currency
-  //           }
-  //         }
-  //       }]
-  //     }
-  //   }
-  // })
 }

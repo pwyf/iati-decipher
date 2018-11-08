@@ -16,7 +16,6 @@ const outPath = gutil.env.env === 'prod' ? './dist' : './dev'
 const jsFiles = [
   './node_modules/jquery/dist/jquery.js',
   './node_modules/bootstrap/dist/js/bootstrap.js',
-  './node_modules/chart.js/dist/Chart.js',
   './node_modules/d3/dist/d3.js',
   './node_modules/c3/c3.js',
   './node_modules/underscore/underscore.js',
