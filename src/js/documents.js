@@ -108,6 +108,10 @@ var refreshDocuments = function ($org, page, codelists) {
 
   // get the current page results
   var pageResults = _.chain($results)
+    .sortBy(function ($result) {
+      return $('document-date', $result).attr('iso-date')
+    })
+    .reverse()
     .drop(offset)
     .take(maxResults)
     .value()
