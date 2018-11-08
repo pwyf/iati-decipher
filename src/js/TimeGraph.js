@@ -133,7 +133,7 @@ TimeGraph.prototype.getDataset = function () {
     data = _.map($data, function (breakdownEl) {
       var $el = $(breakdownEl).parent()
       var $amount = $('> value', breakdownEl)
-      var status = null
+      var status = '-'
       if (self.hasStatuses) {
         if ($el.attr('usg:type')) {
           status = $el.attr('usg:type')
@@ -153,7 +153,7 @@ TimeGraph.prototype.getDataset = function () {
     data = _.map($data, function (el) {
       var $el = $(el)
       var $amount = $('> value', $el)
-      var status = null
+      var status = '-'
       if (self.hasStatuses) {
         if ($el.attr('usg:type')) {
           status = $el.attr('usg:type')
@@ -301,6 +301,9 @@ TimeGraph.prototype.show = function () {
     },
     tooltip: {
       format: {
+        name: function (name, ratio, id, index) {
+          return (name !== '-') ? name : ''
+        },
         value: function (value, ratio, id, index) {
           return d3.format(',')(value) + ' ' + self.currency
         }
