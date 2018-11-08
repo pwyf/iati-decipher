@@ -50,7 +50,7 @@ function TimeGraph ($org, options) {
   }
 
   $('#main').append($('<div class="container" id="chart-content"></div>'))
-  $('#main').append($('<canvas id="chart"></canvas>'))
+  $('#main').append($('<div id="chart"></div>'))
 }
 
 TimeGraph.prototype.filterCats = function () {
@@ -212,19 +212,15 @@ TimeGraph.prototype.groupData = function (data) {
     return item.periodStart + ' // ' + item.periodEnd
   })
 
-  var backgroundColors = ['#EEC32A', '#D67D1C', '#9EB437']
-
   var datasets = statuses.map(function (status, idx) {
-    return {
-      label: status,
-      backgroundColor: backgroundColors[idx],
-      data: labels.map(function (l) {
-        var d = data.find(function (item) {
-          return (l.periodStart === item.periodStart && l.periodEnd === item.periodEnd && item.status === status)
-        })
-        return (!d) ? null : d.amount
+    var l = labels.map(function (l) {
+      var d = data.find(function (item) {
+        return (l.periodStart === item.periodStart && l.periodEnd === item.periodEnd && item.status === status)
       })
-    }
+      return (!d) ? null : d.amount
+    })
+    l.unshift(status)
+    return l
   })
 
   return {
@@ -278,42 +274,71 @@ TimeGraph.prototype.show = function () {
     return f
   }
 
-  self.chart = new Chart('chart', {
-    type: 'bar',
+  var backgroundColors = ['#EEC32A', '#D67D1C', '#9EB437']
+
+  self.chart = c3.generate({
+    bindto: '#chart',
     data: {
-      labels: labels,
-      datasets: groupData.datasets
+      type: 'bar',
+      columns: groupData.datasets,
+      colors: groupData.datasets.reduce(function (o, d, i) {
+        o[d[0]] = backgroundColors[i]
+        return o
+      }, {})
     },
-    options: {
-      tooltips: {
-        callbacks: {
-          label: function (tooltipItem, data) {
-            var status = data.datasets[tooltipItem.datasetIndex].label
-            var label = self.title
-            if (status) {
-              label += ' (' + status + ')'
-            }
-            var formattedAmount = d3.format(',')(tooltipItem.yLabel)
-            return label + ': ' + formattedAmount + ' ' + self.currency
-          }
-        }
-      },
-      legend: {
-        display: (groupData.datasets.length > 1)
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            min: minVal,
-            suggestedMax: maxVal,
-            stepSize: stepSize,
-            callback: function (amount) {
-              var formattedAmount = formatter(amount)
-              return formattedAmount + ' ' + self.currency
-            }
-          }
-        }]
+    axis: {
+      x: {
+        type: 'category',
+        categories: labels
+      }
+    },
+    legend: {
+      hide: !!(groupData.datasets === 1),
+      position: 'inset'
+    },
+    bar: {
+      width: {
+        ratio: 0.5
       }
     }
   })
+
+  // self.chart = new Chart('chart', {
+  //   type: 'bar',
+  //   data: {
+  //     labels: labels,
+  //     datasets: groupData.datasets
+  //   },
+  //   options: {
+  //     tooltips: {
+  //       callbacks: {
+  //         label: function (tooltipItem, data) {
+  //           var status = data.datasets[tooltipItem.datasetIndex].label
+  //           var label = self.title
+  //           if (status) {
+  //             label += ' (' + status + ')'
+  //           }
+  //           var formattedAmount = d3.format(',')(tooltipItem.yLabel)
+  //           return label + ': ' + formattedAmount + ' ' + self.currency
+  //         }
+  //       }
+  //     },
+  //     legend: {
+  //       display: (groupData.datasets.length > 1)
+  //     },
+  //     scales: {
+  //       yAxes: [{
+  //         ticks: {
+  //           min: minVal,
+  //           suggestedMax: maxVal,
+  //           stepSize: stepSize,
+  //           callback: function (amount) {
+  //             var formattedAmount = formatter(amount)
+  //             return formattedAmount + ' ' + self.currency
+  //           }
+  //         }
+  //       }]
+  //     }
+  //   }
+  // })
 }
