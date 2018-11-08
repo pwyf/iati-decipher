@@ -28,6 +28,7 @@ Then:
  1. In Chrome, visit chrome://extensions and enable developer mode.
  2. Click “Load unpacked” and select the `dev` folder.
  3. Visit any organisation dataset on the IATI registry. [E.g. this one.](https://www.iatiregistry.org/dataset/unitedstates-dosandusaid)
+ 4. You might also want to consider installing [Extensions Reloader](https://chrome.google.com/webstore/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid). It’s very handy.
 
 ## Build for distribution
 
