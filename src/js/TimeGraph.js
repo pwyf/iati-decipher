@@ -235,7 +235,7 @@ TimeGraph.prototype.show = function () {
   var data = self.getDataset()
 
   if (self.chart !== null) {
-    self.chart.destroy()
+    self.chart = self.chart.destroy()
   }
 
   if (data.length === 0) {
