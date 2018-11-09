@@ -234,11 +234,8 @@ TimeGraph.prototype.show = function () {
 
   var data = self.getDataset()
 
-  if (self.chart !== null) {
-    self.chart = self.chart.destroy()
-  }
-
   if (data.length === 0) {
+    self.chart = self.chart.destroy()
     $('#chart-content').html($('<h2>No data provided.</h2>'))
     return
   }
@@ -257,49 +254,83 @@ TimeGraph.prototype.show = function () {
   })
   $('#chart-content').html($downloadLink)
 
-  var backgroundColors = ['#EEC32A', '#D67D1C', '#9EB437']
+  var backgroundColors = {
+    'Request': '#EEC32A',
+    'Appropriation': '#D67D1C',
+    'Actual': '#9EB437',
+    'Indicative': '#EEC32A',
+    'Committed': '#D67D1C'
+  }
 
-  self.chart = c3.generate({
-    bindto: '#chart',
-    data: {
-      type: 'bar',
+  if (self.chart !== null) {
+    var newIds = groupData.datasets.map(function (v) {
+      return v[0]
+    })
+    var unloads = []
+    var newloads = []
+    self.chart.data().forEach(function (v) {
+      if (newIds.indexOf(v.id) === -1) {
+        unloads.push(v.id)
+      } else {
+        newloads.push(v.id)
+      }
+    })
+    self.chart.load({
+      unload: unloads,
       columns: groupData.datasets,
       colors: groupData.datasets.reduce(function (o, d, i) {
-        o[d[0]] = backgroundColors[i]
+        if (d[0] in backgroundColors) {
+          o[d[0]] = backgroundColors[d[0]]
+        }
         return o
       }, {})
-    },
-    axis: {
-      x: {
-        type: 'category',
-        categories: labels
+    })
+  } else {
+    self.chart = c3.generate({
+      bindto: '#chart',
+      data: {
+        type: 'bar',
+        columns: groupData.datasets,
+        colors: groupData.datasets.reduce(function (o, d, i) {
+          if (d[0] in backgroundColors) {
+            o[d[0]] = backgroundColors[d[0]]
+          }
+          return o
+        }, {})
       },
-      y: {
-        tick: {
-          format: function (value) {
+      axis: {
+        x: {
+          type: 'category',
+          categories: labels
+        }
+        ,
+        y: {
+          tick: {
+            format: function (value) {
+              return d3.format(',')(value) + ' ' + self.currency
+            }
+          }
+        }
+      },
+      tooltip: {
+        format: {
+          name: function (name, ratio, id, index) {
+            return (name !== '-') ? name : ''
+          },
+          value: function (value, ratio, id, index) {
             return d3.format(',')(value) + ' ' + self.currency
           }
         }
-      }
-    },
-    tooltip: {
-      format: {
-        name: function (name, ratio, id, index) {
-          return (name !== '-') ? name : ''
-        },
-        value: function (value, ratio, id, index) {
-          return d3.format(',')(value) + ' ' + self.currency
+      },
+      legend: {
+        hide: !!(groupData.datasets.length === 1),
+        position: 'inset'
+      },
+      bar: {
+        width: {
+          ratio: 0.5
         }
       }
-    },
-    legend: {
-      hide: !!(groupData.datasets.length === 1),
-      position: 'inset'
-    },
-    bar: {
-      width: {
-        ratio: 0.5
-      }
-    }
-  })
+    })
+  }
 }

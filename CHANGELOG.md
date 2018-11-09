@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
  - Make it clear that `total-expenditure` is v2.02+ only ([#60](https://github.com/pwyf/iati-decipher/issues/60))
+ - When filters are used, animate between graphs ([#85](https://github.com/pwyf/iati-decipher/issues/85))
 
 ### Fixed
  - Fix alignment on second navbar ([#80](https://github.com/pwyf/iati-decipher/issues/80))
