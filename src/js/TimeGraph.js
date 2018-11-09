@@ -255,6 +255,7 @@ TimeGraph.prototype.show = function () {
   $('#chart-content').html($downloadLink)
 
   var backgroundColors = {
+    '-': '#D67D1C',
     'Request': '#EEC32A',
     'Appropriation': '#D67D1C',
     'Actual': '#9EB437',
