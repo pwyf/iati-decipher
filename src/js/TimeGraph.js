@@ -257,15 +257,15 @@ TimeGraph.prototype.show = function () {
   })
   $('#chart-content').html($downloadLink)
 
-  var numTicks = 10
-  var minVal = 0
-  var maxVal = Math.max(...data.map(function (d) {
-    return parseFloat(d.amount)
-  }))
-  var stepSize = d3.tickStep(minVal, maxVal, numTicks)
-  var precisionPrefix = d3.precisionPrefix(stepSize, maxVal)
-  var d3formatter = d3.formatPrefix('.' + precisionPrefix, maxVal)
   var formatter = function (val) {
+    var numTicks = 10
+    var minVal = 0
+    var maxVal = Math.max(...data.map(function (d) {
+      return parseFloat(d.amount)
+    }))
+    var stepSize = d3.tickStep(minVal, maxVal, numTicks)
+    var precisionPrefix = d3.precisionPrefix(stepSize, maxVal)
+    var d3formatter = d3.formatPrefix('.' + precisionPrefix, maxVal)
     var f = d3formatter(val)
     f = f.replace('k', ' thousand')
       .replace('M', ' million')
