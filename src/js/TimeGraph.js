@@ -239,8 +239,7 @@ TimeGraph.prototype.show = function () {
   }
 
   if (data.length === 0) {
-    // TODO: Add an error message or something
-    $('#chart-content').html('')
+    $('#chart-content').html($('<h2>No data provided.</h2>'))
     return
   }
 
