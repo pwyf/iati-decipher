@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
  - Sort documents by document-date ([#72](https://github.com/pwyf/iati-decipher/issues/72))
  - Switch from chart.js to c3.js ([#43](https://github.com/pwyf/iati-decipher/issues/43))
+ - Show full numbers on y-axis (not SI prefixes)
 
 ### Added
  - Make it clear that `total-expenditure` is v2.02+ only ([#60](https://github.com/pwyf/iati-decipher/issues/60))
