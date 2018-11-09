@@ -257,22 +257,6 @@ TimeGraph.prototype.show = function () {
   })
   $('#chart-content').html($downloadLink)
 
-  var formatter = function (val) {
-    var numTicks = 10
-    var minVal = 0
-    var maxVal = Math.max(...data.map(function (d) {
-      return parseFloat(d.amount)
-    }))
-    var stepSize = d3.tickStep(minVal, maxVal, numTicks)
-    var precisionPrefix = d3.precisionPrefix(stepSize, maxVal)
-    var d3formatter = d3.formatPrefix('.' + precisionPrefix, maxVal)
-    var f = d3formatter(val)
-    f = f.replace('k', ' thousand')
-      .replace('M', ' million')
-      .replace('G', ' billion')
-    return f
-  }
-
   var backgroundColors = ['#EEC32A', '#D67D1C', '#9EB437']
 
   self.chart = c3.generate({
@@ -292,8 +276,8 @@ TimeGraph.prototype.show = function () {
       },
       y: {
         tick: {
-          format: function (d) {
-            return formatter(d) + ' ' + self.currency
+          format: function (value) {
+            return d3.format(',')(value) + ' ' + self.currency
           }
         }
       }
