@@ -235,7 +235,9 @@ TimeGraph.prototype.show = function () {
   var data = self.getDataset()
 
   if (data.length === 0) {
-    self.chart = self.chart.destroy()
+    if (self.chart !== null) {
+      self.chart = self.chart.destroy()
+    }
     $('#chart-content').html($('<h2>No data provided.</h2>'))
     return
   }
