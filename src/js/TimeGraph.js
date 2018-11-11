@@ -252,7 +252,7 @@ TimeGraph.prototype.show = function () {
     return dateStart.toLocaleDateString('en-GB', opts) + ' – ' + dateEnd.toLocaleDateString('en-GB', opts)
   })
 
-  var $downloadLink = $('<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download .xlsx</a>').on('click', function () {
+  var $downloadLink = $('<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Excel</a>').on('click', function () {
     self.download(data)
   })
   $('#chart-content').html($downloadLink)
