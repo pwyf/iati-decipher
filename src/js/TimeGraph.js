@@ -267,9 +267,6 @@ TimeGraph.prototype.show = function () {
   }
 
   if (self.chart !== null) {
-    var newIds = groupData.datasets.map(function (v) {
-      return v[0]
-    })
     self.chart.load({
       unload: true,
       columns: groupData.datasets,
