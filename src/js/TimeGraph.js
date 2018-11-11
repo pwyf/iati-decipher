@@ -269,17 +269,8 @@ TimeGraph.prototype.show = function () {
     var newIds = groupData.datasets.map(function (v) {
       return v[0]
     })
-    var unloads = []
-    var newloads = []
-    self.chart.data().forEach(function (v) {
-      if (newIds.indexOf(v.id) === -1) {
-        unloads.push(v.id)
-      } else {
-        newloads.push(v.id)
-      }
-    })
     self.chart.load({
-      unload: unloads,
+      unload: true,
       columns: groupData.datasets,
       colors: groupData.datasets.reduce(function (o, d, i) {
         if (d[0] in backgroundColors) {
