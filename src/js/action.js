@@ -41,7 +41,7 @@ var sendMessage = function (obj) {
   })
 }
 
-var setupMenus = function ($org, codelists, metadata, version) {
+var setupMenus = function ($org, codelists, metadata) {
   var $el = null
 
   $('#show-summary').on('click', function () {
@@ -122,16 +122,7 @@ var setupMenus = function ($org, codelists, metadata, version) {
     $el = $('#show-total-expenditure').on('click', function () {
       return false
     })
-
-    var title = 'Total expenditure is not provided in this file.'
-    if (['1.01', '1.02', '1.03', '1.04', '1.05', '2.01'].indexOf(version) !== -1) {
-      title = 'This file uses IATI version ' + version + ', so total expenditure cannot be provided.'
-    }
-    $el.attr('title', title)
-      .attr('data-toggle', 'tooltip')
-      .attr('data-placement', 'bottom')
-      .parent()
-      .addClass('disabled')
+    addNotProvidedPopup($el, 'Total expenditure', true)
   }
 
   // Documents menu item
@@ -301,9 +292,9 @@ $(function () {
         var $org = $orgs.first()
 
         $('#view-xml').attr('href', downloadUrl)
-        var version = $('iati-organisations', xml).attr('version')
-        setupMenus($org, codelists, metadata, version)
+        setupMenus($org, codelists, metadata)
 
+        var version = $('iati-organisations', xml).attr('version')
         var orgName = getNarrative('name', $org, version)
         $('#org-name').text(orgName)
         $('[data-toggle="tooltip"]').tooltip()
