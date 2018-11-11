@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Changed
  - Unload all datasets, instead of animating between them
+ - When new data is loaded, show all datasets ([#88](https://github.com/pwyf/iati-decipher/issues/88))
 
 ### Fixed
  - Only call destroy on an existing chart

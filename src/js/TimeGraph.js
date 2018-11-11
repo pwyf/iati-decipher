@@ -275,7 +275,10 @@ TimeGraph.prototype.show = function () {
           o[d[0]] = backgroundColors[d[0]]
         }
         return o
-      }, {})
+      }, {}),
+      done: function () {
+        self.chart.show()
+      }
     })
   } else {
     self.chart = c3.generate({
