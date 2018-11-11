@@ -233,10 +233,6 @@ $(function () {
         }
         return Promise.resolve(xml)
       })
-      .catch(function (err) {
-        alert('An error occurred: ' + err.message)
-        window.location.reload()
-      })
 
     var codelistsPromise = xmlPromise.then(function (xml) {
       return Promise.all(
@@ -276,7 +272,6 @@ $(function () {
       return sendMessage({action: 'msg.jsonrequest', url: orgMetaUrl})
     })
 
-
     Promise.all([xmlPromise, codelistsPromise, datasetMetaPromise, publisherMetaPromise])
       .then(function (args) {
         var xml = args[0]
@@ -304,6 +299,10 @@ $(function () {
         showSummary($org, metadata)
 
         $('#loading-spinner').fadeOut()
+      })
+      .catch(function (err) {
+        alert('An error occurred: ' + err.message)
+        window.location.reload()
       })
 
     return false
