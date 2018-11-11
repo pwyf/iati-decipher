@@ -196,6 +196,7 @@ TimeGraph.prototype.groupData = function (data) {
   }, [])
 
   var ordering = ['Request', 'Appropriation', 'Actual', 'Indicative', 'Committed']
+  // Sort statuses according to ordering
   statuses.sort(function (a, b) {
     var aInd = ordering.indexOf(a)
     var bInd = ordering.indexOf(b)
@@ -296,8 +297,7 @@ TimeGraph.prototype.show = function () {
         x: {
           type: 'category',
           categories: labels
-        }
-        ,
+        },
         y: {
           tick: {
             format: function (value) {
