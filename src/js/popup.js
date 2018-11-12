@@ -35,7 +35,7 @@ $(function () {
       $('.list-group').html('')
       return
     }
-    $('.list-group').html('<div id="loading-spinner"><div></div></div>')
+    $('.list-group').html('<div id="mini-spinner"><div></div></div>')
     chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl + searchStr}, function (data) {
       var result = data.message.result
       var links = []

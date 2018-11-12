@@ -298,7 +298,7 @@ $(function () {
         navbarSelect('show-summary')
         showSummary($org, metadata)
 
-        $('#loading-spinner').fadeOut()
+        $('#mega-spinner').fadeOut()
       })
       .catch(function (err) {
         alert('An error occurred: ' + err.message)

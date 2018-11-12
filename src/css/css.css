@@ -44,11 +44,7 @@
   margin-bottom: 0;
 }
 
-#loading-spinner > div {
-  background: url('../img/loading.gif');
-}
-
-#iati-decipher #loading-spinner {
+#mega-spinner {
   background: rgba(0, 0, 0, 0.5);
   z-index: 9999;
   width: 100%;
@@ -58,7 +54,8 @@
   left: 0;
 }
 
-#iati-decipher #loading-spinner > div {
+#mega-spinner > div {
+  background: url('../img/loading.gif');
   position: relative;
   top: 50%;
   left: 50%;
@@ -106,11 +103,12 @@ html#iati-decipher {
   padding-top: 10px;
 }
 
-#iati-org-popup #loading-spinner, #iati-org-demo #loading-spinner {
+#mini-spinner {
   text-align: center;
 }
 
-#iati-org-popup #loading-spinner > div, #iati-org-demo #loading-spinner > div {
+#mini-spinner > div {
+  background: url('../img/loading.gif');
   display: inline-block;
   background-size: 100px;
   width: 100px;
