@@ -25,7 +25,7 @@ function TimeGraph ($org, options) {
 
   var breakdownCats = self.breakdownCats()
   if (breakdownCats.length > 0) {
-    $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by ' + self.breakdown.name + '</label><select class="form-control" id="breakdown-select"><option value="">No filter (total across ' + self.breakdown.name + 's)</option></select></div>')
+    $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by ' + self.breakdown.name + '</label><select class="form-control" id="breakdown-select"><option value="">Total across ' + self.breakdown.name + 's</option></select></div>')
     var $breakdownSelect = $('#breakdown-select', $breakdown)
     breakdownCats.forEach(function (item) {
       $breakdownSelect.append($('<option data-value-field="' + item.valueField + '" value="' + item.attr + '">' + item.text + '</option>'))
