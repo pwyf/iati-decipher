@@ -21,7 +21,7 @@ var navbarSelect = function (id) {
 }
 
 var addNotProvidedPopup = function ($el, name, isSingular) {
-  var title = name + ' ' + (isSingular ? 'is' : 'are') + ' not provided in this file.'
+  var title = name + ' ' + (isSingular ? 'is' : 'are') + ' not provided by this publisher.'
   $el.attr('title', title)
     .attr('data-toggle', 'tooltip')
     .attr('data-placement', 'bottom')
