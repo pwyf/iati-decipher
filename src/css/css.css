@@ -106,11 +106,11 @@ html#iati-decipher {
   padding-top: 10px;
 }
 
-#iati-org-popup #loading-spinner {
+#iati-org-popup #loading-spinner, #iati-org-demo #loading-spinner {
   text-align: center;
 }
 
-#iati-org-popup #loading-spinner > div {
+#iati-org-popup #loading-spinner > div, #iati-org-demo #loading-spinner > div {
   display: inline-block;
   background-size: 100px;
   width: 100px;

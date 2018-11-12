@@ -37,11 +37,13 @@ $(function () {
     }
     $('.list-group').html('<div id="loading-spinner"><div></div></div>')
     chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl + searchStr}, function (data) {
-      var results = data.message.result.results
+      var result = data.message.result
       var links = []
-      results.forEach(function (el) {
-        links.push('<a href="https://iatiregistry.org/dataset/' + el.name + '" class="list-group-item"><span class="badge"><span class="fas fa-link"></span></span> ' + el.title + '</a>')
-      })
+      if (result.count > 0) {
+        result.results.forEach(function (el) {
+          links.push('<a data-dataset-name="' + el.name + '" data-download-url="' + el.resources[0].url + '" href="https://iatiregistry.org/dataset/' + el.name + '" class="list-group-item pwyf-org-viz-btn"><span class="badge"><span class="fas fa-link"></span></span> ' + el.title + '</a>')
+        })
+      }
       $('.list-group').html(links.join(''))
     })
   }, 500))

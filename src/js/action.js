@@ -209,7 +209,7 @@ $(function () {
     var codelistFiles = ['Country', 'Region', 'Language', 'DocumentCategory']
 
     // Fetch our template
-    var xmlPromise = sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')})
+    var xmlPromise = sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html'), proxy: false})
       .then(function (response) {
         // Add special crx hrefs
         response = response.replace(/{path:([^}]+)}/g, function (_, assetPath) {
@@ -238,7 +238,7 @@ $(function () {
       return Promise.all(
         codelistFiles.map(function (codelistFile) {
           var jsonUrl = chrome.extension.getURL('json/' + codelistFile + '.json')
-          return sendMessage({action: 'msg.jsonrequest', url: jsonUrl})
+          return sendMessage({action: 'msg.jsonrequest', url: jsonUrl, proxy: false})
         }))
         .then(function (codelistDataArr) {
           var codelists = {}

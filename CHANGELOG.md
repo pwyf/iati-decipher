@@ -11,6 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Revert extra info about `total-expenditure` IATI versions
  - Fetch Country codelist from IATI
 
+### Added
+ - Add a demo page
+
 ### Fixed
  - Only call destroy on an existing chart
 
