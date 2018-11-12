@@ -39,9 +39,9 @@ Then:
    npm run dist
    ```
 
-   This should update the files in the `dist` folder (which are in version control) and create an `extension.zip` file (which isn’t in version control).
+   This should update the files in the `docs/demo` folder (which are in version control) and create an `extension.zip` file (which isn’t in version control).
 
-3. Commit changes in the `dist` folder
+3. Commit changes in the `docs/demo` folder
 4. Create a new github release:
 
    ```shell
