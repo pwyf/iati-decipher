@@ -178,7 +178,7 @@ $(function () {
       if ($('p a:contains("CSV")', $dataset).length === 0) {
         downloadUrl = $('p a:contains("Download")', $dataset).attr('href')
         datasetName = $('p a:contains("View Metadata")', $dataset).attr('href').split('/').pop()
-        $('p a', $dataset).parent().append(' · ').append($('<a class="pwyf-org-viz-btn" data-dataset-name="' + datasetName + '" data-download-url="' + downloadUrl + '" href="#">Visualise! <i class="icon-bar-chart"></i></a>'))
+        $('p a', $dataset).parent().append(' · ').append($('<a class="pwyf-org-viz-btn" data-dataset-name="' + datasetName + '" data-download-url="' + downloadUrl + '" href="#">Visualise <i class="icon-bar-chart"></i></a>'))
       }
     })
   } else {
@@ -197,9 +197,9 @@ $(function () {
       // get the dataset URL
       downloadUrl = $('.resources .btn-primary').first().attr('href')
 
-      // Inject a 'Visualise!' button onto the page
+      // Inject a 'Visualise' button onto the page
       var btns = $('.resources').find('li')
-      btns.append(' · ').append($('<a href="#" data-dataset-name="' + datasetName + '" data-download-url="' + downloadUrl + '" class="btn btn-danger pwyf-org-viz-btn"><i class="icon-bar-chart"></i> Visualise!</a>'))
+      btns.append(' · ').append($('<a href="#" data-dataset-name="' + datasetName + '" data-download-url="' + downloadUrl + '" class="btn btn-danger pwyf-org-viz-btn"><i class="icon-bar-chart"></i> Visualise</a>'))
     }
   }
 
