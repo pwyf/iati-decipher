@@ -258,27 +258,27 @@ $(function () {
         })
     })
 
-    var datasetMetaPromise = xmlPromise.then(function (xml) {
-      var datasetMetaUrl = 'https://iatiregistry.org/api/3/action/package_show?id=' + datasetName
-      return sendMessage({action: 'msg.jsonrequest', url: datasetMetaUrl})
-    })
+    // var datasetMetaPromise = xmlPromise.then(function (xml) {
+    //   var datasetMetaUrl = 'https://iatiregistry.org/api/3/action/package_show?id=' + datasetName
+    //   return sendMessage({action: 'msg.jsonrequest', url: datasetMetaUrl})
+    // })
 
-    var publisherMetaPromise = datasetMetaPromise.then(function (datasetMeta) {
-      if (!datasetMeta.success) {
-        return Promise.reject(Error('Failed to fetch dataset metadata from the IATI registry'))
-      }
-      var orgName = datasetMeta.result.organization.name
-      var orgMetaUrl = 'https://iatiregistry.org/api/3/action/organization_show?id=' + orgName
-      return sendMessage({action: 'msg.jsonrequest', url: orgMetaUrl})
-    })
+    // var publisherMetaPromise = datasetMetaPromise.then(function (datasetMeta) {
+    //   if (!datasetMeta.success) {
+    //     return Promise.reject(Error('Failed to fetch dataset metadata from the IATI registry'))
+    //   }
+    //   var orgName = datasetMeta.result.organization.name
+    //   var orgMetaUrl = 'https://iatiregistry.org/api/3/action/organization_show?id=' + orgName
+    //   return sendMessage({action: 'msg.jsonrequest', url: orgMetaUrl})
+    // })
 
-    Promise.all([xmlPromise, codelistsPromise, datasetMetaPromise, publisherMetaPromise])
+    Promise.all([xmlPromise, codelistsPromise/*, datasetMetaPromise, publisherMetaPromise */])
       .then(function (args) {
         var xml = args[0]
         var codelists = args[1]
         var metadata = {
-          dataset: args[2].result,
-          publisher: args[3].result
+          // dataset: args[2].result,
+          // publisher: args[3].result
         }
         var $orgs = $('iati-organisations iati-organisation', xml)
         // TODO: add an org switcher if the file declares
