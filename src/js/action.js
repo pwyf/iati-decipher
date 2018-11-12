@@ -146,9 +146,10 @@ var setupMenus = function ($org, codelists, metadata) {
       return false
     })
   } else {
-    $('#show-budgets').on('click', function () {
+    $el = $('#show-budgets').on('click', function () {
       return false
-    }).parent().addClass('disabled')
+    })
+    addNotProvidedPopup($el, 'Budgets', false)
   }
 
   // Show d-portal top level menu item
