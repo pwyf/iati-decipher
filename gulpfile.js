@@ -81,21 +81,13 @@ gulp.task('build:_bg_js', () => {
     .pipe(gulp.dest(outPath + '/js'))
 })
 
-gulp.task('build:_popup_js', () => {
-  return gulp.src(['./node_modules/jquery/dist/jquery.js', './src/js/popup.js'])
-    .pipe(concat('popup.js'))
+gulp.task('build:_individual_js', () => {
+  return gulp.src(['./src/js/demo.js', './src/js/helpers.js', './src/js/popup.js', './node_modules/jquery/dist/jquery.js'])
     .pipe(gutil.env.env === 'prod' ? minify() : gutil.noop())
     .pipe(gulp.dest(outPath + '/js'))
 })
 
-gulp.task('build:_demo_js', () => {
-  return gulp.src(['./src/js/demo.js', './src/js/popup.js'])
-    .pipe(concat('demo.js'))
-    .pipe(gutil.env.env === 'prod' ? minify() : gutil.noop())
-    .pipe(gulp.dest(outPath + '/js'))
-})
-
-gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js', 'build:_popup_js', 'build:_demo_js'))
+gulp.task('build:js', gulp.parallel('build:_core_js', 'build:_bg_js', 'build:_individual_js'))
 
 gulp.task('build:css', () => {
   return gulp.src(cssFiles)
