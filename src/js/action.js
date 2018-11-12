@@ -203,7 +203,7 @@ $(function () {
     }
   }
 
-  $('.pwyf-org-viz-btn', 'body').on('click', function () {
+  $('body').on('click', '.pwyf-org-viz-btn', function () {
     var downloadUrl = $(this).data('download-url')
     var datasetName = $(this).data('dataset-name')
     var codelistFiles = ['Country', 'Region', 'Language', 'DocumentCategory']
