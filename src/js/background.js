@@ -12,7 +12,11 @@ var get = function (url, responseType) {
       // so check the status
       if (req.status === 200) {
         // Resolve the promise with the response text
-        resolve(req)
+        if (responseType === 'json') {
+          resolve(req.response)
+        } else {
+          resolve(req.responseText)
+        }
       } else {
         // Otherwise reject with the status text
         // which will hopefully be a meaningful error
@@ -38,13 +42,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, reply) {
   var responseType = null
   if (request.action === 'msg.jsonrequest') {
     responseType = 'json'
+  } else {
+    responseType = 'xml'
   }
   get(request.url, responseType).then(function (response) {
-    if (request.action === 'msg.httprequest') {
-      reply({success: true, message: response.responseText})
-    } else if (request.action === 'msg.jsonrequest') {
-      reply({success: true, message: response.response})
-    }
+    reply({success: true, message: response})
   }).catch(function (err) {
     reply({success: false, message: err.message})
   })
