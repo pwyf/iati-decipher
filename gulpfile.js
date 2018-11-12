@@ -45,7 +45,7 @@ const codelists = [
 ]
 
 gulp.task('clean', () => {
-  return del(outPath)
+  return del(outPath + '/*')
 })
 
 gulp.task('zip', (done) => {
