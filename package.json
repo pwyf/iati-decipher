@@ -1,7 +1,7 @@
 {
   "name": "iati-decipher",
   "version": "1.1.0",
-  "description": "Visualise IATI organisation files from the comfort of your own browser.",
+  "description": "Browser plugins for deciphering IATI organisation files.",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",

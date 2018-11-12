@@ -1,6 +1,6 @@
 # IATI Decipher [![GitHub release](https://img.shields.io/github/release/pwyf/iati-decipher.svg)](https://github.com/pwyf/iati-decipher/releases/latest)
 
-Visualise IATI organisation files from the comfort of your own browser.
+Browser plugins for deciphering IATI organisation files.
 
 ## Installation
 
