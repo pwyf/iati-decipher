@@ -3,7 +3,7 @@ var showSummary = function ($org, metadata) {
 
   var stuff = [
     {el: 'total-budget', name: 'Total budgets'},
-    {el: 'recipient-organisation-budget', name: 'Recipient organisation budgets'},
+    {el: 'recipient-org-budget', name: 'Recipient organisation budgets'},
     {el: 'recipient-region-budget', name: 'Recipient region budgets'},
     {el: 'recipient-country-budget', name: 'Recipient country budgets'},
     {el: 'total-expenditure', name: 'Total expenditure'},

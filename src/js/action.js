@@ -67,14 +67,14 @@ var setupMenus = function ($org, codelists, metadata) {
 
   // Org budget menu item
   if ($('recipient-org-budget', $org).length > 0) {
-    $('#show-recipient-organisation-budget').on('click', function () {
-      navbarSelect('show-recipient-organisation-budget')
+    $('#show-recipient-org-budget').on('click', function () {
+      navbarSelect('show-recipient-org-budget')
       var graph = setupOrgBudget($org)
       graph.show()
       return false
     })
   } else {
-    $el = $('#show-recipient-organisation-budget').on('click', function () {
+    $el = $('#show-recipient-org-budget').on('click', function () {
       return false
     })
     addNotProvidedPopup($el, 'Recipient organisation budgets', false)
