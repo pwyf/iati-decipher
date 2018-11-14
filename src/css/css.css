@@ -6,6 +6,10 @@
   margin-left: 10px;
 }
 
+.demo-page {
+  padding-top: 20px;
+}
+
 #iati-decipher .navbar {
   border-radius: 0;
   margin-bottom: 0;
@@ -117,8 +121,4 @@ html#iati-decipher {
   background-size: 100px;
   width: 100px;
   height: 100px;
-}
-
-.demo-page {
-  padding-top: 20px;
 }
