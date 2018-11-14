@@ -2,6 +2,10 @@
   display: none;
 }
 
+.list-group-item .badge {
+  margin-left: 10px;
+}
+
 #iati-decipher .navbar {
   border-radius: 0;
   margin-bottom: 0;

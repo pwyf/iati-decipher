@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
  - Fix the link to organisation budgets from the summary screen ([#90](https://github.com/pwyf/iati-decipher/issues/90))
  - Fix missing chart bug in Firefox ([#89](https://github.com/pwyf/iati-decipher/issues/89))
+ - Add padding to document title headings ([#92](https://github.com/pwyf/iati-decipher/issues/92))
 
 ## [1.2.0] - 2018-11-12
 ### Changed
