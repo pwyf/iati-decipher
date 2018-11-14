@@ -7,6 +7,10 @@ Browser plugins for deciphering IATI organisation files.
  * [Chrome extension](https://chrome.google.com/webstore/detail/iati-organisation-file-vi/akignlamolglcjboilhajenkkkcnohjj)
  * [Firefox add-on](https://addons.mozilla.org/en-GB/firefox/addon/iati-org-file-visualiser/)
 
+## Demo
+
+![Demo](demo.gif)
+
 ## Development
 
 You’ll need `git`, as well as recent versions of `npm`, `node` and `gulp-cli`.
