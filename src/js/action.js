@@ -296,6 +296,7 @@ $(function () {
         $('[data-toggle="tooltip"]').tooltip()
 
         // Run the visualize app
+        window.d3 = d3
         navbarSelect('show-summary')
         showSummary($org, metadata)
 
