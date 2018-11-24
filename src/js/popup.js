@@ -29,7 +29,7 @@ $(function () {
       return
     }
     $('.list-group').html('<div id="mini-spinner"><div></div></div>')
-    chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl + searchStr + tmpl2 + searchStr + tmpl3 + searchStr + tmpl4 + searchStr + tmpl5 + searchStr + tmpl6 + searchStr + tmpl7 + searchStr + tmpl8 + searchStr + tmpl9 + searchStr + tmpl10 + searchStr + tmpl11 + searchStr + tmpl12 + searchStr + tmpl13 + searchStr}, function (data) {
+    chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl + searchStr + tmpl2 + searchStr + tmpl3 + searchStr + tmpl4 + searchStr + tmpl5 + searchStr + tmpl6 + searchStr + tmpl7 + searchStr + tmpl9 + searchStr + tmpl10 + searchStr + tmpl11 + searchStr + tmpl12 + searchStr + tmpl13 + searchStr}, function (data) {
       var result = data.message.result
       var links = []
       if (result.count > 0) {
