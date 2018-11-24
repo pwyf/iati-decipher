@@ -8,7 +8,19 @@ $(function () {
     return false
   })
 
-  var tmpl = 'https://iatiregistry.org/api/3/action/package_search?fq=extras_filetype:organisation&qf=title&q='
+  var tmpl = 'https://iatiregistry.org/api/3/action/package_search?fq=extras_filetype:organisation&q=title:{}' +
+             ' OR license_id:{}' +
+             ' OR maintainer:{}' +
+             ' OR maintainer_email:{}' +
+             ' OR author_email:{}' +
+             ' OR name:{}' +
+             ' OR organization_name:{}' +
+             ' OR organization_title:{}' +
+             ' OR organization_description:{}' +
+             ' OR extras_country:{}' +
+             ' OR extras_publisher_country:{}' +
+             ' OR extras_publisher_iati_id:{}'
+
   $('#org-file-name').on('keyup', debounce(function () {
     var searchStr = $(this).val()
     if (searchStr === '') {
@@ -16,7 +28,7 @@ $(function () {
       return
     }
     $('.list-group').html('<div id="mini-spinner"><div></div></div>')
-    chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl + searchStr}, function (data) {
+    chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl.replace(/\{\}/g, searchStr)}, function (data) {
       var result = data.message.result
       var links = []
       if (result.count > 0) {
