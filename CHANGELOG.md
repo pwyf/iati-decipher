@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
  - Make the dataset search search on more fields ([#93](https://github.com/pwyf/iati-decipher/issues/93) – thanks to [@matmaxgeds](https://github.com/matmaxgeds) and [@kndm](https://github.com/kndm))
+ - Always show graph filters, even if they’re unused ([#94](https://github.com/pwyf/iati-decipher/issues/94))
 
 ## [1.2.1] - 2018-11-15
 ### Fixed

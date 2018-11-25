@@ -24,30 +24,29 @@ function TimeGraph ($org, options) {
   }
 
   var breakdownCats = self.breakdownCats()
+  $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by ' + self.breakdown.name + '</label><select class="form-control" id="breakdown-select"></select></div>')
+  var $breakdownSelect = $('#breakdown-select', $breakdown)
   if (breakdownCats.length > 0) {
-    $breakdown = $('<div class="form-group col-sm-6"><label for="breakdown-select">Filter by ' + self.breakdown.name + '</label><select class="form-control" id="breakdown-select"><option value="">Total across ' + self.breakdown.name + 's</option></select></div>')
-    var $breakdownSelect = $('#breakdown-select', $breakdown)
+    $breakdownSelect.append($('<option value="">Total across ' + self.breakdown.name + 's</option>'))
     breakdownCats.forEach(function (item) {
       $breakdownSelect.append($('<option data-value-field="' + item.valueField + '" value="' + item.attr + '">' + item.text + '</option>'))
     })
     $breakdownSelect.on('change', function () {
       self.show()
     })
+  } else {
+    $breakdownSelect.prop('disabled', 'disabled')
   }
 
   $('#main').html('')
 
-  if ($filter || $breakdown) {
-    var $controlForm = $('<form class="container"><div class="row"></div></form>')
-    var $controlRow = $('.row', $controlForm)
-    if ($filter) {
-      $controlRow.append($filter)
-    }
-    if ($breakdown) {
-      $controlRow.append($breakdown)
-    }
-    $('#main').append($controlForm)
+  var $controlForm = $('<form class="container"><div class="row"></div></form>')
+  var $controlRow = $('.row', $controlForm)
+  if ($filter) {
+    $controlRow.append($filter)
   }
+  $controlRow.append($breakdown)
+  $('#main').append($controlForm)
 
   $('#main').append($('<div class="container" id="chart-content"></div>'))
   $('#main').append($('<div id="chart"></div>'))
