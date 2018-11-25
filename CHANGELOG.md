@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), ~~and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)~~.
 
-## [Unreleased]
+## [1.3.0] - 2018-11-25
 ### Fixed
  - Popup search strings are properly encoded before being used in calls to the registry API ([#97](https://github.com/pwyf/iati-decipher/issues/97))
  - Don’t error when registry API returns success === false
