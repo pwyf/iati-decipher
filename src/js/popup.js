@@ -31,7 +31,8 @@ $(function () {
     chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl.replace(/\{\}/g, searchStr)}, function (data) {
       var result = data.message.result
       var links = []
-      if (result.count > 0) {
+      if (data.message.success) {
+        var result = data.message.result
         result.results.forEach(function (el) {
           links.push('<a data-dataset-name="' + el.name + '" data-download-url="' + el.resources[0].url + '" href="https://iatiregistry.org/dataset/' + el.name + '" class="list-group-item pwyf-org-viz-btn"><span class="badge"><span class="fas fa-link"></span></span> ' + el.title + '</a>')
         })
