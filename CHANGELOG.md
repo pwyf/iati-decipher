@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Fixed
  - Popup search strings are properly encoded before being used in calls to the registry API ([#97](https://github.com/pwyf/iati-decipher/issues/97))
+ - Don’t error when registry API returns success === false
 
 ### Changed
  - Make the dataset search search on more fields ([#93](https://github.com/pwyf/iati-decipher/issues/93) – thanks to [@matmaxgeds](https://github.com/matmaxgeds) and [@kndm](https://github.com/kndm))
