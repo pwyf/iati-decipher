@@ -28,8 +28,10 @@ $(function () {
       return
     }
     $('.list-group').html('<div id="mini-spinner"><div></div></div>')
-    chrome.runtime.sendMessage({action: 'msg.jsonrequest', url: tmpl.replace(/\{\}/g, searchStr)}, function (data) {
-      var result = data.message.result
+    chrome.runtime.sendMessage({
+      action: 'msg.jsonrequest',
+      url: tmpl.replace(/\{\}/g, encodeURIComponent(searchStr))
+    }, function (data) {
       var links = []
       if (data.message.success) {
         var result = data.message.result
