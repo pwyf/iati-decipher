@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Fixed
  - Escape document search ([#98](https://github.com/pwyf/iati-decipher/issues/98))
+ - Quote search string, so searches with spaces work ([#99](https://github.com/pwyf/iati-decipher/issues/99))
 
 ## [1.3.0] - 2018-11-25
 ### Fixed
