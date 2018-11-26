@@ -102,7 +102,8 @@ var refreshDocuments = function ($org, page, codelists) {
     $results = $results.filter(':has(recipient-country[code="' + country + '"])')
   }
   if (search) {
-    $results = $results.filter(':containsIN(' + search + ')')
+    var escapedSearch = search.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+    $results = $results.filter(':containsIN("' + escapedSearch + '")')
   }
   var totalFiltered = $results.length
 
