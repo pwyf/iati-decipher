@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
  - Fix bug with x-axis tick values and missing legend values ([#100](https://github.com/pwyf/iati-decipher/issues/100))
+ - Allow for document filtering on empty-string attributes
 
 ## [1.3.1] - 2018-11-26
 ### Fixed

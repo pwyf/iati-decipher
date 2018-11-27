@@ -21,7 +21,7 @@ var showDocuments = function ($org, codelists) {
       return (item.text !== item.attr) ? 'A' + item.text : 'Z' + item.text
     }).value()
 
-    $countrySelect.append($('<option value="">All countries</option>'))
+    $countrySelect.append($('<option value="decipher-reset">All countries</option>'))
     recipientCountries.forEach(function (item) {
       $countrySelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
@@ -56,7 +56,7 @@ var showDocuments = function ($org, codelists) {
       return (item.text !== item.attr) ? 'A' + item.text : 'Z' + item.text
     }).value()
 
-    $languageSelect.append($('<option value="">All languages</option>'))
+    $languageSelect.append($('<option value="decipher-reset">All languages</option>'))
     languages.forEach(function (item) {
       $languageSelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
@@ -89,7 +89,7 @@ var showDocuments = function ($org, codelists) {
       return (item.attr in codelists.DocumentCategory) ? 'A' + item.text : 'Z' + item.text
     }).value()
 
-    $categorySelect.append($('<option value="">All categories</option>'))
+    $categorySelect.append($('<option value="decipher-reset">All categories</option>'))
     categories.forEach(function (item) {
       $categorySelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
     })
@@ -131,13 +131,13 @@ var refreshDocuments = function ($org, page, codelists) {
   var search = $('#document-search').val()
 
   $results = $('document-link', $org)
-  if (cat) {
+  if (cat !== undefined && cat !== 'decipher-reset') {
     $results = $results.filter(':has(category[code="' + cat + '"])')
   }
-  if (country) {
+  if (country !== undefined && country !== 'decipher-reset') {
     $results = $results.filter(':has(recipient-country[code="' + country + '"])')
   }
-  if (language) {
+  if (language !== undefined && language !== 'decipher-reset') {
     $results = $results.filter(':has(language[code="' + language + '"])')
   }
   if (search) {
