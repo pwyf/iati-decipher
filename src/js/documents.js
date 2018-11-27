@@ -1,5 +1,5 @@
 var showDocuments = function ($org, codelists) {
-  var $page = $('<div class="container"><form autocomplete="off" id="document-search-form"><div class="form-group"><label for="search">Search documents</label><input autocomplete="off" class="form-control" type="text" placeholder="E.g. Annual report" id="document-search" /></div><div class="row"><div class="form-group col-sm-6"><label for="category-select">Filter by category</label><select class="form-control" id="category-select"></select></div><div class="form-group col-sm-6"><label for="country-select">Filter by country</label><select class="form-control" id="country-select"></select></div></div></form></div><div class="container"><h2></h2><div class="list-group"></div></div>')
+  var $page = $('<div class="container"><form autocomplete="off" id="document-search-form"><div class="form-group"><label for="search">Search documents</label><input autocomplete="off" class="form-control" type="text" placeholder="E.g. Annual report" id="document-search" /></div><div class="row"><div class="form-group col-sm-4"><label for="category-select">Filter by category</label><select class="form-control" id="category-select"></select></div><div class="form-group col-sm-4"><label for="country-select">Filter by country</label><select class="form-control" id="country-select"></select></div><div class="form-group col-sm-4"><label for="language-select">Filter by language</label><select class="form-control" id="language-select"></select></div></div></form></div><div class="container"><h2></h2><div class="list-group"></div></div>')
 
   var pagination = '<nav aria-label="Page navigation"><ul class="pager"><li class="previous"><a href="#" class="prev-page"><span aria-hidden="true">&larr;</span> Previous page</a></li><li class="next"><a href="#" class="next-page">Next page <span aria-hidden="true">&rarr;</span></a></li></ul></nav>'
   $('.list-group', $page).after($(pagination)).before($(pagination))
@@ -30,6 +30,41 @@ var showDocuments = function ($org, codelists) {
     })
   } else {
     $countrySelect.prop('disabled', 'disabled')
+  }
+
+  var defaultLanguage = $org.attr('xml:lang')
+  var $languages = $('document-link language', $org)
+  var $languageSelect = $('#language-select', $page)
+  if (defaultLanguage || $languages.length > 0) {
+    var languages = _.uniq($languages, function (item) {
+      return $(item).attr('code')
+    })
+
+    if (defaultLanguage && languages.indexOf(defaultLanguage) === -1) {
+      languages.push(defaultLanguage)
+    }
+
+    var languages = _.chain(languages).map(function (item) {
+      var $item = $(item)
+      var attr = $item.attr('code')
+      var txt = $('narrative', $item).first().text() // TODO
+      return {
+        attr: attr,
+        text: txt || codelists.Language[attr] || attr
+      }
+    }).sortBy(function (item) {
+      return (item.text !== item.attr) ? 'A' + item.text : 'Z' + item.text
+    }).value()
+
+    $languageSelect.append($('<option value="">All languages</option>'))
+    languages.forEach(function (item) {
+      $languageSelect.append($('<option value="' + item.attr + '">' + item.text + '</option>'))
+    })
+    $languageSelect.on('change', function () {
+      refreshDocuments($org, 1, codelists)
+    })
+  } else {
+    $languageSelect.prop('disabled', 'disabled')
   }
 
   var $categories = $('document-link category', $org)
@@ -92,6 +127,7 @@ var refreshDocuments = function ($org, page, codelists) {
   var offset = (page - 1) * maxResults
   var cat = $('#category-select option:selected').val()
   var country = $('#country-select option:selected').val()
+  var language = $('#language-select option:selected').val()
   var search = $('#document-search').val()
 
   $results = $('document-link', $org)
@@ -100,6 +136,9 @@ var refreshDocuments = function ($org, page, codelists) {
   }
   if (country) {
     $results = $results.filter(':has(recipient-country[code="' + country + '"])')
+  }
+  if (language) {
+    $results = $results.filter(':has(language[code="' + language + '"])')
   }
   if (search) {
     var escapedSearch = search.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
