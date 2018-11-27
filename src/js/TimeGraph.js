@@ -250,6 +250,10 @@ TimeGraph.prototype.show = function () {
     var dateEnd = new Date(item.periodEnd)
     return dateStart.toLocaleDateString('en-GB', opts) + ' – ' + dateEnd.toLocaleDateString('en-GB', opts)
   })
+  labels.unshift('x')
+
+  var datasetsWithLabels = groupData.datasets
+  datasetsWithLabels.unshift(labels)
 
   var $downloadLink = $('<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Excel</a>').on('click', function () {
     self.download(data)
@@ -268,7 +272,7 @@ TimeGraph.prototype.show = function () {
   if (self.chart !== null) {
     self.chart.load({
       unload: true,
-      columns: groupData.datasets,
+      columns: datasetsWithLabels,
       colors: groupData.datasets.reduce(function (o, d, i) {
         if (d[0] in backgroundColors) {
           o[d[0]] = backgroundColors[d[0]]
@@ -283,8 +287,9 @@ TimeGraph.prototype.show = function () {
     self.chart = c3.generate({
       bindto: '#chart',
       data: {
+        x: 'x',
         type: 'bar',
-        columns: groupData.datasets,
+        columns: datasetsWithLabels,
         colors: groupData.datasets.reduce(function (o, d, i) {
           if (d[0] in backgroundColors) {
             o[d[0]] = backgroundColors[d[0]]
@@ -294,8 +299,7 @@ TimeGraph.prototype.show = function () {
       },
       axis: {
         x: {
-          type: 'category',
-          categories: labels
+          type: 'category'
         },
         y: {
           tick: {
