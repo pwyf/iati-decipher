@@ -47,10 +47,9 @@ var showDocuments = function ($org, codelists) {
     var languages = _.chain(languages).map(function (item) {
       var $item = $(item)
       var attr = $item.attr('code')
-      var txt = $('narrative', $item).first().text() // TODO
       return {
         attr: attr,
-        text: txt || codelists.Language[attr] || attr
+        text: codelists.Language[attr] || attr
       }
     }).sortBy(function (item) {
       return (item.text !== item.attr) ? 'A' + item.text : 'Z' + item.text
