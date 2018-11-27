@@ -32,19 +32,13 @@ var showDocuments = function ($org, codelists) {
     $countrySelect.prop('disabled', 'disabled')
   }
 
-  var defaultLanguage = $org.attr('xml:lang')
+  var defaultLanguageCode = $org.attr('xml:lang')
   var $languages = $('document-link language', $org)
   var $languageSelect = $('#language-select', $page)
-  if (defaultLanguage || $languages.length > 0) {
-    var languages = _.uniq($languages, function (item) {
+  if (defaultLanguageCode || $languages.length > 0) {
+    var languages = _.chain($languages).uniq(function (item) {
       return $(item).attr('code')
-    })
-
-    if (defaultLanguage && languages.indexOf(defaultLanguage) === -1) {
-      languages.push(defaultLanguage)
-    }
-
-    var languages = _.chain(languages).map(function (item) {
+    }).map(function (item) {
       var $item = $(item)
       var attr = $item.attr('code')
       return {
@@ -54,6 +48,14 @@ var showDocuments = function ($org, codelists) {
     }).sortBy(function (item) {
       return (item.text !== item.attr) ? 'A' + item.text : 'Z' + item.text
     }).value()
+
+    if (defaultLanguageCode && _.findWhere(languages, {attr: defaultLanguageCode}) === undefined) {
+      var defaultLanguage = {
+        attr: defaultLanguageCode,
+        text: codelists.Language[defaultLanguageCode] || defaultLanguageCode
+      }
+      languages.push(defaultLanguage)
+    }
 
     $languageSelect.append($('<option value="decipher-reset">All languages</option>'))
     languages.forEach(function (item) {
@@ -137,7 +139,12 @@ var refreshDocuments = function ($org, page, codelists) {
     $results = $results.filter(':has(recipient-country[code="' + country + '"])')
   }
   if (language !== undefined && language !== 'decipher-reset') {
-    $results = $results.filter(':has(language[code="' + language + '"])')
+    var defaultLanguageCode = $org.attr('xml:lang')
+    if (language === defaultLanguageCode) {
+      $results = $results.filter(':has(language[code="' + language + '"]), :not(has(language[code]))')
+    } else {
+      $results = $results.filter(':has(language[code="' + language + '"])')
+    }
   }
   if (search) {
     var escapedSearch = search.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
