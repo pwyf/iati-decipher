@@ -6,7 +6,7 @@ var get = function (url, responseType, proxy) {
       req.responseType = responseType
     }
     if (proxy) {
-      url = 'https://allorigins.me/get?method=raw&url=' + encodeURIComponent(url)
+      url = 'https://pwyf-proxy.herokuapp.com/req/raw?url=' + encodeURIComponent(url)
     }
     req.open('GET', url)
 
