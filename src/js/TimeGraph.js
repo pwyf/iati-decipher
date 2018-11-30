@@ -3,7 +3,7 @@ function TimeGraph ($org, options) {
   self.$org = $org
   self.title = options.title
   self.el = options.el
-  self.hasStatuses = options.hasStatuses
+  self.defaultStatus = options.defaultStatus
   self.filter = options.filter
   self.breakdown = options.breakdown
   self.currency = $org.attr('default-currency')
@@ -132,10 +132,12 @@ TimeGraph.prototype.getDataset = function () {
     data = _.map($data, function (breakdownEl) {
       var $el = $(breakdownEl).parent()
       var $amount = $('> value', breakdownEl)
-      var status = '-'
-      if (self.hasStatuses) {
-        if ($el.attr('usg:type')) {
-          status = $el.attr('usg:type')
+      var status = null
+      if ($el.attr('usg:type')) {
+        status = $el.attr('usg:type')
+      } else {
+        if ($el.attr('status') === undefined) {
+          status = self.defaultStatus
         } else {
           status = $el.attr('status') === '2' ? 'Committed' : 'Indicative'
         }
@@ -152,10 +154,12 @@ TimeGraph.prototype.getDataset = function () {
     data = _.map($data, function (el) {
       var $el = $(el)
       var $amount = $('> value', $el)
-      var status = '-'
-      if (self.hasStatuses) {
-        if ($el.attr('usg:type')) {
-          status = $el.attr('usg:type')
+      var status = null
+      if ($el.attr('usg:type')) {
+        status = $el.attr('usg:type')
+      } else {
+        if ($el.attr('status') === undefined) {
+          status = self.defaultStatus
         } else {
           status = $el.attr('status') === '2' ? 'Committed' : 'Indicative'
         }
@@ -261,7 +265,7 @@ TimeGraph.prototype.show = function () {
   $('#chart-content').html($downloadLink)
 
   var backgroundColors = {
-    '-': '#D67D1C',
+    'Expenditure': '#D67D1C',
     'Request': '#EEC32A',
     'Appropriation': '#D67D1C',
     'Actual': '#9EB437',
@@ -311,16 +315,12 @@ TimeGraph.prototype.show = function () {
       },
       tooltip: {
         format: {
-          name: function (name, ratio, id, index) {
-            return (name !== '-') ? name : ''
-          },
           value: function (value, ratio, id, index) {
             return d3.format(',')(value) + ' ' + self.currency
           }
         }
       },
       legend: {
-        hide: !!(groupData.datasets.length === 1),
         position: 'inset'
       },
       bar: {

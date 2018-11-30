@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), ~~and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)~~.
 
 ## [Unreleased]
+### Changed
+ - Always show graph legend. Since there are no expenditure statuses, just show “Expenditure” by default ([#102](https://github.com/pwyf/iati-decipher/issues/102))
+
 ### Fixed
  - Use a custom proxy server for web service ([#103](https://github.com/pwyf/iati-decipher/issues/103))
 
