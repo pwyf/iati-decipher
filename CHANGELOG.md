@@ -207,7 +207,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Basic support for `total-expenditure`
  - This changelog
 
-## 0.0.1 - 2018-09-19
+## [0.0.1] - 2018-09-19
 ### Added
  - Basic support for `total-budget`s
  - Basic support for `document-link`s
