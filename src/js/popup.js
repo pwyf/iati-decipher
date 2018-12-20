@@ -14,9 +14,7 @@ $(function () {
              ' OR maintainer_email:"{}"' +
              ' OR author_email:"{}"' +
              ' OR name:"{}"' +
-             ' OR organization_name:"{}"' +
-             ' OR organization_title:"{}"' +
-             ' OR organization_description:"{}"' +
+             ' OR organization:"{}"' +
              ' OR extras_country:"{}"' +
              ' OR extras_publisher_country:"{}"' +
              ' OR extras_publisher_iati_id:"{}"'

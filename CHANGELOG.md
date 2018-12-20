@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Changed
  - Always show graph legend. Since there are no expenditure statuses, just show “Expenditure” by default ([#102](https://github.com/pwyf/iati-decipher/issues/102))
+ - Fix dataset search to search organisations (but note that it’s not currently possible to search organisation titles) ([#93](https://github.com/pwyf/iati-decipher/issues/93))
 
 ### Fixed
  - Use a custom proxy server for web service ([#103](https://github.com/pwyf/iati-decipher/issues/103))
