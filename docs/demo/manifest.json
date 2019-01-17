@@ -1,6 +1,6 @@
 {
   "name": "IATI Decipher",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Browser plugins for deciphering IATI organisation files.",
   "manifest_version": 2,
   "background": {

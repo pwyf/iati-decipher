@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) (since v1.0.0, anyway).
 
-## [Unreleased]
+## [1.4.2] - 2019-01-17
 ### Changed
  - Always show graph legend. Since there are no expenditure statuses, just show “Expenditure” by default ([#102](https://github.com/pwyf/iati-decipher/issues/102))
  - Fix dataset search to search organisations (but note that it’s not currently possible to search organisation titles) ([#93](https://github.com/pwyf/iati-decipher/issues/93))
