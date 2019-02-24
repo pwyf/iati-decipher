@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) (since v1.0.0, anyway).
 
+## [Unreleased]
+### Fixed
+ - Update bootstrap to 3.4.1 (fixes security vulnerability)
+
 ## [1.4.2] - 2019-01-17
 ### Changed
  - Always show graph legend. Since there are no expenditure statuses, just show “Expenditure” by default ([#102](https://github.com/pwyf/iati-decipher/issues/102))
