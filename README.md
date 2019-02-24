@@ -45,7 +45,7 @@ Then:
 
    This should update the files in the `docs/demo` folder (which are in version control) and create an `extension.zip` file (which isn’t in version control).
 
-3. Commit changes in the `docs/demo` folder
+3. Commit all changes and push to github
 4. Create a new github release:
 
    ```shell
