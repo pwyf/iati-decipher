@@ -1,6 +1,6 @@
 {
   "name": "iati-decipher",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Browser plugins for deciphering IATI organisation files.",
   "private": true,
   "dependencies": {
