@@ -1,12 +1,9 @@
-var get = function (url, responseType, proxy) {
+var get = function (url, responseType) {
   // Return a new promise.
   return new Promise(function (resolve, reject) {
     var req = new XMLHttpRequest()
     if (responseType === 'json') {
       req.responseType = responseType
-    }
-    if (proxy) {
-      url = 'https://pwyf-proxy.herokuapp.com/req/raw?url=' + encodeURIComponent(url)
     }
     req.open('GET', url)
 
@@ -45,12 +42,11 @@ var chrome = {
   },
   runtime: {
     sendMessage: function (request, reply) {
-      request.proxy = request.proxy !== false // defaults to true
       var responseType = 'xml'
       if (request.action === 'msg.jsonrequest') {
         responseType = 'json'
       }
-      get(request.url, responseType, !!request.proxy).then(function (response) {
+      get(request.url, responseType).then(function (response) {
         reply({success: true, message: response})
       }).catch(function (err) {
         reply({success: false, message: err.message})
