@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Fixed
+ - Don’t break the publisher list button on the registry, by only including the required bit of bootstrap javascript ([#106](https://github.com/pwyf/iati-decipher/issues/106))
  - Remove custom proxy server for web service, since it is no longer needed (and in fact no longer exists) ([#105](https://github.com/pwyf/iati-decipher/issues/105))
 
 ## [1.4.4] - 2019-05-03
