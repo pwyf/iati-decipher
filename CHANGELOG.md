@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Fixed
+ - Add (new) proxy server in again, since it very much is needed!
  - Update dependencies (to fix security alerts)
 
 ## [1.5.0] - 2019-09-24

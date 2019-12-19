@@ -46,6 +46,9 @@ var chrome = {
       if (request.action === 'msg.jsonrequest') {
         responseType = 'json'
       }
+      if (!!request.dataset) {
+        request.url = 'https://iati-proxy.herokuapp.com/raw?dataset=' + encodeURIComponent(request.dataset)
+      }
       get(request.url, responseType).then(function (response) {
         reply({success: true, message: response})
       }).catch(function (err) {

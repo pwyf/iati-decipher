@@ -210,7 +210,7 @@ $(function () {
     var codelistFiles = ['Country', 'Region', 'Language', 'DocumentCategory']
 
     // Fetch our template
-    var xmlPromise = sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html'), proxy: false})
+    var xmlPromise = sendMessage({action: 'msg.httprequest', url: chrome.extension.getURL('html/html.html')})
       .then(function (response) {
         // Add special crx hrefs
         response = response.replace(/{path:([^}]+)}/g, function (_, assetPath) {
@@ -222,7 +222,7 @@ $(function () {
       })
       .then(function () {
         // Download the dataset
-        return sendMessage({action: 'msg.httprequest', url: downloadUrl})
+        return sendMessage({action: 'msg.httprequest', url: downloadUrl, dataset: datasetName})
       })
       .then(function (response) {
         // Parse the dataset
@@ -239,7 +239,7 @@ $(function () {
       return Promise.all(
         codelistFiles.map(function (codelistFile) {
           var jsonUrl = chrome.extension.getURL('json/' + codelistFile + '.json')
-          return sendMessage({action: 'msg.jsonrequest', url: jsonUrl, proxy: false})
+          return sendMessage({action: 'msg.jsonrequest', url: jsonUrl})
         }))
         .then(function (codelistDataArr) {
           var codelists = {}
